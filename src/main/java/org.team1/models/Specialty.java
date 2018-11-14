@@ -12,9 +12,7 @@ public class Specialty {
 
     public Specialty(){}
 
-    public Specialty(String name){
-        this.name = name;
-    }
+    public Specialty(String name){ this.name = name; }
 
     @Id
     @GeneratedValue
@@ -26,7 +24,7 @@ public class Specialty {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Specialty{" +
                 "id=" + id +
                 ", specialty='" + name + '\'' +
                 '}';
