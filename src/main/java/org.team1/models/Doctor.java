@@ -11,15 +11,15 @@ public class Doctor {
     private String firstName;
     private String lastName;
     private String username;
-    private Character password;
+    private String password;
     private int phone;
-    private Character email;
+    private String email;
     private Specialty specialty;
 
     public Doctor(){}
 
-    public Doctor(int amka,String firstName, String lastName, String username, Character password, int phone,
-                  Character email, Specialty specialty){
+    public Doctor(int amka,String firstName, String lastName, String username, String password, int phone,
+                  String email, Specialty specialty){
 
         this.amka = amka;
         this.firstName = firstName;
@@ -50,7 +50,7 @@ public class Doctor {
         return username;
     }
 
-    public Character getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -58,7 +58,7 @@ public class Doctor {
         return phone;
     }
 
-    public Character getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -82,7 +82,7 @@ public class Doctor {
         this.username = username;
     }
 
-    public void setPassword(Character password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -90,7 +90,7 @@ public class Doctor {
         this.phone = phone;
     }
 
-    public void setEmail(Character email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import org.team1.exceptions.DoctorNotFoundException;
 import org.team1.models.Doctor;
 import org.team1.repositories.DoctorRepository;
-
 import java.util.List;
 
 public class DoctorController {
