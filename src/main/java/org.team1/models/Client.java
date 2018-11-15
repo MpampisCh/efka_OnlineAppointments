@@ -1,22 +1,24 @@
 package org.team1.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 
-
-public class Client {
+@Entity(name = "clientEntity")
+@Table(name = "client")
+public class Client implements Serializable {
 
     private int amka;
     private String firstName;
     private String lastName;
     private String username;
-    private Character password;
+    private String password;
     private int phone;
-    private Character email;
+    private String email;
+    private Appointment appointment;
 
     public Client(){}
 
-    public Client(int amka,String firstName, String lastName, String username, Character password, int phone, Character email){
+    public Client(int amka,String firstName, String lastName, String username, String password, int phone, String email){
 
         this.amka = amka;
         this.firstName = firstName;
@@ -28,63 +30,63 @@ public class Client {
     }
 
     @Id
-    @GeneratedValue
-
     public int getAmka() {
         return amka;
     }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Character getPassword() {
-        return password;
-    }
-
-    public int getPhone() {
-        return phone;
-    }
-
-    public Character getEmail() {
-        return email;
-    }
-
     public void setAmka(int amka) {
         this.amka = amka;
     }
 
+    @Column(name = "first_name")
+    public String getFirstName() {
+        return firstName;
+    }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
+    @Column(name = "lastName")
+    public String getLastName() {
+        return lastName;
+    }
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
+    }
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public void setPassword(Character password) {
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
         this.password = password;
     }
 
+    @Column(name= "phone")
+    public int getPhone() { return phone; }
     public void setPhone(int phone) {
         this.phone = phone;
     }
 
-    public void setEmail(Character email) {
+    @Column(name = "email")
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
         this.email = email;
     }
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    public Appointment getAppointment(){ return appointment; }
+    public void setAppointment(Appointment appointment) { this.appointment = appointment; }
+
     @Override
     public String toString(){
         return "Client{" + "amka=" + amka + ",First Name=" + firstName + ",Last Name=" + lastName + ",username=" + username +
