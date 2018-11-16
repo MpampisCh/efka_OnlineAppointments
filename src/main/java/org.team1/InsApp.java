@@ -8,12 +8,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.team1.repositories.AppointmentRepository;
-import org.team1.repositories.ClientRepository;
+//import org.team1.repositories.ClientRepository;
 import org.team1.repositories.DoctorRepository;
 import org.team1.repositories.SpecialtyRepository;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @SpringBootApplication
 public class InsApp implements CommandLineRunner {
@@ -22,7 +20,7 @@ public class InsApp implements CommandLineRunner {
 
     @Autowired
     private AppointmentRepository appointmentRepository;
-    private ClientRepository clientRepository;
+//    private ClientRepository clientRepository;
     private DoctorRepository doctorRepository;
     private SpecialtyRepository specialtyRepository;
 

@@ -12,9 +12,7 @@ import java.util.Date;
 public class Appointment implements Serializable{
 
     private Long id;
-//    private Long clientAmka;
     private Client client;
-//    private Long doctorAmka;
     private Doctor doctor;
     private Date dateTime;
     private String description;
@@ -35,14 +33,14 @@ public class Appointment implements Serializable{
     public void setId(Long id) { this.id = id; }
 
     @ManyToOne
-    @JoinColumn(name = "amka")
+    @JoinColumn(name = "client_id")
     public Client client() { return client; }
-    public void setClientAmka(Client client) { this.client = client; }
+    public void setClient(Client client) { this.client = client; }
 
     @ManyToOne
-    @JoinColumn(name = "amka")
+    @JoinColumn(name = "doctor_id")
     public Doctor getDoctor() { return doctor; }
-    public void setDoctorAmka(Doctor doctor) { this.doctor = doctor; }
+    public void setDoctor(Doctor doctor) { this.doctor = doctor; }
 
     @Column(name = "datetime")
     public Date getDateTime() { return dateTime; }
