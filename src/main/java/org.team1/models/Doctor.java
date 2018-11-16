@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity(name = "doctorEntity")
 @Table(name = "doctor")
@@ -17,7 +18,7 @@ public class Doctor implements Serializable {
     private int phone;
     private String email;
     private Specialty specialty;
-    private Appointment appointment;
+    private Set<Appointment> appointments;
 
     public Doctor(){}
 
@@ -91,14 +92,13 @@ public class Doctor implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "specialty_id")
     public Specialty getSpecialty(){ return specialty;}
     public void setSpecialty(Specialty specialty) { this.specialty = specialty; }
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    public Appointment getAppointment(){ return appointment; }
-    public void setAppointment(Appointment appointment){ this.appointment = appointment; }
-
+    public Set<Appointment> getAppointments(){ return appointments; }
+    public void setAppointments(Appointment appointment){ this.appointments = appointments; }
 
     @Override
     public String toString(){

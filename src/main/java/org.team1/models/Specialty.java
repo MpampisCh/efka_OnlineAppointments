@@ -1,7 +1,9 @@
 package org.team1.models;
 
 import javax.persistence.*;
+import javax.print.Doc;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity(name = "specialtyEntity")
 @Table(name = "specialty")
@@ -9,11 +11,13 @@ public class Specialty implements Serializable {
 
     private Long id;
     private String name;
-    private Doctor doctor;
+    private Set<Doctor> doctors;
 
     public Specialty(){}
 
-    public Specialty(String name){ this.name = name; }
+    public Specialty(String name){
+        this.name = name;
+    }
 
 
     @Id
@@ -26,12 +30,10 @@ public class Specialty implements Serializable {
     public void setName(String name) { this.name = name; }
 
     @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL)
-    public Doctor getDoctor(){
-        return doctor;
-    }
+    public Set<Doctor> getDoctors(){ return doctors; }
 
-    public void setDoctor(Doctor doctor){
-        this.doctor = doctor;
+    public void setDoctors(Set<Doctor> doctors){
+        this.doctors = doctors;
     }
 
     @Override

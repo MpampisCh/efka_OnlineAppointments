@@ -2,6 +2,7 @@ package org.team1.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity(name = "clientEntity")
 @Table(name = "client")
@@ -14,7 +15,7 @@ public class Client implements Serializable {
     private String password;
     private int phone;
     private String email;
-    private Appointment appointment;
+    private Set<Appointment> appointments;
 
     public Client(){}
 
@@ -30,17 +31,11 @@ public class Client implements Serializable {
     }
 
     @Id
-    public int getAmka() {
-        return amka;
-    }
-    public void setAmka(int amka) {
-        this.amka = amka;
-    }
+    public int getAmka() { return amka; }
+    public void setAmka(int amka) { this.amka = amka; }
 
     @Column(name = "first_name")
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() { return firstName; }
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -84,8 +79,8 @@ public class Client implements Serializable {
     }
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    public Appointment getAppointment(){ return appointment; }
-    public void setAppointment(Appointment appointment) { this.appointment = appointment; }
+    public Set<Appointment> getAppointments(){ return appointments; }
+    public void setAppointments(Appointment appointment){ this.appointments = appointments;  }
 
     @Override
     public String toString(){
