@@ -2,12 +2,14 @@ package org.team1.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.team1.exceptions.NoLoggedInClientException;
 import org.team1.models.Doctor;
 import org.team1.repositories.DoctorRepository;
 
 import java.security.Principal;
 
+@RestController
 public class LoggedInDoctorController {
 
     private final DoctorRepository doctorRepository;
