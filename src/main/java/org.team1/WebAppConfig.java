@@ -52,10 +52,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
-
     private SimpleUrlAuthenticationFailureHandler myFailureHandler = new SimpleUrlAuthenticationFailureHandler();
-
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
