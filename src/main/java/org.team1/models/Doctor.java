@@ -98,7 +98,7 @@ public class Doctor implements Serializable {
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     public Set<Appointment> getAppointments(){ return appointments; }
-    public void setAppointments(Appointment appointment){ this.appointments = appointments; }
+    public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments; }
 
     @Override
     public String toString(){
