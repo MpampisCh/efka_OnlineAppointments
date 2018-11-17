@@ -37,19 +37,30 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
     private MyDoctorDetailsService myDoctorDetailsService;
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
+    public DaoAuthenticationProvider clientAuthenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(myClientDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    @Bean
+    public DaoAuthenticationProvider doctorAuthenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(myDoctorDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
 
+
     private SimpleUrlAuthenticationFailureHandler myFailureHandler = new SimpleUrlAuthenticationFailureHandler();
+
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
+        auth.authenticationProvider(clientAuthenticationProvider());
+        auth.authenticationProvider(doctorAuthenticationProvider());
     }
 
     @Override
@@ -63,9 +74,9 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/Appointment/**").authenticated()
-                .antMatchers("/Doctor/**").hasRole("Doctor")
-                .antMatchers("/Client/**").hasRole("Client")
+                .antMatchers("/appointment/**").authenticated()
+                .antMatchers("/doctor/**").hasRole("Doctor")
+                .antMatchers("/client/**").hasRole("Client")
                 .and()
                 .formLogin()
                 .successHandler(mySuccessHandler)

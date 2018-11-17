@@ -1,5 +1,7 @@
 package org.team1.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -36,6 +38,7 @@ public class Doctor implements Serializable {
     }
 
     @Id
+    @Column(unique = true, nullable = false)
     public int getAmka() {
         return amka;
     }
@@ -43,7 +46,7 @@ public class Doctor implements Serializable {
         this.amka = amka;
     }
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -51,7 +54,7 @@ public class Doctor implements Serializable {
         this.firstName = firstName;
     }
 
-    @Column(name = "lastName")
+    @Column(name = "lastName", nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -59,7 +62,7 @@ public class Doctor implements Serializable {
         this.lastName = lastName;
     }
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true, nullable = false)
     public String getUsername() {
         return username;
     }
@@ -67,15 +70,17 @@ public class Doctor implements Serializable {
         this.username = username;
     }
 
-    @Column(name = "password")
+    @JsonIgnore
+    @Column(name = "password", nullable = false)
     public String getPassword() {
         return password;
     }
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }
 
-    @Column(name= "phone")
+    @Column(name= "phone", nullable = false)
     public int getPhone() {
         return phone;
     }
@@ -83,7 +88,7 @@ public class Doctor implements Serializable {
         this.phone = phone;
     }
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     public String getEmail() {
         return email;
     }

@@ -9,8 +9,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.team1.models.Client;
 import org.team1.models.Doctor;
+import org.team1.models.Specialty;
 import org.team1.repositories.ClientRepository;
 import org.team1.repositories.DoctorRepository;
+import org.team1.repositories.SpecialtyRepository;
 
 @Configuration
 public class LoadDatabase {
@@ -19,19 +21,22 @@ public class LoadDatabase {
     private static final Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean
-    CommandLineRunner initDatabase(ClientRepository bookRepository, DoctorRepository userRepository,
-                                   PasswordEncoder passwordEncoder) {
+    CommandLineRunner initDatabase(ClientRepository clientRepository, DoctorRepository doctorRepository,
+                                   SpecialtyRepository specialtyRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-//            logger.info("Preloading " + bookRepository.save(new Book("The Grapes of Wrath", "0143125508")));
-//            logger.info("Preloading " + bookRepository.save(new Book("Symposium", "0872200760")));
-//            logger.info("Preloading " + bookRepository.save(new Book("Pride and Prejudice", "0486284735")));
-//            logger.info("Preloading " + bookRepository.save(new Book("The Great Gatsby", "9780141182636")));
+            logger.info("Preloading " + clientRepository.save(new Client(123456789,"clientFirst","ClientLast",
+                    "client", passwordEncoder.encode("client"),
+                    1234567890, "client@")));
 
-//            Doctor userGuest = new Doctor("Doctor", passwordEncoder.encode("userPassword"));
-//            logger.info("Preloading " + userRepository.save(userGuest));
-//            Client userGuest = new Client("Client", passwordEncoder.encode("userPassword"));
-//            logger.info("Preloading " + userRepository.save(userGuest));
+            Specialty specialty = new Specialty("Pathologos");
+            logger.info("Preloading" + specialtyRepository.save(specialty));
+
+            Doctor doctor = new Doctor(1234567880,"doctorFirst","doctorLast",
+                    "doctor", passwordEncoder.encode("doctor"),
+                    1234567880, "doctor@mail.com", specialty);
+            logger.info("Preloading " + doctorRepository.save(doctor));
 
         };
     }
+
 }

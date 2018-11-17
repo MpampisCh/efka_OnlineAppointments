@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.team1.exceptions.DoctorNotFoundException;
 import org.team1.models.Doctor;
 import org.team1.repositories.DoctorRepository;
 import org.team1.security.MyDoctorDetails;
@@ -21,10 +22,10 @@ public class MyDoctorDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Doctor doctor = doctorRepository.findByUserame(username);
+    public UserDetails loadUserByUsername(String username) throws DoctorNotFoundException {
+        Doctor doctor = doctorRepository.findByUsername(username);
         if (doctor == null) {
-            throw new UsernameNotFoundException(username);
+            throw new DoctorNotFoundException(doctor.getAmka());
         }
         return new MyDoctorDetails(doctor);
     }
