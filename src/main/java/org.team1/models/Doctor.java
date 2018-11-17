@@ -70,8 +70,8 @@ public class Doctor implements Serializable {
         this.username = username;
     }
 
-    @JsonIgnore
     @Column(name = "password", nullable = false)
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
