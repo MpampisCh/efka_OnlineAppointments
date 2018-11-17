@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Entity(name = "clientEntity")
+@Entity
 @Table(name = "client")
 public class Client implements Serializable {
 
@@ -80,7 +80,7 @@ public class Client implements Serializable {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     public Set<Appointment> getAppointments(){ return appointments; }
-    public void setAppointments(Appointment appointment){ this.appointments = appointments;  }
+    public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments;  }
 
     @Override
     public String toString(){

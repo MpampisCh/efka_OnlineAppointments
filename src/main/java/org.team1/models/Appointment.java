@@ -34,7 +34,7 @@ public class Appointment implements Serializable{
 
     @ManyToOne
     @JoinColumn(name = "client_id")
-    public Client client() { return client; }
+    public Client getClient() { return client; }
     public void setClient(Client client) { this.client = client; }
 
     @ManyToOne
