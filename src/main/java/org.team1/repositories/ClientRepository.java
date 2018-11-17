@@ -5,4 +5,5 @@ import org.team1.models.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
+    Client findByUsername(String username);
 }

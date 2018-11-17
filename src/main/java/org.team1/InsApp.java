@@ -13,30 +13,30 @@ import org.team1.repositories.SpecialtyRepository;
 
 
 @SpringBootApplication
-public class InsApp implements CommandLineRunner{
+public class InsApp {
 
-
-    private static final Logger logger = LoggerFactory.getLogger(InsApp.class);
-
-    @Autowired
-    private AppointmentRepository appointmentRepository;
-
-    @Autowired
-    private ClientRepository clientRepository;
-
-    @Autowired
-    private DoctorRepository doctorRepository;
-
-    @Autowired
-    private SpecialtyRepository specialtyRepository;
+//
+//    private static final Logger logger = LoggerFactory.getLogger(InsApp.class);
+//
+//    @Autowired
+//    private AppointmentRepository appointmentRepository;
+//
+//    @Autowired
+//    private ClientRepository clientRepository;
+//
+//    @Autowired
+//    private DoctorRepository doctorRepository;
+//
+//    @Autowired
+//    private SpecialtyRepository specialtyRepository;
 
     public static void main(String[] args )
     {
         SpringApplication.run(InsApp.class, args);
     }
 
-    @Override
-    public void run(String... args) throws Exception {
+//    @Override
+//    public void run(String... args) throws Exception {
 
-    }
 }
+

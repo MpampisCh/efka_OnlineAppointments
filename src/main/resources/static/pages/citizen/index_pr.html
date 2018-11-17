@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+        <head>
+            <title>Citizen</title>
+
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <!--===============================================================================================-->
+            <link rel="icon" type="image/png" href="images/icons/efka.ico"/>
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+            <!--===============================================================================================-->
+            <link rel="stylesheet" type="text/css" href="../../css/util.css">
+            <link rel="stylesheet" type="text/css" href="../../css/main.css">
+            <link rel="stylesheet" type="text/css" href="../../css/my.css">
+            <!--===============================================================================================-->
+
+            <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+            <script src="../../scripts/config/main.js"></script>
+            <script src="../../scripts/security/home-auth.js"></script>
+            <script src="../../scripts/security/citizen-auth.js"></script>
+            <script src="../../scripts/user/home.js"></script>
+
+        </head>
+        <body>
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <div>
+                         <h2>Hello Citizen!</h2>
+                    </div>
+                    <br><br>
+
+                <table id="books" class="table table-striped table-hover">
+                 <thead>
+                 <tr>
+                <th>#</th>
+                <th>Title</th>
+             </tr>
+             </thead>
+         </table>
+
+        <br/>
+
+      <!--  <form id="bookForm" action="">
+            Title:<br>
+            <input type="text" name="title" id="title" value="">
+            <br>
+            ISBN:<br>
+            <input type="text" name="isbn" id="isbn" value="">
+            <input type="hidden" name="id" id="id" value="">
+            <br><br>
+            <input type="submit" id="saveButton" value="Save">
+            <input type="submit" id="deleteButton" value="Delete">
+        </form> -->
+                    <form class="login100-form">
+                                <span class="login100-form-title">
+                                    Book details
+                                </span>
+                        <div class="wrap-input100">
+                            <label for="title">Title</label>
+                            <input class="input100" type="text" name="title" id="title" value="">
+                            <span class="focus-input100"></span>
+                        </div>
+                        <div class="wrap-input100">
+                            <label for="isbn">ISBN</label>
+                            <input class="input100" type="text" name="isbn"  id="isbn" value="">
+                            <span class="focus-input100"></span>
+                            <br> <br>
+                            <div class="container-register-form-btn">
+                                <div>
+                                    <input class="register-form-btn" type="submit" id="saveButton" value="Save">
+                                </div>
+                                <br>
+                                <div>
+                                   <input class="register-form-btn" type="submit" id="deleteButton" value="Delete">
+                               </div>
+
+                            </div>
+                        </div>
+                    </form>
+        <!-- Logout button -->
+        <section class="center">
+            <div class="container-register-form-btn">
+                <input class="register-form-btn" type="button" value="Logout" onclick="logout()">
+            </div>
+        </section>
+                </div>
+            </div>
+        </div>
+        </body>
+</html>
