@@ -1,34 +1,49 @@
 package org.team1.security;
 
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.team1.models.Client;
 import org.team1.models.Doctor;
+import org.team1.services.MyUserDetailsService;
 
 import java.util.Collection;
 import java.util.Collections;
 
-public class MyDoctorDetails implements UserDetails {
-    private final Doctor doctor;
+public class MyUserDetails implements UserDetails {
+    private Client client;
+    private Doctor doctor;
 
-    public MyDoctorDetails(Doctor doctor) {
-        this.doctor = doctor;
-    }
+   public MyUserDetails(Doctor doctor, Client client){
+       this.doctor = doctor;
+       this.client = client;
+   }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority("Doctor"));
+       if (doctor == null){
+           return Collections.singletonList(new SimpleGrantedAuthority("Client"));
+       }else {
+           return Collections.singletonList(new SimpleGrantedAuthority("Doctor"));
+       }
     }
 
     @Override
     public String getPassword() {
-        return doctor.getPassword();
+       if (doctor == null){
+           return client.getPassword();
+       }else {
+           return doctor.getPassword();
+       }
     }
 
     @Override
     public String getUsername() {
-        return doctor.getUsername();
+        if (doctor == null){
+            return client.getUsername();
+        }else {
+            return doctor.getUsername();
+        }
     }
 
     @Override
