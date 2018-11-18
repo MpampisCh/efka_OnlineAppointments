@@ -5,6 +5,7 @@ function login(usernameElement, passwordElement,roleElement) {
     let role = roleElement && roleElement ? roleElement : "";
     let user = { userName: username ,role: role};
 
+
     if (role=="ADMIN"){
         let prefix="A\t";
       var usernameappended=prefix.concat(username);
