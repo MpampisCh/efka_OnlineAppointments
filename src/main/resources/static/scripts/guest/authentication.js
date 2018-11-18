@@ -3,11 +3,22 @@ function login(usernameElement, passwordElement,roleElement) {
     let username = usernameElement && usernameElement.value ? usernameElement.value : "";
     let password = passwordElement && passwordElement.value ? passwordElement.value : "";
     let role = roleElement && roleElement ? roleElement : "";
-
     let user = { userName: username ,role: role};
+    if (role=="ADMIN"){
+        let prefix="A\t";
+      var usernameappended=prefix.concat(username);
+      }
+     else if (role=="CITIZEN"){
+        let prefix="C\t";
+        var usernameappended=prefix.concat(username);
+      }
+     else if (role=="DOCTOR"){
+        let prefix="D\t";
+        var usernameappended=prefix.concat(username);
+      }
 
     var fd = new FormData();
-    fd.append( 'username', username);
+    fd.append( 'username', usernameappended);
     fd.append( 'password', password);
     fd.append( 'role', role);
 
