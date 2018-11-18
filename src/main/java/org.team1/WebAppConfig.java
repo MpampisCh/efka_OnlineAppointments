@@ -3,8 +3,7 @@ package org.team1;
 import org.team1.security.CustomAccessDeniedHandler;
 import org.team1.security.MySavedRequestAwareAuthenticationSuccessHandler;
 import org.team1.security.RestAuthenticationEntryPoint;
-import org.team1.services.MyDoctorDetailsService;
-import org.team1.services.MyClientDetailsService;
+import org.team1.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,23 +30,13 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
     private CustomAccessDeniedHandler accessDeniedHandler;
 
     @Autowired
-    private MyClientDetailsService myClientDetailsService;
+    private MyUserDetailsService myUserDetailsService;
 
-    @Autowired
-    private MyDoctorDetailsService myDoctorDetailsService;
 
     @Bean
-    public DaoAuthenticationProvider clientAuthenticationProvider() {
+    public DaoAuthenticationProvider userAuthenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(myClientDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
-        return authProvider;
-    }
-
-    @Bean
-    public DaoAuthenticationProvider doctorAuthenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(myDoctorDetailsService);
+        authProvider.setUserDetailsService(myUserDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
@@ -56,8 +45,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(clientAuthenticationProvider());
-        auth.authenticationProvider(doctorAuthenticationProvider());
+        auth.authenticationProvider(userAuthenticationProvider());
     }
 
     @Override
