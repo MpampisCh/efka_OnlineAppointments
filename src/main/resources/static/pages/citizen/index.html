@@ -21,25 +21,41 @@
   <script src="../../scripts/config/main.js"></script>
   <script src="../../scripts/security/home-auth.js"></script>
   <script src="../../scripts/security/citizen-auth.js"></script>
-  <script src="../../scripts/user/home.js"></script>
+  <script src="../../scripts/citizen/home.js"></script>
+
 </head>
 
 <body>
   <div class="limiter">
     <div class="container-login100">
       <div class="wrap-login100">
-        <h2>
-          <div><img src="../../images/efka-logotypo.png" alt="EFKA" width="320px" height="291"></div>
-        </h2><br>
-        <div class="login100-form form-inline">
-          <!-- Button Make an Appointment  -->
-          <button type="button" class="btn btn-primary form-group" data-toggle="modal" data-target="#myModal">
-            Make an Appointment
+        <nav class="navbar navbar-expand-sm navbar-light bg-light" style="width:900px">
+          <!--  <a class="navbar-brand" href="index.html">Home</a> -->
+          <a class="navbar-brand">
+            <img src="../../images/efka-logotypo.png" alt="EFKA" width="30" height="30">
+          </a>
+          <!-- Toggler/collapsibe Button -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <!-- Button Search Appointments-->
-          <button onclick="showDiv()" class="btn btn-primary form-group">
-            Search & Update Appointments
-          </button>
+          <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+              <span><a class="nav-link" href="index.html">Home</a></span>
+              </li>
+              <li class="nav-item">
+                <span id="myClickableThingy" class="nav-link" data-toggle="modal" data-target="#myModal">Make an Appointment</span>
+              </li>
+              <li class="nav-item">
+                <span id="myClickableThingy" class="nav-link" name="answer" onclick="showDiv()">Search Appointment</span>
+              </li>
+              <li class="nav-item">
+                <span id="myClickableThingy" class="nav-link" onclick="logout()">Logout</span>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
 
           <div id="specialtyDiv" style="display:none;" class="answer_list">
             <label for="specialty">Specialty</label>
@@ -47,17 +63,15 @@
           </div>
           <div id="startDateDiv" style="display:none;" class="answer_list">
             <label for="startDate">Start Date</label>
-            <input class="input100" type="datetime-local">
+            <input class="input100" type="date">
           </div>
           <div id="endDateDiv" style="display:none;" class="answer_list">
               <label for="endDate">End Date</label>
-              <input class="input100" type="datetime-local">
+              <input class="input100" type="date">
             </div>
           <div id="submitButtonDiv" style="display:none;" class="answer_button">
             <button class="btn btn-default" type="button" onclick="details()">Submit</button>
           </div>
-
-          <input type="button" name="answer" value="" onclick="showDiv()" />
           <script>
             function showDiv() {
               document.getElementById('specialtyDiv').style.display = "block";
@@ -73,7 +87,6 @@
               <tr>
                 <th>#</th>
                 <th>Title</th>
-                <th></th>
               </tr>
               </thead>
               <tbody>
@@ -81,11 +94,18 @@
             </table>
           </div>
 
-          <div>
-          <!-- Button Logout -->
-          <button type="button" class="btn btn-primary form-group" onclick="logout()">
-            Logout
-          </button>
+          <div class="container">
+            <table class="table table-hover" id="booksUpdate">
+              <thead>
+              <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th> </th>
+              </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
           </div>
 
           <!-- The Modal -->
