@@ -14,7 +14,7 @@ import java.util.Set;
 @Table(name = "client")
 public class Client implements Serializable {
 
-    private int amka;
+    private long amka;
 
     private String firstName;
 
@@ -25,7 +25,7 @@ public class Client implements Serializable {
     private String password;
     private String passwordConfirm;
 
-    private int phone;
+    private long phone;
 
     private String email;
 
@@ -33,7 +33,7 @@ public class Client implements Serializable {
 
     public Client(){}
 
-    public Client(int amka,String firstName, String lastName, String username, String password, int phone, String email){
+    public Client(long amka,String firstName, String lastName, String username, String password, long phone, String email){
 
         this.amka = amka;
         this.firstName = firstName;
@@ -46,8 +46,8 @@ public class Client implements Serializable {
 
     @Id
     @Column(unique = true, nullable = false)
-    public int getAmka() { return amka; }
-    public void setAmka(int amka) { this.amka = amka; }
+    public long getAmka() { return amka; }
+    public void setAmka(long amka) { this.amka = amka; }
 
     @Column(name = "first_name", nullable = false)
     public String getFirstName() { return firstName; }
@@ -86,8 +86,8 @@ public class Client implements Serializable {
 //    public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
 
     @Column(name= "phone", nullable = false)
-    public int getPhone() { return phone; }
-    public void setPhone(int phone) {
+    public long getPhone() { return phone; }
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

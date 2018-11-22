@@ -17,6 +17,7 @@ public class LoggedInClientController {
     public LoggedInClientController(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
+
     @GetMapping("/client")
     public Client getLoggedInClient(Principal principal) {
         if (principal == null) {

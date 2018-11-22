@@ -30,6 +30,8 @@ public class SpecialtyController {
                 .orElseThrow(() -> new SpecialtyNotFoundException(id));
     }
 
+    //todo: get list of doctors with this specialty
+
     @PostMapping("/specialties")
     public Specialty newSpecialty(@RequestBody Specialty specialty) {
         return specialtyRepository.save(specialty);

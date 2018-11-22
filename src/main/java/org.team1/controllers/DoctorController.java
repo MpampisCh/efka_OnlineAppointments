@@ -22,7 +22,7 @@ public class DoctorController {
     }
 
     @GetMapping("/doctors/{amka}")
-    public Doctor getDoctor(@PathVariable Integer amka) {
+    public Doctor getDoctor(@PathVariable Long amka) {
         return doctorRepository.findById(amka)
                 .orElseThrow(() -> new DoctorNotFoundException(amka));
     }
@@ -33,7 +33,7 @@ public class DoctorController {
     }
 
     @PutMapping("/doctors/{amka}")
-    public Doctor updateDoctor(@PathVariable Integer amka, @RequestBody Doctor updateDoctor) {
+    public Doctor updateDoctor(@PathVariable Long amka, @RequestBody Doctor updateDoctor) {
         return doctorRepository.findById(amka)
                 .map(doctor -> {
                     doctor.setUsername(updateDoctor.getUsername());
@@ -44,7 +44,7 @@ public class DoctorController {
 
     @DeleteMapping("doctors/{amka}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteDoctor(@PathVariable Integer amka) {
+    public void deleteDoctor(@PathVariable Long amka) {
         getDoctor(amka);
         doctorRepository.deleteById(amka);
     }

@@ -1,6 +1,7 @@
 package org.team1.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.team1.models.Client;
 import org.team1.repositories.ClientRepository;
@@ -9,10 +10,12 @@ import org.team1.repositories.ClientRepository;
 public class ClientService {
 
     private final ClientRepository clientRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
         this.clientRepository = clientRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Client registerClient(Client client) {
@@ -24,7 +27,7 @@ public class ClientService {
         newClient.setPhone(client.getPhone());
         newClient.setEmail(client.getEmail());
         newClient.setUsername(client.getUsername());
-        newClient.setPassword(client.getPassword());
+        newClient.setPassword(passwordEncoder.encode(client.getPassword()));
 
         clientRepository.save(newClient);
 

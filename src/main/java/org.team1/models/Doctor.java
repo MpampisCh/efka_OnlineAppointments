@@ -12,20 +12,20 @@ import java.util.Set;
 @Table(name = "doctor")
 public class Doctor implements Serializable {
 
-    private int amka;
+    private long amka;
     private String firstName;
     private String lastName;
     private String username;
     private String password;
     private String passwordConfirm;
-    private int phone;
+    private long phone;
     private String email;
     private Specialty specialty;
     private Set<Appointment> appointments;
 
     public Doctor(){}
 
-    public Doctor(int amka,String firstName, String lastName, String username, String password, int phone,
+    public Doctor(long amka,String firstName, String lastName, String username, String password, long phone,
                   String email, Specialty specialty){
 
         this.amka = amka;
@@ -40,10 +40,10 @@ public class Doctor implements Serializable {
 
     @Id
     @Column(unique = true, nullable = false)
-    public int getAmka() {
+    public long getAmka() {
         return amka;
     }
-    public void setAmka(int amka) {
+    public void setAmka(long amka) {
         this.amka = amka;
     }
 
@@ -86,10 +86,10 @@ public class Doctor implements Serializable {
     public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
 
     @Column(name= "phone", nullable = false)
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

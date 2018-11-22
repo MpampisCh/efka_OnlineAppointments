@@ -1,5 +1,7 @@
 package org.team1.models;
 
+import org.springframework.context.annotation.Lazy;
+
 import javax.persistence.*;
 import javax.print.Doc;
 import java.io.Serializable;
@@ -19,7 +21,6 @@ public class Specialty implements Serializable {
         this.name = name;
     }
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() { return id; }
@@ -29,9 +30,9 @@ public class Specialty implements Serializable {
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
+    @Lazy
     @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL)
     public Set<Doctor> getDoctors(){ return doctors; }
-
     public void setDoctors(Set<Doctor> doctors){
         this.doctors = doctors;
     }
