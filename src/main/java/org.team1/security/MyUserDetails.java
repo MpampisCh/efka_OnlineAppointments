@@ -5,7 +5,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.team1.models.Client;
 import org.team1.models.Doctor;
-import org.team1.services.MyUserDetailsService;
 
 import java.util.Collection;
 import java.util.Collections;

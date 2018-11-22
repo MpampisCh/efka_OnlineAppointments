@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -12,12 +15,20 @@ import java.util.Set;
 public class Client implements Serializable {
 
     private int amka;
+
     private String firstName;
+
     private String lastName;
+
     private String username;
+
     private String password;
+    private String passwordConfirm;
+
     private int phone;
+
     private String email;
+
     private Set<Appointment> appointments;
 
     public Client(){}
@@ -69,6 +80,10 @@ public class Client implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+//    @Transient
+//    public String getPasswordConfirm() { return passwordConfirm; }
+//    public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
 
     @Column(name= "phone", nullable = false)
     public int getPhone() { return phone; }

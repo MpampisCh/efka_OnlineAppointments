@@ -17,6 +17,7 @@ public class Doctor implements Serializable {
     private String lastName;
     private String username;
     private String password;
+    private String passwordConfirm;
     private int phone;
     private String email;
     private Specialty specialty;
@@ -79,6 +80,10 @@ public class Doctor implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Transient
+    public String getPasswordConfirm() { return passwordConfirm; }
+    public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
 
     @Column(name= "phone", nullable = false)
     public int getPhone() {
