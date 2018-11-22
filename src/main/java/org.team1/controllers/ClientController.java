@@ -3,7 +3,6 @@ package org.team1.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.team1.exceptions.ClientNotFoundException;
 import org.team1.models.Client;
@@ -38,10 +37,10 @@ public class ClientController {
                 .orElseThrow(() -> new ClientNotFoundException(amka));
     }
 
-    @PostMapping("/clients")    //registration //register //clients
-    public Client newClient(@RequestBody Client client) {
-        return clientRepository.save(client);
-    }
+//    @PostMapping("/clients")
+//    public Client newClient(@RequestBody Client client) {
+//        return clientRepository.save(client);
+//    }
 
     @PutMapping("/clients/{amka}")
     public Client updateClient(@PathVariable Integer amka, @RequestBody Client updateClient) {
@@ -53,10 +52,10 @@ public class ClientController {
                 .orElseThrow(() -> new ClientNotFoundException(amka));
     }
 
-    @PutMapping("/register")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void registerAccount(@Valid @RequestBody Client client) {
-        Client newClient = clientService.registerClient(client);
+    public Client registerAccount(@Valid @RequestBody Client client) {
+        return clientService.registerClient(client);
     }
 
 

@@ -33,9 +33,6 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MyUserDetailsService myUserDetailsService;
 
-    @Autowired
-    private ClientService clientService;
-
 
     @Bean
     public DaoAuthenticationProvider userAuthenticationProvider() {
