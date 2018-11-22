@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.team1.exceptions.DoctorNotFoundException;
 import org.team1.models.Doctor;
+import org.team1.models.Specialty;
 import org.team1.repositories.DoctorRepository;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class DoctorController {
     public DoctorController(DoctorRepository clientRepository) {
         this.doctorRepository = clientRepository;
     }
+
     @GetMapping("/doctors")
     public List<Doctor> getDoctor() {
         return doctorRepository.findAll();
@@ -41,6 +43,14 @@ public class DoctorController {
                 })
                 .orElseThrow(() -> new DoctorNotFoundException(amka));
     }
+
+// TODO: Doctors from Specialty
+//    @GetMapping("/specialty/{id}/doctors")
+//    public List<Doctor> getDoctorsBySpecialty(@PathVariable Long id, @RequestBody Doctor doctor){
+//        return doctorRepository.findBySpecialty(id);
+//
+//    }
+
 
     @DeleteMapping("doctors/{amka}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)

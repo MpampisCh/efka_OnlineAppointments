@@ -21,7 +21,6 @@ public class Doctor implements Serializable {
     private long phone;
     private String email;
     private Specialty specialty;
-    private Set<Appointment> appointments;
 
     public Doctor(){}
 
@@ -106,9 +105,6 @@ public class Doctor implements Serializable {
     public Specialty getSpecialty(){ return specialty;}
     public void setSpecialty(Specialty specialty) { this.specialty = specialty; }
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    public Set<Appointment> getAppointments(){ return appointments; }
-    public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments; }
 
     @Override
     public String toString(){

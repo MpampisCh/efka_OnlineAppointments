@@ -13,7 +13,6 @@ public class Specialty implements Serializable {
 
     private Long id;
     private String name;
-    private Set<Doctor> doctors;
 
     public Specialty(){}
 
@@ -29,13 +28,6 @@ public class Specialty implements Serializable {
     @Column(name = "name")
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-
-    @Lazy
-    @OneToMany(mappedBy = "specialty", cascade = CascadeType.ALL)
-    public Set<Doctor> getDoctors(){ return doctors; }
-    public void setDoctors(Set<Doctor> doctors){
-        this.doctors = doctors;
-    }
 
     @Override
     public String toString() {
