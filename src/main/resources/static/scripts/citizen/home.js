@@ -9,19 +9,20 @@ function populateDataTableAndUpdate(books) {
      });
 
 }
+
 function populateDataTable(books) {
     jQuery.each(books, function(i,book) {
         $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td></tr>");
      });
 
 }
+
 function print() {
       $("#booksUpdate tr").click(function() {
        let tabler=$(this).children("td").html();
        window.location.href = "update.html?bookid="+tabler;
     });
 }
-
 
 function details() {
       $.ajax({
