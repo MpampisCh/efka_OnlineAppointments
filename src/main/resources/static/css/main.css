@@ -1,5 +1,4 @@
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
+/*[ FONT ]*/
 
 @font-face {
   font-family: Poppins-Regular;
@@ -21,8 +20,7 @@
   src: url('../fonts/montserrat/Montserrat-Bold.ttf'); 
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
+/*[ RESTYLE TAG ]*/
 
 * {
 	margin: 0px;
@@ -123,8 +121,7 @@ button:hover {
 }
 
 
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
+/*[ Utility ]*/
 
 .txt {
   font-family: Poppins-Regular;
@@ -134,15 +131,14 @@ button:hover {
 }
 
 
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
+/*[ login ]*/
 
-.limiter {
+.modifier {
   width: 100%;
   margin: 0 auto;
 }
 
-.container-login100 {
+.login {
   width: 100%;  
   min-height: 100vh;
   display: -webkit-box;
@@ -161,7 +157,7 @@ button:hover {
   background: linear-gradient(-135deg, #02B08B, #0089D1);
 }
 
-.wrap-login100 {
+.wrap-login {
   width: 900px;
   background: #fff;
   border-radius: 10px;
@@ -181,11 +177,11 @@ button:hover {
 
 /*------------------------------------------------------------------
 [  ]*/
-.login100-form {
+.login-form {
   width: 290px;
 }
 
-.login100-form-title {
+.login-form-title {
   font-family: Poppins-Bold;
   font-size: 24px;
   color: #333333;
@@ -230,6 +226,7 @@ button:hover {
   padding-top: 10px;
  
 }
+
 .input100 {
   font-family: Poppins-Medium;
   font-size: 15px;
@@ -243,8 +240,9 @@ button:hover {
   border-radius: 25px;
   padding: 0 30px 0 68px;
 }
-/*------------------------------------------------------------------
-[ Focus ]*/
+
+/*[ Focus ]*/
+
 .focus-input100 {
   display: block;
   position: absolute;
@@ -307,9 +305,9 @@ button:hover {
   padding-left: 28px;
 }
 
-/*------------------------------------------------------------------
-[ Button ]*/
-.container-login100-form-btn {
+/*[ Button ]*/
+
+.login-form-btn {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -321,7 +319,7 @@ button:hover {
   padding-top: 20px;
 }
 
-.login100-form-btn {
+.login-form-btn {
   font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;
@@ -347,10 +345,10 @@ button:hover {
   transition: all 0.4s;
 }
 
-.login100-form-btn:hover {
+.login-form-btn:hover {
   background: #333333;
 }
-.container-login100-form-btn {
+.container-login-form-btn {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -432,48 +430,44 @@ button:hover {
   background: #333333;
 }
 
-/*------------------------------------------------------------------
-[ Responsive ]*/
-
-
+/*[ Responsive ]*/
 
 @media (max-width: 992px) {
-  .wrap-login100 {
+  .wrap-login {
     padding: 177px 90px 33px 85px;
   }
 
-  .login100-pic {
+  .login-pic {
     width: 35%;
   }
 
-  .login100-form {
+  .login-form {
     width: 50%;
   }
 }
 
 @media (max-width: 768px) {
-  .wrap-login100 {
+  .wrap-login {
     padding: 100px 80px 33px 80px;
   }
 
-  .login100-pic {
+  .login-pic {
     display: none;
   }
 
-  .login100-form {
+  .login-form {
     width: 100%;
   }
 }
 
 @media (max-width: 576px) {
-  .wrap-login100 {
+  .wrap-login {
     padding: 100px 15px 33px 15px;
   }
 }
 
 
-/*------------------------------------------------------------------
-[ Alert validate ]*/
+/*[ Alert validate ]*/
 
 .validate-input {
   position: relative;
@@ -539,6 +533,8 @@ button:hover {
   }
 }
 
+/*[ Dropdown ]*/
+
 .dropbtn {
     width: 100%;
     height: 50px;
@@ -584,6 +580,6 @@ button:hover {
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-#myClickableThingy{
-cursor:pointer;
+#myClickableThingy {
+cursor: pointer;
 }
