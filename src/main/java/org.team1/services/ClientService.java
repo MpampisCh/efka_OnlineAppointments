@@ -18,15 +18,15 @@ public class ClientService {
     public Client registerClient(Client client) {
 
         Client newClient = new Client();
-        client.setFirstName(newClient.getFirstName());
-        client.setLastName(newClient.getLastName());
-        client.setAmka(newClient.getAmka());
-        client.setPhone(newClient.getPhone());
-        client.setEmail(newClient.getEmail());
-        client.setUsername(newClient.getUsername());
-        client.setPassword(newClient.getPassword());
+        newClient.setFirstName(client.getFirstName());
+        newClient.setLastName(client.getLastName());
+        newClient.setAmka(client.getAmka());
+        newClient.setPhone(client.getPhone());
+        newClient.setEmail(client.getEmail());
+        newClient.setUsername(client.getUsername());
+        newClient.setPassword(client.getPassword());
 
-        clientRepository.save(client);
+        clientRepository.save(newClient);
 
         return newClient;
     }
