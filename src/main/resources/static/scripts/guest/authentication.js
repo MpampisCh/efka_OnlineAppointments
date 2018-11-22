@@ -5,20 +5,19 @@ $(document).ready(function() {
    event.preventDefault();
              var check = true;
 
-                    for(var i=0; i<input.length; i++) {
-                        if(validate(input[i]) == false){
+                    for (var i=0; i<input.length; i++) {
+                        if (validate(input[i]) == false){
                             showValidate(input[i]);
-                            check=false;
+                            check = false;
                         }
                     }
-                    if (check==true){
+                    if (check == true) {
                         login();
                     }
     });
 
-
-    $('.validate-form .input100').each(function(){
-         $(this).focus(function(){
+    $('.validate-form .input100').each(function() {
+         $(this).focus(function() {
          hideValidate(this);
          document.getElementById('errorAnswer').style.display = "none";
          });
@@ -30,15 +29,15 @@ $(document).ready(function() {
                         return false;
                         }
                    }
-                   else if($(input).attr('name') == 'roleSelection'){
+                   else if ($(input).attr('name') == 'roleSelection') {
                         let e = document.getElementById("roleselection");
                         let role = e.options[e.selectedIndex].value;
-                        if(role=='Select Role'){
+                        if (role == 'Select Role') {
                             return false;
                         }
                    }
                    else {
-                       if($(input).val().trim() == ''){
+                       if ($(input).val().trim() == '') {
                            return false;
                        }
                    }
@@ -46,37 +45,33 @@ $(document).ready(function() {
 
                function showValidate(input) {
                    var thisAlert = $(input).parent();
-
                    $(thisAlert).addClass('alert-validate');
                }
 
                function hideValidate(input) {
                    var thisAlert = $(input).parent();
-
                    $(thisAlert).removeClass('alert-validate');
                }
 
                function login() {
                    let username = document.getElementById("userName").value;
-
                    let password = document.getElementById("password").value;
                    let e = document.getElementById("roleselection");
                    let role = e.options[e.selectedIndex].value;
 
-
                    let user = { userName: username ,role: role};
 
-                   if (role=="ADMIN"){
+                   if (role == "ADMIN") {
                           let prefix="A\t";
                         var usernameappended=prefix.concat(username);
                         }
-                       else if (role=="CITIZEN"){
-                          let prefix="C\t";
-                          var usernameappended=prefix.concat(username);
+                       else if (role == "CITIZEN") {
+                          let prefix = "C\t";
+                          var usernameappended = prefix.concat(username);
                         }
-                       else if (role=="DOCTOR"){
-                          let prefix="D\t";
-                          var usernameappended=prefix.concat(username);
+                       else if (role == "DOCTOR") {
+                          let prefix = "D\t";
+                          var usernameappended = prefix.concat(username);
                         }
 
                       var fd = new FormData();
@@ -90,16 +85,16 @@ $(document).ready(function() {
                       processData: false,
                       contentType: false,
                       type: 'POST',
-                      success: function(data){
+                      success: function(data) {
                       sessionStorage.setItem(SESSION_STORAGE_LOGIN_TOKEN_NAME, JSON.stringify(user));
                       let json = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_LOGIN_TOKEN_NAME));
-                        if (json.role=="ADMIN"){
+                        if (json.role == "ADMIN") {
                             window.location.replace(ROOT_PATH + "/pages/admin/index.html");
                         }
-                        else if (json.role=="CITIZEN"){
+                        else if (json.role == "CITIZEN") {
                             window.location.replace(ROOT_PATH + "/pages/citizen/index.html");
                         }
-                        else if (json.role=="DOCTOR"){
+                        else if (json.role == "DOCTOR") {
                             window.location.replace(ROOT_PATH + "/pages/doctor/index.html");
                         }
                       },
