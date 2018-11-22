@@ -11,7 +11,7 @@ function register(firstnameElement,lastnameElement,amkaElement,phoneElement,emai
     var registrationdata = {
       "firstName" :  firstname,
       "lastName" :  lastname,
-      "amka" :  amka ,
+      "amka" :  amka,
       "phone" :  phone,
       "email" :  email,
       "username" :  username,
