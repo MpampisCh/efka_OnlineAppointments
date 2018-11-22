@@ -6,24 +6,17 @@ function logout() {
 function populateDataTable(books) {
     jQuery.each(books, function(i,book) {
         $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td><input value='View Appointment' type='button' class='register-form-btn' id='ma' onclick='print()'></td></tr>");
-     });
-
-     //
-     // $("#books tr").click(function() {
-     //         loadBook($(this).children("td").html());
-     // });
-
+     });   
 }
-function print(){
+
+function print() {
     $("#books tr").click(function() {
-           let tabler=$(this).children("td").html();
-           window.location.href="appointmentinfo.html?bookid="+tabler;
+           let tabler = $(this).children("td").html();
+           window.location.href = "appointmentinfo.html?bookid="+tabler;
         });
-
-     //loadBook($(this).children("td").html());
 }
 
-function details(){
+function details() {
       $.ajax({
            url: ROOT_PATH + "/books"
        }).then(function(books) {
@@ -31,8 +24,8 @@ function details(){
        });
 }
 
-function citizeninfo(){
-       window.location.href="citizeninfo.html";
+function citizeninfo() {
+       window.location.href = "citizeninfo.html";
 }
 
 function loadBook(id) {
@@ -46,18 +39,12 @@ function loadBook(id) {
 };
 
 $(document).ready(function() {
-  /*  $.ajax({
-        url: ROOT_PATH + "/books"
-    }).then(function(books) {
-        populateDataTable(books);
-    });
-*/
-    $("#saveButton").on('click', function(event){
+    $("#saveButton").on('click', function(event) {
         event.preventDefault();
         alert("To be done...");
     });
 
-    $("#deleteButton").on('click', function(event){
+    $("#deleteButton").on('click', function(event) {
         event.preventDefault();
         let bookId = $("input[name=id]").val();
         $.ajax({
@@ -65,7 +52,7 @@ $(document).ready(function() {
             type : "DELETE",
             dataType : 'json',
             contentType: 'application/json',
-                success : function(result) {
+                success: function(result) {
                     $("#bookRow" + bookId).remove();
                     $("input[name=id]").val("");
                     $("input[name=title]").val("");
