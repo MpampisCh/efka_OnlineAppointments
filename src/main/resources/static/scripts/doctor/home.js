@@ -5,7 +5,7 @@ function logout() {
 
 function populateDataTable(books) {
     jQuery.each(books, function(i,book) {
-        $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td><input value='Update' type='button' class='register-form-btn' id='ma' onclick='print()'></td></tr>");
+        $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td><input value='View Appointment' type='button' class='register-form-btn' id='ma' onclick='print()'></td></tr>");
      });
 
      //
@@ -16,14 +16,12 @@ function populateDataTable(books) {
 }
 function print(){
     $("#books tr").click(function() {
-    let tabler=$(this).children("td").html();
-    sessionStorage.setItem("tableRow", tabler);
-    window.location.replace(ROOT_PATH + "/pages/citizen/update.html");
+           let tabler=$(this).children("td").html();
+           window.location.href="appointmentinfo.html?bookid="+tabler;
+        });
 
      //loadBook($(this).children("td").html());
-    });
 }
-
 
 function details(){
       $.ajax({
@@ -31,6 +29,10 @@ function details(){
        }).then(function(books) {
            populateDataTable(books);
        });
+}
+
+function citizeninfo(){
+       window.location.href="citizeninfo.html";
 }
 
 function loadBook(id) {
