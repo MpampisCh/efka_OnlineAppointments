@@ -103,9 +103,23 @@ public class Client implements Serializable {
     public Set<Appointment> getAppointments(){ return appointments; }
     public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments;  }
 
+//    @Override
+//    public String toString(){
+//        return "Client{" + "amka=" + amka + ",First Name=" + firstName +
+//                ",Last Name=" + lastName + ",username=" + username +
+//                ",phone=" + phone + ",email=" + email + '\'' + '}';
+//    }
+
     @Override
     public String toString(){
-        return "Client{" + "amka=" + amka + ",First Name=" + firstName + ",Last Name=" + lastName + ",username=" + username +
-                ",phone=" + phone + ",email=" + email + '\'' + '}';
+        return "Client{"
+                + ",FirstName=" + firstName
+                + ",LastName=" + lastName
+                + "amka=" + amka
+                + ",phone=" + phone
+                + ",email=" + email
+                + ",username=" + username
+                + ",password=" + password
+                + '\'' + '}';
     }
 }
