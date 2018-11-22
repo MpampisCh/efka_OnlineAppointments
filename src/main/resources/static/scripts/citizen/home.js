@@ -5,7 +5,7 @@ function logout() {
 
 function populateDataTableAndUpdate(books) {
     jQuery.each(books, function(i,book) {
-        $("#booksUpdate").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td><input value='Update' type='button' class='register-form-btn' id='ma' onclick='print()'></td></tr>");
+        $("#booksUpdate").append("<tr id = 'bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td><input value = 'Update' type = 'button' class = 'register-form-btn' id ='ma' onclick = 'print()'></td></tr>");
      });
 
 }
@@ -15,15 +15,15 @@ function populateDataTable(books) {
      });
 
 }
-function print(){
+function print() {
       $("#booksUpdate tr").click(function() {
        let tabler=$(this).children("td").html();
-       window.location.href="update.html?bookid="+tabler;
+       window.location.href = "update.html?bookid="+tabler;
     });
 }
 
 
-function details(){
+function details() {
       $.ajax({
            url: ROOT_PATH + "/books"
        }).then(function(books) {
@@ -48,12 +48,12 @@ $(document).ready(function() {
         populateDataTable(books);
     });
 
-    $("#saveButton").on('click', function(event){
+    $("#saveButton").on('click', function(event) {
         event.preventDefault();
         alert("To be done...");
     });
 
-    $("#deleteButton").on('click', function(event){
+    $("#deleteButton").on('click', function(event) {
         event.preventDefault();
         let bookId = $("input[name=id]").val();
         $.ajax({
@@ -63,9 +63,9 @@ $(document).ready(function() {
             contentType: 'application/json',
                 success : function(result) {
                     $("#bookRow" + bookId).remove();
-                    $("input[name=id]").val("");
-                    $("input[name=title]").val("");
-                    $("input[name=isbn]").val("");
+                    $("input[name = id]").val("");
+                    $("input[name = title]").val("");
+                    $("input[name = isbn]").val("");
                 },
                 error: function(xhr, resp, text) {
                     console.log(xhr, resp, text);
