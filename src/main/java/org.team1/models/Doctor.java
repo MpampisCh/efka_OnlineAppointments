@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name = "doctorEntity")
+@Entity
 @Table(name = "doctor")
 public class Doctor implements Serializable {
 

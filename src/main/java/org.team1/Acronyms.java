@@ -3,7 +3,7 @@ package org.team1;
 public enum Acronyms {
 
     DOCTORACRONYM ("D\t"),
-    CLIENTACRONYM ("C\t");
+    CLIENTACRONYM ("C");
 
     private final String text;
 
