@@ -2,13 +2,11 @@ package org.team1.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
-@Entity(name = "doctorEntity")
+@Entity
 @Table(name = "doctor")
 public class Doctor implements Serializable {
 

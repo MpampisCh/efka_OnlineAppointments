@@ -3,7 +3,12 @@ package org.team1.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.team1.models.Doctor;
+import org.team1.models.Specialty;
 import org.team1.repositories.DoctorRepository;
+
+import javax.print.Doc;
+import java.util.List;
 
 @Service
 public class DoctorService {
@@ -17,5 +22,8 @@ public class DoctorService {
     }
 
 
+    public List<Doctor> getDoctorsWithSpecialty(Long id){
+        return doctorRepository.findDoctorsBySpecialtyIdEquals(id);
+    }
 
 }

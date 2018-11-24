@@ -45,11 +45,13 @@ public class ClientController {
                 .orElseThrow(() -> new ClientNotFoundException(amka));
     }
 
+
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public Client registerAccount(@Valid @RequestBody Client client) {
         return clientService.registerClient(client);
     }
+
 
 
     @DeleteMapping("clients/{amka}")
