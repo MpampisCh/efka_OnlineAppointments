@@ -23,7 +23,7 @@ public class DoctorService {
 
 
     public List<Doctor> getDoctorsWithSpecialty(Long id){
-        return doctorRepository.findBySpecialty(id);
+        return doctorRepository.findDoctorsBySpecialtyIdEquals(id);
     }
 
 }
