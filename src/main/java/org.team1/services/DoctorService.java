@@ -26,7 +26,4 @@ public class DoctorService {
         return doctorRepository.findBySpecialty(id);
     }
 
-
-
-
 }
