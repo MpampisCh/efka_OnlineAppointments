@@ -13,7 +13,6 @@ import java.util.List;
 @Service
 public class DoctorService {
 
-
     private final DoctorRepository doctorRepository;
 
     @Autowired
@@ -21,10 +20,6 @@ public class DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-
-//    public List<Doctor> getDoctorsWithSpecialty(Long id){
-//        return doctorRepository.findDoctorsBySpecialtyIdEquals(id);
-//    }
     public List<Doctor> getDoctorsWithSpecialty(String name){
         return doctorRepository.findDoctorsBySpecialtyNameEquals(name);
     }

@@ -31,7 +31,6 @@ public class SpecialtyController {
 //                .orElseThrow(() -> new SpecialtyNotFoundException(name));
     }
 
-
     @PostMapping("/specialty")
     public Specialty newSpecialty(@RequestBody Specialty specialty) {
         return specialtyRepository.save(specialty);

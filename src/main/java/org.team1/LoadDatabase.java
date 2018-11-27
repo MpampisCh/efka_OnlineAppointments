@@ -16,7 +16,6 @@ import org.team1.repositories.SpecialtyRepository;
 @Configuration
 public class LoadDatabase {
 
-
     private static final Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
 
     @Bean

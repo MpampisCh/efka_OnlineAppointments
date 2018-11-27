@@ -157,7 +157,7 @@ $(document).ready(function() {
               "notes": notes
             };
          $.ajax({
-             url:  ROOT_PATH + '/appointments/',
+             url:  ROOT_PATH + '/newAppointment/',
              type : 'POST',
              data: JSON.stringify(dataAppointment),
              dataType : 'json',

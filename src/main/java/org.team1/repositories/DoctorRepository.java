@@ -7,9 +7,8 @@ import org.team1.models.Doctor;
 import java.util.List;
 
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
-    Doctor findByUsername(String username);
 
-//    List<Doctor> findDoctorsBySpecialtyIdEquals(String name);
+    Doctor findByUsername(String username);
 
     List<Doctor> findDoctorsBySpecialtyNameEquals(String name);
 
