@@ -24,22 +24,20 @@ public class SpecialtyController {
         return specialtyRepository.findAll();
     }
 
-    @GetMapping("/specialty/{id}")
-    public Specialty getSpecialty(@PathVariable Long id) {
-        return specialtyRepository.findById(id)
-                .orElseThrow(() -> new SpecialtyNotFoundException(id));
+
+    @GetMapping("/specialties/{name}")
+    public Specialty getSpecialty(@PathVariable String name) {
+        return specialtyRepository.findByName(name);
+//                .orElseThrow(() -> new SpecialtyNotFoundException(name));
     }
 
-
-
-    //todo: get list of doctors with this specialty
 
     @PostMapping("/specialty")
     public Specialty newSpecialty(@RequestBody Specialty specialty) {
         return specialtyRepository.save(specialty);
     }
 
-    @PutMapping("/specialty/{id}")
+    @PutMapping("/specialties/{id}")
     public Specialty updateSpecialty(@PathVariable Long id, @RequestBody Specialty updateSpecialty) {
         return specialtyRepository.findById(id)
                 .map(specialty -> {
@@ -51,8 +49,8 @@ public class SpecialtyController {
 
     @DeleteMapping("specialty/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteSpecialty(@PathVariable Long id) {
-        getSpecialty(id);
-        specialtyRepository.deleteById(id);
+    public void deleteSpecialty(@PathVariable String name) {
+        getSpecialty(name);
+        specialtyRepository.deleteByName(name);
     }
 }

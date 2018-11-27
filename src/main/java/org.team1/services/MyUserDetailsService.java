@@ -37,7 +37,7 @@ public class MyUserDetailsService implements UserDetailsService {
             Client client = null;
             return new MyUserDetails(doctor, client);
         }else if (username.startsWith(CLIENTACRONYM.toString())){
-            String name = username.replaceFirst("C\t", "");
+            String name = username.replaceFirst("C", "");
             Client client = clientRepository.findByUsername(name);
             Doctor doctor = null;
             return new MyUserDetails(doctor, client);
