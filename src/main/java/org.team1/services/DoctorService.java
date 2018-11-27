@@ -8,6 +8,7 @@ import org.team1.models.Specialty;
 import org.team1.repositories.DoctorRepository;
 
 import javax.print.Doc;
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -18,6 +19,14 @@ public class DoctorService {
     @Autowired
     public DoctorService(DoctorRepository doctorRepository){
         this.doctorRepository = doctorRepository;
+    }
+//
+//    public Doctor findByUserName(String username){
+//        return doctorRepository.findByUsername(username);
+//    }
+
+    public Doctor findDoctorByAmka(long amka){
+        return doctorRepository.findByAmka(amka);
     }
 
     public List<Doctor> getDoctorsWithSpecialty(String name){

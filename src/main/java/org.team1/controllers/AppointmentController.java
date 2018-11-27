@@ -1,27 +1,32 @@
 package org.team1.controllers;
 
+import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.team1.exceptions.AppointmentNotFoundException;
 import org.team1.models.Appointment;
+import org.team1.models.Client;
 import org.team1.repositories.AppointmentRepository;
 import org.team1.services.AppointmentService;
+import org.team1.services.ClientService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
-import java.util.concurrent.ThreadPoolExecutor;
 
 @RestController
 public class AppointmentController {
 
     private final AppointmentRepository appointmentRepository;
     private AppointmentService appointmentService;
+    private ClientService clientService;
 
     @Autowired
-    public AppointmentController(AppointmentRepository appointmentRepository, AppointmentService appointmentService) {
+    public AppointmentController(AppointmentRepository appointmentRepository, AppointmentService appointmentService, ClientService clientService) {
         this.appointmentRepository = appointmentRepository;
         this.appointmentService = appointmentService;
+        this.clientService =clientService;
     }
 
     @GetMapping("/appointment")
@@ -38,10 +43,11 @@ public class AppointmentController {
 
 
 
-    @PostMapping("/newAppointment/")
+    @PostMapping("/newAppointment")
     @ResponseStatus(HttpStatus.CREATED)
-    public Appointment newAppointment(@Valid @RequestBody Appointment appointment){
-        return appointmentService.createAppointment(appointment);
+    public Appointment newAppointment(@Valid @RequestBody Appointment appointment, Principal principal){
+        Client client = clientService.findByUserName(principal.getName());
+        return appointmentService.createAppointment(appointment,client);
     }
 
 

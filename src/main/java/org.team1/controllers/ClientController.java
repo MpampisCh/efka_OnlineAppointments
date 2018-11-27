@@ -13,6 +13,7 @@ import org.team1.services.AppointmentService;
 import org.team1.services.ClientService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -34,6 +35,7 @@ public class ClientController {
     public Client registerAccount(@Valid @RequestBody Client client) {
         return clientService.registerClient(client);
     }
+
 
 
 

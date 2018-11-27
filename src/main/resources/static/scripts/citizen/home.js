@@ -63,7 +63,7 @@ function populateDoctorsDropdown(doctors) {
     dropdown.empty();
     dropdown.prop('selectedIndex', 0);
     jQuery.each(doctors, function(i,doctor) {
-     $("#doctorA").append("<option value="+doctor.lastName+">"+doctor.lastName+"</option>");
+     $("#doctorA").append("<option value="+doctor.amka+">"+doctor.lastName+"</option>");
      });
 }
 
@@ -146,18 +146,21 @@ $(document).ready(function() {
         let doctorA=$( "#doctorA" ).val();
         let dateA=$("input[name=date]").val();
         let timeA=$("input[name=time]").val();
-        let dateTime=dateA.concat("  ",timeA);
+        let dateTime=dateA.concat(" ",timeA);
         let description=$("#briefdescription").val();
         let notes=$("#notes").val();
         let dataAppointment = {
-              "specialty":  specialtyA,
-              "doctor":  doctorA,
+              // "specialty":  specialtyA,
+
+              "doctor":   {
+                  "amka": doctorA
+              },
               "dateTime": dateTime,
               "description": description,
               "notes": notes
             };
          $.ajax({
-             url:  ROOT_PATH + '/newAppointment/',
+             url:  ROOT_PATH + '/newAppointment',
              type : 'POST',
              data: JSON.stringify(dataAppointment),
              dataType : 'json',

@@ -1,5 +1,6 @@
 package org.team1.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
@@ -14,6 +15,8 @@ public class Appointment implements Serializable{
     private Long id;
     private Client client;
     private Doctor doctor;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
     private Date dateTime;
     private String description;
     private String notes;
@@ -29,6 +32,7 @@ public class Appointment implements Serializable{
     }
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

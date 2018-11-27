@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.team1.models.Client;
 import org.team1.repositories.ClientRepository;
 
+import java.security.Principal;
+
 @Service
 public class ClientService {
 
@@ -19,8 +21,11 @@ public class ClientService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Client registerClient(Client client) {
+    public Client findByUserName(String username){
+        return clientRepository.findByUsername(username);
+    }
 
+    public Client registerClient(Client client) {
         Client newClient = new Client();
         newClient.setFirstName(client.getFirstName());
         newClient.setLastName(client.getLastName());
