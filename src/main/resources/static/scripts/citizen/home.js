@@ -53,16 +53,17 @@ function populateSpecialtyDropdown(specialties) {
     let dropdown = $('#specialtyA');
     dropdown.prop('selectedIndex', 0);
     jQuery.each(specialties, function(i,specialty) {
-     $("#specialtyA").append("<option value="+specialty.lastName+">"+specialty.lastName+"</option>");
+     $("#specialtyA").append("<option value="+specialty.name+">"+specialty.name+"</option>");
      });
 
 }
 
-function populateDoctorsDropdown(specialties) {
+function populateDoctorsDropdown(doctors) {
     let dropdown = $('#doctorA');
+    dropdown.empty();
     dropdown.prop('selectedIndex', 0);
     jQuery.each(doctors, function(i,doctor) {
-     $("#doctorA").append("<option value="+doctor.name+">"+doctor.name+"</option>");
+     $("#doctorA").append("<option value="+doctor.lastName+">"+doctor.lastName+"</option>");
      });
 }
 
@@ -97,7 +98,7 @@ $(document).ready(function() {
     $("#doctorA").on('click', function(event){
      let specialtyName=$("#specialtyA").val();
      $.ajax({
-            url:ROOT_PATH + '/specialty/'+ specialtyName+'/doctors/',
+            url:ROOT_PATH + '/specialty/'+ specialtyName+'/doctors',
             dataType : 'json',
             contentType: 'application/json',
            }).then(function(doctors) {
