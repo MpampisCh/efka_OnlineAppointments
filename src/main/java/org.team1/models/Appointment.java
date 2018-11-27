@@ -43,10 +43,12 @@ public class Appointment implements Serializable{
     public void setDoctor(Doctor doctor) { this.doctor = doctor; }
 
     @Column(name = "datetime")
+    @Nullable
     public Date getDateTime() { return dateTime; }
     public void setDateTime(Date dateTime) { this.dateTime = dateTime; }
 
     @Column(name = "description")
+    @Nullable
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 

@@ -5,18 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="../../images/icons/efka.ico" />
+    <link rel="icon" type="image/png" href="../../images/icons/efka.ico"/>
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../../vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../../css/util.css">
     <link rel="stylesheet" type="text/css" href="../../css/main.css">
     <!--===============================================================================================-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src=" https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="../../scripts/config/main.js"></script>
     <script src="../../scripts/security/home-auth.js"></script>
     <script src="../../scripts/security/citizen-auth.js"></script>
@@ -27,6 +25,8 @@
      var c = url.searchParams.get("bookid");
         loadBook(c);
         });
+
+
     </script>
 </head>
 
@@ -34,44 +34,96 @@
 <div class="modifier">
     <div class="login">
         <div class="wrap-login">
-            <div class="container">
-                <ul class="pager">
-                    <li><a href='index.html'>Previous</a></li>
-                </ul>
+            <div class="welcome-user">
+                <span id="welcome" style="float:right"></span>
             </div>
 
-
-                        <form class="login-form">
-                <span class="login-form-title">
-                    Book details
-                </span>
-                <div class="wrap-input100">
-                    <label for="title">Title</label>
-                    <input class="input100" type="text" name="title" id="title" value="">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input100">
-                    <label for="isbn">ISBN</label>
-                    <input class="input100" type="text" name="isbn"  id="isbn" value="">
-                    <span class="focus-input100"></span>
-                    <br> <br>
-                </div>
-                    <div class="container-register-form-btn">
-                        <div>
-                            <input class="register-form-btn" type="submit" id="saveButton" value="Save">
-                        </div>
-                        <br>
-                        <div>
-                            <input class="register-form-btn" type="submit" id="deleteButton" value="Delete">
-                        </div>
-
+            <div class="container">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light text-align:right">
+                    <!--  <a class="navbar-brand" href="index.html">Home</a> -->
+                    <a class="navbar-brand">
+                        <img src="../../images/efka-logotypo.png" alt="EFKA" width="30" height="30">
+                    </a>
+                    <!-- Toggler/collapsibe Button -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav" style="margin-left: 29em;">
+                            <li class="nav-item">
+                                <span class="nav-link"><a href="index.html">Home</a></span>
+                            </li>
+                            <li class="nav-item">
+                                <span id="myClickableThingy" class="nav-link" onclick="logout()">Logout</span>
+                            </li>
+                        </ul>
                     </div>
+                </nav>
+            </div>
+
+            <form class="form-inline validate-form">
+                <span class="login100-form-title">
+                    <br>
+                    <br>
+                    Appointment details
+                </span>
+                <div class="wrap-input50 validate-input form-group" data-validate="Specialty is required">
+                    <label for="specialty">Specialty</label>
+                    <input id="specialty" class="input100" type="text" name="specialty">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input50 validate-input form-group">
+                    <label for="doctor">Doctor</label>
+                    <input id="doctor" class="input100" type="text" name="doctor">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input50 validate-input form-group">
+                    <label for="datetime">Date & Time</label>
+                    <input id="datetime" class="input100" type="datetime-local" name="datetime" value="" placeholder="Date & Time">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input50 validate-input form-group">
+                    <label for="briefdescription">Brief Description</label>
+                    <input id="briefdescription" class="input100" type="textarea" value="" name="briefdescriptionof"
+                           placeholder="Brief Description">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="wrap-input50 validate-input form-group">
+                    <label for="notes">Notes</label>
+                    <input id="notes" class="input100" type="textarea" name="notes" value="" placeholder="Notes">
+                    <span class="focus-input100"></span>
+                </div>
+                <div class="container-register-form-btn">
+                    <button type="button" class="btn btn-success" id="saveButton">Save</button>
+                    <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+                </div>
             </form>
-            <div class="container-register-form-btn">
-                    <input class="register-form-btn" type="button" value="Logout" onclick="logout()">
+
+            <div class="modal" id="updateModal" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal body for pop-up form -->
+                        <div class="modal-body">
+                            <div class="wrap-input100">
+                                <p> "The appointment has been updated!" </p>
+                                <br>
+                                <div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="goIndex()">Ok</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function goIndex(){
+        window.location.href="index.html";
+    }
+</script>
 </body>
 </html>

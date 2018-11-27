@@ -81,10 +81,6 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-//    @Transient
-//    public String getPasswordConfirm() { return passwordConfirm; }
-//    public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
-
     @Column(name= "phone", nullable = false)
     public long getPhone() { return phone; }
     public void setPhone(long phone) {
@@ -99,9 +95,9 @@ public class Client implements Serializable {
         this.email = email;
     }
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    public Set<Appointment> getAppointments(){ return appointments; }
-    public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments;  }
+//    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+//    public Set<Appointment> getAppointments(){ return appointments; }
+//    public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments;  }
 
 //    @Override
 //    public String toString(){

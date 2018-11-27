@@ -9,11 +9,12 @@ import org.team1.models.Doctor;
 import java.util.Collection;
 import java.util.Collections;
 
+
 public class MyUserDetails implements UserDetails {
     private Client client;
     private Doctor doctor;
 
-   public MyUserDetails(Doctor doctor, Client client){
+    public MyUserDetails(Doctor doctor, Client client){
        this.doctor = doctor;
        this.client = client;
    }
