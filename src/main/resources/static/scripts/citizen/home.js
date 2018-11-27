@@ -3,23 +3,32 @@ function logout() {
     window.location.replace(ROOT_PATH + "/logout")
 }
 
-function populateDataTableAndUpdate(books) {
+function populateDataTableAndUpdate(appointments) {
 
-            $("#books").append("<tbody>");
-            jQuery.each(books, function(i,book) {
-            if (book.title=="The Grapes of Wrath"){
-               $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td>" + book.isbn + "</td><td><i id='NoClickableImage' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
+            $("#appointments").append("<tbody>");
+            jQuery.each(appointments, function(i,appointment) {
+             let getToday = new Date();
+             const day=getToday.getDate();
+             const month=getToday.getMonth()+1;
+             const year=getToday.getFullYear();
+             const today=month+ "-"+ day + "-" + year;
+             let appointmentTime=appointment.dateTime.split(" ");
+             let dappointment = Date.parse(appointmentTime[0]);
+             let dtoday = Date.parse(today);
+
+            if (dappointment<=dtoday){
+               $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" + appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='NoClickableImage' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
 
             }
             else{
-                $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td>" + book.isbn + "</td><td><i id='ClickableImage' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
+                $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" +appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='ClickableImage' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
 
             }
 
              });
-             $("#books").append("</tbody>");
+             $("#appointments").append("</tbody>");
 
-             $('#books').DataTable({
+             $('#appointments').DataTable({
                     //"bFilter": false,
                      "columnDefs": [
                       { "orderable": false, "targets": 3 },
@@ -30,14 +39,14 @@ function populateDataTableAndUpdate(books) {
 }
 
 function print(){
-      $("#books tr").click(function() {
+      $("#appointments tr").click(function() {
        let tabler=$(this).children("td").html();
-       window.location.href="update.html?bookid="+tabler;
+       window.location.href="update.html?appointmentid="+tabler;
     });
 }
 var tableRow;
 function findRow(){
-      $("#books tr").click(function() {
+      $("#appointments tr").click(function() {
        tableRow=$(this).children("td").html();
     });
 }
@@ -45,11 +54,11 @@ function findRow(){
 function details(){
       $.ajax({
            url: ROOT_PATH + "/appointments"
-       }).then(function(books) {
-           populateDataTableAndUpdate(books);
+       }).then(function(appointments) {
+           populateDataTableAndUpdate(appointments);
        });
 }
-function populateSpecialtyDropdown(specialties) {
+function populateSpecialtyDropdownA(specialties) {
     let dropdown = $('#specialtyA');
     dropdown.prop('selectedIndex', 0);
     jQuery.each(specialties, function(i,specialty) {
@@ -58,22 +67,33 @@ function populateSpecialtyDropdown(specialties) {
 
 }
 
+function populateSpecialtyDropdownS(specialties) {
+    let dropdown = $('#specialtyS');
+    dropdown.prop('selectedIndex', 0);
+    jQuery.each(specialties, function(i,specialty) {
+     $("#specialtyS").append("<option value="+specialty.name+">"+specialty.name+"</option>");
+     });
+
+}
+
 function populateDoctorsDropdown(doctors) {
     let dropdown = $('#doctorA');
-    dropdown.empty();
-    dropdown.prop('selectedIndex', 0);
+    if (doctors.length!=0){
+        dropdown.empty();
+        dropdown.prop('selectedIndex', 0);
+    }
     jQuery.each(doctors, function(i,doctor) {
      $("#doctorA").append("<option value="+doctor.amka+">"+doctor.lastName+"</option>");
      });
 }
 
-function loadBook(id) {
+function loadAppointment(id) {
     $.ajax({
         url: ROOT_PATH + "/appointments/" + id
-    }).then(function(book) {
-       $("input[name=id]").val(book.id);
-       $("input[name=specialty]").val(book.title);
-       $("input[name=doctor]").val(book.isbn);
+    }).then(function(appointment) {
+       $("input[name=id]").val(appointment.id);
+       $("input[name=specialty]").val(appointment.title);
+       $("input[name=doctor]").val(appointment.isbn);
     });
 };
 
@@ -83,8 +103,8 @@ $(document).ready(function() {
    document.getElementById("welcome").innerHTML = "You are connected as " + userw;
    $.ajax({
         url: ROOT_PATH + "/appointments"
-    }).then(function(books) {
-        populateDataTableAndUpdate(books);
+    }).then(function(appointments) {
+        populateDataTableAndUpdate(appointments);
     });
 
     $.ajax({
@@ -92,7 +112,8 @@ $(document).ready(function() {
                dataType : 'json',
                contentType: 'application/json',
            }).then(function(specialties) {
-               populateSpecialtyDropdown(specialties);
+               populateSpecialtyDropdownA(specialties);
+               populateSpecialtyDropdownS(specialties);
        });
 
     $("#doctorA").on('click', function(event){
@@ -109,7 +130,7 @@ $(document).ready(function() {
     $("#saveButton").on('click', function(event){
         event.preventDefault();
         let url = new URL(document.URL);
-        var c = url.searchParams.get("bookid");
+        var c = url.searchParams.get("appointmentid");
         let newTitle=$("input[name=specialty]").val();
         let newIsbn=$("input[name=doctor]").val();
         let updatedata = {
@@ -142,7 +163,6 @@ $(document).ready(function() {
 
  $("#createAppointmentButton").on('click', function(event){
         event.preventDefault();
-        let specialtyA=$( "#specialtyA" ).val();
         let doctorA=$( "#doctorA" ).val();
         let dateA=$("input[name=date]").val();
         let timeA=$("input[name=time]").val();
@@ -150,8 +170,6 @@ $(document).ready(function() {
         let description=$("#briefdescription").val();
         let notes=$("#notes").val();
         let dataAppointment = {
-              // "specialty":  specialtyA,
-
               "doctor":   {
                   "amka": doctorA
               },
@@ -168,7 +186,7 @@ $(document).ready(function() {
              success: function(data){
                alert("Ok");
                $('#makeAppointmentModal').modal('hide');
-               $("#books").DataTable().draw();
+               $("#appointments").DataTable().draw();
                 },
                  statusCode: {
                      401 : function() {
@@ -186,14 +204,12 @@ $(document).ready(function() {
             dataType : 'json',
             contentType: 'application/json',
                 success : function(result) {
-                    $("#books").DataTable().row("#bookRow"+tableRow).remove().draw();
-                    $("input[name=id]").val("");
-                    $("input[name=title]").val("");
-                    $("input[name=isbn]").val("");
+                    $("#appointments").DataTable().row("#appointmentRow"+tableRow).remove().draw();
+
                 },
                 error: function(xhr, resp, text) {
                     console.log(xhr, resp, text);
-                    alert("Could not delete book!");
+                    alert("Could not delete appointment!");
                  }
          })
 

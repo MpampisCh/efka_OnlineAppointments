@@ -16,7 +16,7 @@ public class Appointment implements Serializable{
     private Client client;
     private Doctor doctor;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy hh:mm")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm")
     private Date dateTime;
     private String description;
     private String notes;

@@ -76,12 +76,12 @@
             <div class="container">
                 <br>
                 <br>
-                <table id="books" class="table table-hover" width="100%">
+                <table id="appointments" class="table table-hover" width="100%">
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Title</th>
-                        <th>Isbn</th>
+                        <th>Specialty</th>
+                        <th>Date</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -131,7 +131,7 @@
                                             <option value="" selected disabled>Choose Specialty</option>
                                         </select>
                                     </div>
-                                    <div class="validate-input" data-validate="You must select a doctor.">
+                                    <div class="validate-input" data-validate="You must select a doctor after select specialty.">
                                         <label class="control-label" for="doctorA">Doctor</label>
                                         <select id="doctorA" name="doctorA" class="form-control" required>
                                             <option value="" selected disabled>Choose Doctor</option>
@@ -140,7 +140,7 @@
                                     <div class="validate-input" data-validate="You must select a date.">
                                         <label class="control-label" for="date">Date</label>
                                         <input class="form-control" type="text" name="date" id="date"
-                                               placeholder="dd/mm/yyyy" value="" required>
+                                               placeholder="mm-dd-yyyy" value="" required>
                                         <span class="symbol">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                     </span>
@@ -198,14 +198,13 @@
                                         <label class="control-label" for="specialtyS">Specialty</label>
                                         <select id="specialtyS" name="specialtyS" class="form-control" required>
                                             <option selected="true" disabled>Choose Specialty</option>
-                                            <option value="Pathologos">Παθολόγος</option>
                                         </select>
                                     </div>
 
                                     <div class="validate-input" data-validate="You must select dates.">
                                         <label class="control-label" for="dates">Dates</label>
                                         <input class="form-control" type="text" name="dates" id="dates"
-                                               placeholder="dd/mm/yyyy - dd/mm/yyyy" required>
+                                               placeholder="mm-dd-yyyy - mm-dd-yyyy" required>
                                         <span class="symbol">
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                     </span>
@@ -237,7 +236,7 @@ $(function() {
     showDropdowns: false,
     opens: 'left',
     locale: {
-                format: 'DD/MM/YYYY'
+                format: 'MM-DD-YYYY'
             }
   });
   $('input[name="date"]').daterangepicker({
@@ -247,7 +246,7 @@ $(function() {
     minDate: dateToday,
     maxDate: oneYear,
     locale: {
-                format: 'DD/MM/YYYY'
+                format: 'MM-DD-YYYY'
             }
   });
   $('#time').daterangepicker({

@@ -29,7 +29,7 @@ public class AppointmentController {
         this.clientService =clientService;
     }
 
-    @GetMapping("/appointment")
+    @GetMapping("/appointments")
     public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
     }
