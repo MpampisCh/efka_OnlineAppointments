@@ -81,7 +81,7 @@ public class LoadDatabase {
 //                    1234567886, "doctor8@mail.com", specialty5);
 //            logger.info("Preloading " + doctorRepository.save(doctor8));
 //
-        };
+      };
     }
 
 }
