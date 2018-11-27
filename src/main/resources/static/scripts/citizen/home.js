@@ -4,69 +4,169 @@ function logout() {
 }
 
 function populateDataTableAndUpdate(books) {
-    jQuery.each(books, function(i,book) {
-        $("#booksUpdate").append("<tr id = 'bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td><input value = 'Update' type = 'button' class = 'register-form-btn' id ='ma' onclick = 'print()'></td></tr>");
-     });
+
+            $("#books").append("<tbody>");
+            jQuery.each(books, function(i,book) {
+            if (book.title=="The Grapes of Wrath"){
+               $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td>" + book.isbn + "</td><td><i id='NoClickableImage' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
+
+            }
+            else{
+                $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td><td>" + book.isbn + "</td><td><i id='ClickableImage' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
+
+            }
+
+             });
+             $("#books").append("</tbody>");
+
+             $('#books').DataTable({
+                    //"bFilter": false,
+                     "columnDefs": [
+                      { "orderable": false, "targets": 3 },
+                      { "orderable": false, "targets": 4 }
+                        ]
+                     });
 
 }
 
-function populateDataTable(books) {
-    jQuery.each(books, function(i,book) {
-        $("#books").append("<tr id='bookRow" + book.id + "'><td>" + book.id + "</td><td>" + book.title + "</td></tr>");
-     });
-
-}
-
-function print() {
-      $("#booksUpdate tr").click(function() {
+function print(){
+      $("#books tr").click(function() {
        let tabler=$(this).children("td").html();
-       window.location.href = "update.html?bookid="+tabler;
+       window.location.href="update.html?bookid="+tabler;
+    });
+}
+var tableRow;
+function findRow(){
+      $("#books tr").click(function() {
+       tableRow=$(this).children("td").html();
     });
 }
 
-function details() {
+function details(){
       $.ajax({
-           url: ROOT_PATH + "/books"
+           url: ROOT_PATH + "/appointments"
        }).then(function(books) {
            populateDataTableAndUpdate(books);
        });
 }
+function populateSpecialtyDropdown(specialties) {
+    let dropdown = $('#specialtyA');
+    dropdown.prop('selectedIndex', 0);
+    jQuery.each(specialties, function(i,specialty) {
+     $("#specialtyA").append("<option value="+specialty.name+">"+specialty.name+"</option>");
+     });
 
+}
 function loadBook(id) {
     $.ajax({
-        url: ROOT_PATH + "/books/" + id
+        url: ROOT_PATH + "/appointments/" + id
     }).then(function(book) {
        $("input[name=id]").val(book.id);
-       $("input[name=title]").val(book.title);
-       $("input[name=isbn]").val(book.isbn);
+       $("input[name=specialty]").val(book.title);
+       $("input[name=doctor]").val(book.isbn);
     });
 };
 
 $(document).ready(function() {
+   let json = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_LOGIN_TOKEN_NAME));
+   let userw=json.userName;
+   document.getElementById("welcome").innerHTML = "You are connected as " + userw;
    $.ajax({
-        url: ROOT_PATH + "/books"
+        url: ROOT_PATH + "/appointments"
     }).then(function(books) {
-        populateDataTable(books);
+        populateDataTableAndUpdate(books);
     });
 
-    $("#saveButton").on('click', function(event) {
+    $.ajax({
+               url:ROOT_PATH + '/specialties',
+               dataType : 'json',
+               contentType: 'application/json',
+           }).then(function(specialties) {
+               populateSpecialtyDropdown([specialties]);
+       });
+
+
+    $("#saveButton").on('click', function(event){
         event.preventDefault();
-        alert("To be done...");
+        let url = new URL(document.URL);
+        var c = url.searchParams.get("bookid");
+        let newTitle=$("input[name=specialty]").val();
+        let newIsbn=$("input[name=doctor]").val();
+        let updatedata = {
+              "title" :  newTitle,
+              "isbn" :  newIsbn
+            };
+         $.ajax({
+             url:  ROOT_PATH + '/appointment/'+ c,
+             type : 'PUT',
+             data: JSON.stringify(updatedata),
+             dataType : 'json',
+             contentType: 'application/json',
+             success: function(data){
+               $("#updateModal").modal();
+                },
+                 statusCode: {
+                     401 : function() {
+                         alert("Invalid data!");
+                     }
+                 }
+             });
+
     });
 
-    $("#deleteButton").on('click', function(event) {
+
+
+  $("#cancelButton").on('click', function(event){
+       window.location.href="index.html";
+  });
+
+ $("#createAppointmentButton").on('click', function(event){
         event.preventDefault();
-        let bookId = $("input[name=id]").val();
+        let specialtyA=$( "#specialtyA" ).val();
+        let doctorA=$( "#doctorA" ).val();
+        let dateA=$("input[name=date]").val();
+        let timeA=$("input[name=time]").val();
+        let dateTime=dateA.concat("  ",timeA);
+        let description=$("#briefdescription").val();
+        let notes=$("#notes").val();
+        let dataAppointment = {
+              "specialty":  specialtyA,
+              "doctor":  doctorA,
+              "dateTime": dateTime,
+              "description": description,
+              "notes": notes
+            };
+         $.ajax({
+             url:  ROOT_PATH + '/appointments/',
+             type : 'POST',
+             data: JSON.stringify(dataAppointment),
+             dataType : 'json',
+             contentType: 'application/json',
+             success: function(data){
+               alert("Ok");
+               $('#makeAppointmentModal').modal('hide');
+               $("#books").DataTable().draw();
+                },
+                 statusCode: {
+                     401 : function() {
+                         alert("Invalid data!");
+                     }
+                 }
+             });
+ });
+
+    $("#deleteButton").on('click', function(event){
+        event.preventDefault();
         $.ajax({
-            url: ROOT_PATH + "/books/" + bookId,
+            url: ROOT_PATH + "/appointment/" + tableRow,
             type : "DELETE",
             dataType : 'json',
             contentType: 'application/json',
                 success : function(result) {
-                    $("#bookRow" + bookId).remove();
-                    $("input[name = id]").val("");
-                    $("input[name = title]").val("");
-                    $("input[name = isbn]").val("");
+                    $("#books").DataTable().row("#bookRow"+tableRow).remove().draw();
+                    $("input[name=id]").val("");
+                    $("input[name=title]").val("");
+                    $("input[name=isbn]").val("");
                 },
                 error: function(xhr, resp, text) {
                     console.log(xhr, resp, text);
