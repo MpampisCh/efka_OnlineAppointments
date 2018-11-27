@@ -9,7 +9,9 @@ import java.util.List;
 public interface DoctorRepository extends JpaRepository<Doctor, Long> {
     Doctor findByUsername(String username);
 
-    List<Doctor> findDoctorsBySpecialtyIdEquals(Long id);
+//    List<Doctor> findDoctorsBySpecialtyIdEquals(String name);
+
+    List<Doctor> findDoctorsBySpecialtyNameEquals(String name);
 
 
 }

@@ -22,8 +22,11 @@ public class DoctorService {
     }
 
 
-    public List<Doctor> getDoctorsWithSpecialty(Long id){
-        return doctorRepository.findDoctorsBySpecialtyIdEquals(id);
+//    public List<Doctor> getDoctorsWithSpecialty(Long id){
+//        return doctorRepository.findDoctorsBySpecialtyIdEquals(id);
+//    }
+    public List<Doctor> getDoctorsWithSpecialty(String name){
+        return doctorRepository.findDoctorsBySpecialtyNameEquals(name);
     }
 
 }
