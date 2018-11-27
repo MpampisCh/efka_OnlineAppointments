@@ -12,11 +12,8 @@ import org.team1.repositories.ClientRepository;
 import org.team1.repositories.DoctorRepository;
 import org.team1.security.MyUserDetails;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import static org.team1.Acronyms.CLIENTACRONYM;
-import static org.team1.Acronyms.DOCTORACRONYM;
+import static org.team1.services.Acronyms.CLIENTACRONYM;
+import static org.team1.services.Acronyms.DOCTORACRONYM;
 
 @Service
 public class MyUserDetailsService implements UserDetailsService {
@@ -40,7 +37,7 @@ public class MyUserDetailsService implements UserDetailsService {
             Client client = null;
             return new MyUserDetails(doctor, client);
         }else if (username.startsWith(CLIENTACRONYM.toString())){
-            String name = username.replaceFirst("C", "");
+            String name = username.replaceFirst("C\t", "");
             Client client = clientRepository.findByUsername(name);
             Doctor doctor = null;
             return new MyUserDetails(doctor, client);

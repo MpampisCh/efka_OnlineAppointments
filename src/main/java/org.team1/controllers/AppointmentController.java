@@ -6,36 +6,50 @@ import org.springframework.web.bind.annotation.*;
 import org.team1.exceptions.AppointmentNotFoundException;
 import org.team1.models.Appointment;
 import org.team1.repositories.AppointmentRepository;
+import org.team1.services.AppointmentService;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.concurrent.ThreadPoolExecutor;
 
 @RestController
 public class AppointmentController {
 
     private final AppointmentRepository appointmentRepository;
+    private AppointmentService appointmentService;
 
     @Autowired
-    public AppointmentController(AppointmentRepository appointmentRepository) {
+    public AppointmentController(AppointmentRepository appointmentRepository, AppointmentService appointmentService) {
         this.appointmentRepository = appointmentRepository;
+        this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/appointments")
-    public List<Appointment> getAppointment() {
+    @GetMapping("/appointment")
+    public List<Appointment> getAppointments() {
         return appointmentRepository.findAll();
     }
 
-    @GetMapping("/appointments/{id}")
+    @GetMapping("/appointment/{id}")
     public Appointment getAppointment(@PathVariable Long id) {
         return appointmentRepository.findById(id)
                 .orElseThrow(() -> new AppointmentNotFoundException(id));
     }
 
-    @PostMapping("/appointments")
-    public Appointment newAppointment(@RequestBody Appointment appointment) {
-        return appointmentRepository.save(appointment);
+
+
+
+    @PostMapping("/newAppointment/")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Appointment newAppointment(@Valid @RequestBody Appointment appointment){
+        return appointmentService.createAppointment(appointment);
     }
 
-    @PutMapping("/appointments/{id}")
+
+
+
+
+
+    @PutMapping("/appointment/{id}")
     public Appointment updateAppointment(@PathVariable Long id, @RequestBody Appointment updateAppointment) {
         return appointmentRepository.findById(id)
                 .map(appointment -> {
@@ -47,7 +61,7 @@ public class AppointmentController {
                 .orElseThrow(() -> new AppointmentNotFoundException(id));
     }
 
-    @DeleteMapping("appointments/{id}")
+    @DeleteMapping("appointment/{id}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
     public void deleteAppointment(@PathVariable Long id) {
         getAppointment(id);

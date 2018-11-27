@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.team1.exceptions.ClientNotFoundException;
+import org.team1.models.Appointment;
 import org.team1.models.Client;
 
 import org.team1.repositories.ClientRepository;
+import org.team1.services.AppointmentService;
 import org.team1.services.ClientService;
 
 import javax.validation.Valid;
@@ -26,14 +28,26 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-    @GetMapping("/clients")
-    public List<Client> getClient(Long amka) { return clientRepository.findAll(); }
 
-    @GetMapping("/clients/{amka}")
-    public Client getSpecialty(@PathVariable Long amka) {
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client registerAccount(@Valid @RequestBody Client client) {
+        return clientService.registerClient(client);
+    }
+
+
+
+    @GetMapping("/clients") //done
+    public List<Client> getClients() { return clientRepository.findAll(); }
+
+
+
+    @GetMapping("/clients/{amka}") //done
+    public Client getClient(@PathVariable Long amka) {
         return clientRepository.findById(amka)
                 .orElseThrow(() -> new ClientNotFoundException(amka));
     }
+
 
     @PutMapping("/clients/{amka}")
     public Client updateClient(@PathVariable Long amka, @PathVariable Client updateClient) {
@@ -43,13 +57,6 @@ public class ClientController {
                     return clientRepository.save(client);
                 })
                 .orElseThrow(() -> new ClientNotFoundException(amka));
-    }
-
-
-    @PostMapping("/register")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Client registerAccount(@Valid @RequestBody Client client) {
-        return clientService.registerClient(client);
     }
 
 
