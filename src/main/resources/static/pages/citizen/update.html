@@ -30,14 +30,6 @@
         loadAppointment(c);
         });
 
-
-
-
-
-
-
-
-
     </script>
 </head>
 
@@ -74,48 +66,47 @@
             </div>
 
             <form class="validate-form">
+                <br>
                 <span class="login-form-title">
-                    <br>
-                    <br>
-                    Appointment details
+                    Edit your appointment
                 </span>
-                <div class="form-group required">
-                    <div class="validate-input">
+                <div class="form-group required form-inline">
+                    <div class="wrap-input50 validate-input">
                         <label for="specialtyU">Specialty</label>
-                        <input id="specialtyU" class="form-control" type="text" name="specialtyU" readonly>
+                        <input id="specialtyU" class="input-size form-control" type="text" name="specialtyU" style="width:100%" readonly>
                     </div>
-                    <div class="validate-input">
-                        <label for="doctorU">Specialty</label>
-                        <input id="doctorU" class="form-control" type="text" name="doctorU" readonly>
+                    <div class="wrap-input50 validate-input">
+                        <label for="doctorU">Doctor</label>
+                        <input id="doctorU" class="input-size form-control" type="text" name="doctorU" style="width:100%" readonly>
                     </div>
-                    <div class="validate-input" data-validate="You must select a date.">
+                    <div class="wrap-input50 validate-input" data-validate="You must select a date.">
                         <label class="control-label" for="dateU">Date</label>
-                        <input class="form-control" type="text" name="dateU" id="dateU"
-                               placeholder="mm-dd-yyyy" value="" required>
+                        <input class="input-size form-control" type="text" name="dateU" id="dateU"
+                               placeholder="mm-dd-yyyy" value="" style="width:100%" required>
                         <span class="symbol">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="validate-input"
+                    <div class="wrap-input50 validate-input"
                          data-validate="The time must be between 09:00-18:00.">
-                        <label class="control-label" for="timeU">Time</label>
-                        <input class="form-control" type="time" name="timeU" id="timeU"
-                               value="" min="09:00" max="18:00" required>
+                        <label class="control-label" for="timeU" style="align:left">Time</label>
+                        <input class="input-size form-control" type="time" name="timeU" id="timeU"
+                               value="" min="09:00" max="18:00" style="width:100%" required>
                         <span class="symbol">
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="validate-input" data-validate="You must write a decription.">
+                    <div class="wrap-input50 validate-input" data-validate="You must write a decription.">
                         <label class="control-label" for="briefdescriptionU">Brief
                             Description</label>
                         <textarea maxlength="200" minlength="10" id="briefdescriptionU"
-                                  class="form-control" name="briefdescriptionU" required></textarea>
+                                  class="input-size form-control" name="briefdescriptionU" style="width:100%" required></textarea>
 
                     </div>
-                    <div class="validate-input" data-validate="Max length 2000 characters.">
+                    <div class="wrap-input50 validate-input" data-validate="Max length 2000 characters.">
                         <label for="notesU">Notes</label>
                         <textarea maxlength="2000" minlength="5" id="notesU" name="notesU"
-                                  class="form-control" rows="3"></textarea>
+                                  class="input-size form-control" rows="3" style="width:100%" ></textarea>
                     </div>
                     <div class="container-register-form-btn">
                         <button type="button" class="btn btn-success" id="saveButton">Save</button>
@@ -150,7 +141,6 @@
     function goIndex(){
         window.location.href="index.html";
     }
-
 </script>
 <script>
 
