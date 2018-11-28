@@ -4,20 +4,41 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "doctor")
 public class Doctor implements Serializable {
 
+    @NotNull
+//    @Pattern(regexp = "[0-9]")
     private long amka;
+
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z]{3,30}")
     private String firstName;
+
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z]{3,30}")
     private String lastName;
+
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z0-9]{3,30}")
     private String username;
+
+    @NotNull
     private String password;
-    private String passwordConfirm;
+
+    @NotNull
+    @Min(10)
     private long phone;
+
+    @NotNull
+    @Email
     private String email;
+
+    @NotNull
     private Specialty specialty;
 
     public Doctor(){}
@@ -77,10 +98,6 @@ public class Doctor implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    @Transient
-    public String getPasswordConfirm() { return passwordConfirm; }
-    public void setPasswordConfirm(String passwordConfirm) { this.passwordConfirm = passwordConfirm; }
 
     @Column(name= "phone", nullable = false)
     public long getPhone() {

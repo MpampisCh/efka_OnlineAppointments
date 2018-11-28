@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import javax.print.Doc;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -12,6 +14,9 @@ import java.util.Set;
 public class Specialty implements Serializable {
 
     private Long id;
+
+    @NotNull
+    @Pattern( regexp = "[A-Z][a-z]{3,30}" )
     private String name;
 
     public Specialty(){}
