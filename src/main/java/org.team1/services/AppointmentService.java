@@ -40,7 +40,7 @@ public class AppointmentService {
         return newAppointment;
     }
 
-    public Set<Appointment> getAppointmentsByClientAmka(Long id){
-        return appointmentRepository.findAllByClient(id);
+    public Set<Appointment> getAppointmentsByClientUsername(String username){
+        return appointmentRepository.findAppointmentsByClientUsernameEquals(username);
     }
 }

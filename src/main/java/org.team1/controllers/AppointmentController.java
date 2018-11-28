@@ -1,6 +1,5 @@
 package org.team1.controllers;
 
-import org.hibernate.service.spi.InjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +13,7 @@ import org.team1.services.ClientService;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class AppointmentController {
@@ -41,17 +41,17 @@ public class AppointmentController {
     }
 
 
-
-
-    @PostMapping("/newAppointment")
+    @PostMapping("/appointment")
     @ResponseStatus(HttpStatus.CREATED)
-    public Appointment newAppointment(@Valid @RequestBody Appointment appointment, Principal principal){
+    public Appointment createAppointment(@Valid @RequestBody Appointment appointment, Principal principal){
         Client client = clientService.findByUserName(principal.getName());
         return appointmentService.createAppointment(appointment,client);
     }
 
-
-
+    @GetMapping("/appointments/{client_id}")
+    public Set<Appointment> getAppointmentsByClient(Principal principal) {
+        return appointmentService.getAppointmentsByClientUsername(principal.getName());
+    }
 
 
 

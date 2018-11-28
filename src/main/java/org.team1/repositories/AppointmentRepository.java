@@ -10,7 +10,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     Appointment save(Appointment appointment);
 
-    Set<Appointment> findAllByClient(Long id);
+    Set<Appointment> findAppointmentsByClientUsernameEquals(String username);
 
     Appointment findAllByDoctor(Doctor doctor);
 }
