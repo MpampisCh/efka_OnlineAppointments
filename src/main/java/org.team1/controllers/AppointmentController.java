@@ -41,7 +41,7 @@ public class AppointmentController {
     }
 
 
-    @PostMapping("/appointment")
+    @PostMapping("/newAppointment")
     @ResponseStatus(HttpStatus.CREATED)
     public Appointment createAppointment(@Valid @RequestBody Appointment appointment, Principal principal){
         Client client = clientService.findByUserName(principal.getName());

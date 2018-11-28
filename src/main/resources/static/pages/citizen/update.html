@@ -7,24 +7,35 @@
     <!--===============================================================================================-->
     <link rel="icon" type="image/png" href="../../images/icons/efka.ico"/>
     <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../../fonts/font-awesome-4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css"/>
     <!--===============================================================================================-->
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="../../css/main.css">
-    <!--===============================================================================================-->
-    <script src=" https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
     <script src="../../scripts/config/main.js"></script>
     <script src="../../scripts/security/home-auth.js"></script>
     <script src="../../scripts/security/citizen-auth.js"></script>
     <script src="../../scripts/citizen/home.js"></script>
+
     <script>
      $(document).ready(function(){
      var url = new URL(document.URL);
-     var c = url.searchParams.get("bookid");
-        loadBook(c);
+     var c = url.searchParams.get("appointmentid");
+        loadAppointment(c);
         });
+
+
+
+
+
+
+
 
 
     </script>
@@ -62,41 +73,54 @@
                 </nav>
             </div>
 
-            <form class="form-inline validate-form">
-                <span class="login100-form-title">
+            <form class="validate-form">
+                <span class="login-form-title">
                     <br>
                     <br>
                     Appointment details
                 </span>
-                <div class="wrap-input50 validate-input form-group" data-validate="Specialty is required">
-                    <label for="specialty">Specialty</label>
-                    <input id="specialty" class="input100" type="text" name="specialty">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input50 validate-input form-group">
-                    <label for="doctor">Doctor</label>
-                    <input id="doctor" class="input100" type="text" name="doctor">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input50 validate-input form-group">
-                    <label for="datetime">Date & Time</label>
-                    <input id="datetime" class="input100" type="datetime-local" name="datetime" value="" placeholder="Date & Time">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input50 validate-input form-group">
-                    <label for="briefdescription">Brief Description</label>
-                    <input id="briefdescription" class="input100" type="textarea" value="" name="briefdescriptionof"
-                           placeholder="Brief Description">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="wrap-input50 validate-input form-group">
-                    <label for="notes">Notes</label>
-                    <input id="notes" class="input100" type="textarea" name="notes" value="" placeholder="Notes">
-                    <span class="focus-input100"></span>
-                </div>
-                <div class="container-register-form-btn">
-                    <button type="button" class="btn btn-success" id="saveButton">Save</button>
-                    <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+                <div class="form-group required">
+                    <div class="validate-input">
+                        <label for="specialtyU">Specialty</label>
+                        <input id="specialtyU" class="form-control" type="text" name="specialtyU" readonly>
+                    </div>
+                    <div class="validate-input">
+                        <label for="doctorU">Specialty</label>
+                        <input id="doctorU" class="form-control" type="text" name="doctorU" readonly>
+                    </div>
+                    <div class="validate-input" data-validate="You must select a date.">
+                        <label class="control-label" for="dateU">Date</label>
+                        <input class="form-control" type="text" name="dateU" id="dateU"
+                               placeholder="mm-dd-yyyy" value="" required>
+                        <span class="symbol">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="validate-input"
+                         data-validate="The time must be between 09:00-18:00.">
+                        <label class="control-label" for="timeU">Time</label>
+                        <input class="form-control" type="time" name="timeU" id="timeU"
+                               value="" min="09:00" max="18:00" required>
+                        <span class="symbol">
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="validate-input" data-validate="You must write a decription.">
+                        <label class="control-label" for="briefdescriptionU">Brief
+                            Description</label>
+                        <textarea maxlength="200" minlength="10" id="briefdescriptionU"
+                                  class="form-control" name="briefdescriptionU" required></textarea>
+
+                    </div>
+                    <div class="validate-input" data-validate="Max length 2000 characters.">
+                        <label for="notesU">Notes</label>
+                        <textarea maxlength="2000" minlength="5" id="notesU" name="notesU"
+                                  class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="container-register-form-btn">
+                        <button type="button" class="btn btn-success" id="saveButton">Save</button>
+                        <button type="button" class="btn btn-secondary" id="cancelButton">Cancel</button>
+                    </div>
                 </div>
             </form>
 
@@ -109,14 +133,16 @@
                                 <p> "The appointment has been updated!" </p>
                                 <br>
                                 <div>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="goIndex()">Ok</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                            onclick="goIndex()">Ok
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 </div>
@@ -124,6 +150,37 @@
     function goIndex(){
         window.location.href="index.html";
     }
+
+</script>
+<script>
+
+$(function() {
+    const dateToday = new Date();
+    const oneYear=new Date(new Date().setFullYear(new Date().getFullYear() + 1));
+  $('input[name="dateU"]').daterangepicker({
+    singleDatePicker: true,
+    showDropdowns: false,
+    format: 'dd/mm/yyyy',
+    minDate: dateToday,
+    maxDate: oneYear,
+    locale: {
+                format: 'MM-DD-YYYY'
+            }
+  });
+  $('#timeU').daterangepicker({
+            singleDatePicker: true,
+            timePicker: true,
+            timePicker24Hour: true,
+            timePickerIncrement: 15,
+            timePickerSeconds: false,
+            locale: {
+                format: 'HH:mm'
+            }
+        }).on('show.daterangepicker', function (ev, picker) {
+            picker.container.find(".calendar-table").hide();
+        });
+});
+
 </script>
 </body>
 </html>
