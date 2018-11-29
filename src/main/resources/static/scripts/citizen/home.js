@@ -2,16 +2,18 @@ function logout() {
     sessionStorage.removeItem(SESSION_STORAGE_LOGIN_TOKEN_NAME);
     window.location.replace(ROOT_PATH + "/logout")
 }
-
 function populateDataTableAndUpdate(appointments) {
-
-            $("#appointments").append("<tbody>");
-            jQuery.each(appointments, function(i,appointment) {
              let getToday = new Date();
              const day=getToday.getDate();
              const month=getToday.getMonth()+1;
              const year=getToday.getFullYear();
              const today=month+ "-"+ day + "-" + year;
+             if ( $.fn.DataTable.isDataTable('#appointments') ) {
+                   $('#appointments').DataTable().destroy();
+              }
+            $('#appointments tbody').empty();
+            $("#appointments").append("<tbody>");
+            jQuery.each(appointments, function(i,appointment) {
              let appointmentTime=appointment.dateTime.split(" ");
              let dappointment = Date.parse(appointmentTime[0]);
              let dtoday = Date.parse(today);
@@ -26,17 +28,18 @@ function populateDataTableAndUpdate(appointments) {
             }
 
              });
-             $("#appointments").append("</tbody>");
+           $("#appointments").append("</tbody>");
 
-             $('#appointments').DataTable({
-                    //"bFilter": false,
-                     "columnDefs": [
-                      { "orderable": false, "targets": 3 },
-                      { "orderable": false, "targets": 4 }
-                        ]
-                     });
+            $('#appointments').DataTable({
+                        //"bFilter": false,
+                   "columnDefs": [
+                     { "orderable": false, "targets": 3 },
+                     { "orderable": false, "targets": 4 }
+                           ]
+                  });
 
 }
+
 
 function print(){
       $("#appointments tr").click(function() {
@@ -51,13 +54,6 @@ function findRow(){
     });
 }
 
-function details(){
-      $.ajax({
-           url: ROOT_PATH + "/appointments"
-       }).then(function(appointments) {
-           populateDataTableAndUpdate(appointments);
-       });
-}
 function populateSpecialtyDropdownA(specialties) {
     let dropdown = $('#specialtyA');
     dropdown.prop('selectedIndex', 0);
@@ -89,11 +85,15 @@ function populateDoctorsDropdown(doctors) {
 
 function loadAppointment(id) {
     $.ajax({
-        url: ROOT_PATH + "/appointments/" + id
+        url: ROOT_PATH + "/appointment/" + id
     }).then(function(appointment) {
-       $("input[name=id]").val(appointment.id);
-       $("input[name=specialty]").val(appointment.title);
-       $("input[name=doctor]").val(appointment.isbn);
+       $("input[name=specialtyU]").val(appointment.doctor.specialty.name);
+       $("input[name=doctorU]").val(appointment.doctor.lastName);
+       let appointmentDay=appointment.dateTime.split(" ");
+       $("input[name=dateU]").val(appointmentDay[0]);
+       $("input[name=timeU]").val(appointmentDay[1]);
+       $(":input[name=briefdescriptionU]").val(appointment.description);
+       $(":input[name=notesU]").val(appointment.notes);
     });
 };
 
@@ -131,11 +131,15 @@ $(document).ready(function() {
         event.preventDefault();
         let url = new URL(document.URL);
         var c = url.searchParams.get("appointmentid");
-        let newTitle=$("input[name=specialty]").val();
-        let newIsbn=$("input[name=doctor]").val();
+        let dayU=$("input[name=dateU]").val();
+        let timeU=$("input[name=timeU]").val();
+        let newdate=dayU.concat(" ",timeU);
+        let newdescription=$(":input[name=briefdescriptionU]").val();
+        let newnotes=$(":input[name=notesU]").val();
         let updatedata = {
-              "title" :  newTitle,
-              "isbn" :  newIsbn
+              "dateTime": newdate,
+              "description": newdescription,
+              "notes": newnotes
             };
          $.ajax({
              url:  ROOT_PATH + '/appointment/'+ c,
@@ -160,6 +164,26 @@ $(document).ready(function() {
   $("#cancelButton").on('click', function(event){
        window.location.href="index.html";
   });
+
+  $("#searchAppointmentButton").on('click', function(event){
+          event.preventDefault();
+          let specialtyToSearch=$("#specialtyS").val();
+          let datesToSearch=$("input[name=dates]").val().split(" ");
+          let startds = datesToSearch[0];
+          let endds = datesToSearch[2];
+           $.ajax({
+               url:  ROOT_PATH + '/appointments/?specialty='+specialtyToSearch+'&startdate='+startds+'&enddate='+endds,
+               success: function(data){
+                 $('#SearchModal').modal('hide');
+                 populateDataTableAndUpdate([data[1]]);
+                  },
+                   statusCode: {
+                       401 : function() {
+                           alert("Invalid data!");
+                       }
+                   }
+               });
+   });
 
  $("#createAppointmentButton").on('click', function(event){
         event.preventDefault();
@@ -186,7 +210,9 @@ $(document).ready(function() {
              success: function(data){
                alert("Ok");
                $('#makeAppointmentModal').modal('hide');
-               $("#appointments").DataTable().draw();
+               let t=$("#appointments").DataTable();
+              t.row.add( [data.id,data.doctor.specialty.name, data.dateTime,"<i id='ClickableImage' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i>","<i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i>"] ).node().id="appointmentRow"+data.id;
+              t.draw();
                 },
                  statusCode: {
                      401 : function() {
