@@ -48,12 +48,14 @@ public class AppointmentService {
         return appointmentRepository.findAppointmentsByClientUsernameEquals(username);
     }
 
-//    public List<Appointment> getAppointmentsByDoctorAmka(Long docAmka) {
-//        return appointmentRepository.findAppointmentsByDoctor_Amka(docAmka);
-//    }
-//
-//    public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(Date startDate, Date endDate, Long specId) {
-//        return appointmentRepository.findAppointmentsByDateTimeBetweenAndDoctorSpecialty(startDate, endDate, specId);
-//    }
+    public List<Appointment> getAppointmentsByDoctorUsername(String username) {
+        return appointmentRepository.findAppointmentsByDoctorUsernameEquals(username);
+    }
+
+    public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(Date startDate, Date endDate, String specName) {
+        return appointmentRepository.findAppointmentsByDateTimeBetweenAndDoctor_Specialty_Name(startDate, endDate, specName);
+    }
+
+
 
 }

@@ -12,9 +12,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     List<Appointment> findAppointmentsByClientUsernameEquals(String username);
 
-//    List<Appointment> findAppointmentsByDoctor_Amka(Long docAmka);
+    List<Appointment> findAppointmentsByDoctorUsernameEquals(String username);
 
-//    List<Appointment> findAppointmentsByDateTimeBetweenAndDoctorSpecialty(Date startDate, Date endDate, Long specId);
+    List<Appointment> findAppointmentsByDateTimeBetweenAndDoctor_Specialty_Name(Date startDate, Date endDate, String specName);
 
 
 

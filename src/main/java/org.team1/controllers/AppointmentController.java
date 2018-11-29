@@ -12,6 +12,9 @@ import org.team1.services.ClientService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -51,24 +54,23 @@ public class AppointmentController {
         return appointmentService.getAppointmentsByClientUsername(principal.getName());
     }
 
+    @GetMapping("/appointments/doctor")
+    public List<Appointment> getAppointmentsByDoctorUsername(Principal principal) {
+        return appointmentService.getAppointmentsByDoctorUsername(principal.getName());
+    }
 
-//    TODO: doc_AMKA in path or not!!! better not.
-//
-//    @GetMapping("/appointments/doctor")
-//    public List<Appointment> getAppointmentsByDoctorAmka(@RequestParam(name = "NAMED_BY_FRONT") Long id) {
-//        return appointmentService.getAppointmentsByDoctorAmka(id);
-//    }
+    @GetMapping("/appointments/date-specialty")
+    public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(
+            @RequestParam(name = "startdate") String startDate,
+            @RequestParam(name = "enddate") String endDate,
+            @RequestParam(name = "specialty")String specName) throws ParseException {
 
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        Date startingDate = format.parse(startDate);
+        Date endingDate = format.parse(endDate);
 
-//    TODO: check the next one!!
-
-//    @GetMapping("/appointments/date-specialty")
-//    public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(@RequestParam(name = "NAMED_BY_FRONT") Date startDate,
-//                                                                 @RequestParam(name = "NAMED_BY_FRONT") Date endDate,
-//                                                                 @RequestParam(name = "NAMED_BY_FRONT") Long specId) {
-//        return appointmentService.getAppointmentsBetweenDatesAndBySpecialty(startDate,endDate,specId);
-//    }
-
+        return appointmentService.getAppointmentsBetweenDatesAndBySpecialty(startingDate, endingDate, specName);
+    }
 
     @PutMapping("/appointment/{id}")
     public Appointment updateAppointment(@PathVariable Long id, @RequestBody Appointment updateAppointment) {

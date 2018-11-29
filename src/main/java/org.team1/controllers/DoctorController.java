@@ -38,18 +38,10 @@ public class DoctorController {
     }
 
 
-//    TODO: change path!! doctors/specialty/{specName}
-
     @GetMapping("/specialty/{specName}/doctors")
     public List<Doctor> getDoctorsBySpecialty(@PathVariable String specName){
         return doctorService.getDoctorsWithSpecialty(specName);
     }
-
-
-
-
-
-
 
     @PutMapping("/doctor/{amka}")
     public Doctor updateDoctor(@PathVariable Long amka, @RequestBody Doctor updateDoctor) {

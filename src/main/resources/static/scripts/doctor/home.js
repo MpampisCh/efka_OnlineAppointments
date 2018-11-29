@@ -59,7 +59,7 @@ $(document).ready(function() {
    let userw=json.userName;
    document.getElementById("welcome").innerHTML = "You are connected as " + userw;
    $.ajax({
-        url: ROOT_PATH + "/appointments"
+        url: ROOT_PATH + "/appointments/doctor"
     }).then(function(appointments) {
         appointmentsTable=appointments;
         populateDataTableAndUpdate(appointments);

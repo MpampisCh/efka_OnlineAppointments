@@ -4,9 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import javax.print.Doc;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -17,7 +15,6 @@ public class Appointment implements Serializable{
 
     private Long id;
 
-    @NotNull
     private Client client;
 
     @NotNull
@@ -28,10 +25,9 @@ public class Appointment implements Serializable{
     private Date dateTime;
 
     @NotNull
-//    @Pattern(regexp = "[a-zA-Z]{3,40}")
     private String description;
 
-//    @Nullable
+    @Nullable
     @Size(max = 250)
     private String notes;
 

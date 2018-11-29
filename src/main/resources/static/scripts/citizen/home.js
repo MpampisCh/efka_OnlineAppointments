@@ -172,7 +172,7 @@ $(document).ready(function() {
           let startds = datesToSearch[0];
           let endds = datesToSearch[2];
            $.ajax({
-               url:  ROOT_PATH + '/appointments/?specialty='+specialtyToSearch+'&startdate='+startds+'&enddate='+endds,
+               url:  ROOT_PATH + '/appointments/date-specialty?specialty='+specialtyToSearch+'&startdate='+startds+" 00:00"+'&enddate='+endds+" 24:00",
                success: function(data){
                  $('#SearchModal').modal('hide');
                  populateDataTableAndUpdate([data[1]]);
