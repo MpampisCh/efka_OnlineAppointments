@@ -54,13 +54,6 @@ function findRow(){
     });
 }
 
-function details(){
-      $.ajax({
-           url: ROOT_PATH + "/appointments"
-       }).then(function(appointments) {
-           populateDataTableAndUpdate(appointments);
-       });
-}
 function populateSpecialtyDropdownA(specialties) {
     let dropdown = $('#specialtyA');
     dropdown.prop('selectedIndex', 0);

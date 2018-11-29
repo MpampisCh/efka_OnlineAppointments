@@ -1,4 +1,4 @@
-$(document).ready(function() {
+  $(document).ready(function() {
     var input = $('.validate-input .input100');
 
    $("#loginButton").on('click', function(event){
