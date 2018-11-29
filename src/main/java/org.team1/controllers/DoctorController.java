@@ -37,6 +37,20 @@ public class DoctorController {
         return doctorRepository.save(doctor);
     }
 
+
+//    TODO: change path!! doctors/specialty/{specName}
+
+    @GetMapping("/specialty/{specName}/doctors")
+    public List<Doctor> getDoctorsBySpecialty(@PathVariable String specName){
+        return doctorService.getDoctorsWithSpecialty(specName);
+    }
+
+
+
+
+
+
+
     @PutMapping("/doctor/{amka}")
     public Doctor updateDoctor(@PathVariable Long amka, @RequestBody Doctor updateDoctor) {
         return doctorRepository.findById(amka)
@@ -46,13 +60,6 @@ public class DoctorController {
                 })
                 .orElseThrow(() -> new DoctorNotFoundException(amka));
     }
-
-
-    @GetMapping("/specialty/{name}/doctors")
-    public List<Doctor> getDoctorsBySpecialty(@PathVariable String name){
-        return doctorService.getDoctorsWithSpecialty(name);
-    }
-
 
     @DeleteMapping("doctor/{amka}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)

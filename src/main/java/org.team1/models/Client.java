@@ -2,11 +2,10 @@ package org.team1.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -14,19 +13,31 @@ import java.util.Set;
 @Table(name = "client")
 public class Client implements Serializable {
 
+    @NotNull
+//    @Pattern(regexp = "[0-9]")
     private long amka;
 
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z]{3,30}")
     private String firstName;
 
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z]{3,30}")
     private String lastName;
 
+    @NotNull
+    @Pattern(regexp = "[a-zA-Z0-9]{3,30}")
     private String username;
 
+    @NotNull
     private String password;
-    private String passwordConfirm;
 
+    @NotNull
+    @Min(10)
     private long phone;
 
+    @NotNull
+    @Email
     private String email;
 
     private Set<Appointment> appointments;

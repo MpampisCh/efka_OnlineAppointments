@@ -5,6 +5,9 @@ import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.print.Doc;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -13,12 +16,23 @@ import java.util.Date;
 public class Appointment implements Serializable{
 
     private Long id;
+
+    @NotNull
     private Client client;
+
+    @NotNull
     private Doctor doctor;
 
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy HH:mm")
     private Date dateTime;
+
+    @NotNull
+//    @Pattern(regexp = "[a-zA-Z]{3,40}")
     private String description;
+
+//    @Nullable
+    @Size(max = 250)
     private String notes;
 
     public Appointment(){}
@@ -47,12 +61,10 @@ public class Appointment implements Serializable{
     public void setDoctor(Doctor doctor) { this.doctor = doctor; }
 
     @Column(name = "datetime")
-    @Nullable
     public Date getDateTime() { return dateTime; }
     public void setDateTime(Date dateTime) { this.dateTime = dateTime; }
 
     @Column(name = "description")
-    @Nullable
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 

@@ -20,17 +20,12 @@ public class DoctorService {
     public DoctorService(DoctorRepository doctorRepository){
         this.doctorRepository = doctorRepository;
     }
-//
-//    public Doctor findByUserName(String username){
-//        return doctorRepository.findByUsername(username);
-//    }
 
     public Doctor findDoctorByAmka(long amka){
         return doctorRepository.findByAmka(amka);
     }
 
-    public List<Doctor> getDoctorsWithSpecialty(String name){
-        return doctorRepository.findDoctorsBySpecialtyNameEquals(name);
+    public List<Doctor> getDoctorsWithSpecialty(String specName){
+        return doctorRepository.findDoctorsBySpecialtyNameEquals(specName);
     }
-
 }

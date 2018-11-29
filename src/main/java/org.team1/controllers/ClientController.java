@@ -22,13 +22,11 @@ public class ClientController {
     private final ClientRepository clientRepository;
     private ClientService clientService;
 
-
     @Autowired
     public ClientController(ClientRepository clientRepository, ClientService clientService) {
         this.clientRepository = clientRepository;
         this.clientService = clientService;
     }
-
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
@@ -36,20 +34,14 @@ public class ClientController {
         return clientService.registerClient(client);
     }
 
-
-
-
     @GetMapping("/clients") //done
     public List<Client> getClients() { return clientRepository.findAll(); }
-
-
 
     @GetMapping("/clients/{amka}") //done
     public Client getClient(@PathVariable Long amka) {
         return clientRepository.findById(amka)
                 .orElseThrow(() -> new ClientNotFoundException(amka));
     }
-
 
     @PutMapping("/clients/{amka}")
     public Client updateClient(@PathVariable Long amka, @PathVariable Client updateClient) {
@@ -60,8 +52,6 @@ public class ClientController {
                 })
                 .orElseThrow(() -> new ClientNotFoundException(amka));
     }
-
-
 
     @DeleteMapping("clients/{amka}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)

@@ -12,8 +12,8 @@ import org.team1.services.ClientService;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class AppointmentController {
@@ -23,7 +23,8 @@ public class AppointmentController {
     private ClientService clientService;
 
     @Autowired
-    public AppointmentController(AppointmentRepository appointmentRepository, AppointmentService appointmentService, ClientService clientService) {
+    public AppointmentController(AppointmentRepository appointmentRepository,
+                                 AppointmentService appointmentService, ClientService clientService) {
         this.appointmentRepository = appointmentRepository;
         this.appointmentService = appointmentService;
         this.clientService =clientService;
@@ -31,28 +32,42 @@ public class AppointmentController {
 
     @GetMapping("/appointments")
     public List<Appointment> getAppointments() {
-        return appointmentRepository.findAll();
+        return appointmentService.getAllAppointments();
     }
 
     @GetMapping("/appointment/{id}")
     public Appointment getAppointment(@PathVariable Long id) {
-        return appointmentRepository.findById(id)
-                .orElseThrow(() -> new AppointmentNotFoundException(id));
-    }
-
+        return appointmentService.getAppointmentById(id); }
 
     @PostMapping("/newAppointment")
     @ResponseStatus(HttpStatus.CREATED)
-    public Appointment createAppointment(@Valid @RequestBody Appointment appointment, Principal principal){
+    public Appointment createAppointment(@Valid @RequestBody Appointment appointment, Principal principal) {
         Client client = clientService.findByUserName(principal.getName());
         return appointmentService.createAppointment(appointment,client);
     }
 
     @GetMapping("/appointments/{client_id}")
-    public Set<Appointment> getAppointmentsByClient(Principal principal) {
+    public List<Appointment> getAppointmentsByClient(Principal principal) {
         return appointmentService.getAppointmentsByClientUsername(principal.getName());
     }
 
+
+//    TODO: doc_AMKA in path or not!!! better not.
+//
+//    @GetMapping("/appointments/doctor")
+//    public List<Appointment> getAppointmentsByDoctorAmka(@RequestParam(name = "NAMED_BY_FRONT") Long id) {
+//        return appointmentService.getAppointmentsByDoctorAmka(id);
+//    }
+
+
+//    TODO: check the next one!!
+
+//    @GetMapping("/appointments/date-specialty")
+//    public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(@RequestParam(name = "NAMED_BY_FRONT") Date startDate,
+//                                                                 @RequestParam(name = "NAMED_BY_FRONT") Date endDate,
+//                                                                 @RequestParam(name = "NAMED_BY_FRONT") Long specId) {
+//        return appointmentService.getAppointmentsBetweenDatesAndBySpecialty(startDate,endDate,specId);
+//    }
 
 
     @PutMapping("/appointment/{id}")

@@ -3,16 +3,13 @@ package org.team1.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.team1.exceptions.AppointmentNotFoundException;
 import org.team1.models.Appointment;
 import org.team1.models.Client;
 import org.team1.repositories.AppointmentRepository;
-import org.team1.repositories.ClientRepository;
-import org.team1.repositories.DoctorRepository;
 
-import java.security.Principal;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class AppointmentService {
@@ -21,12 +18,12 @@ public class AppointmentService {
     private final DoctorService doctorService;
 
     @Autowired
-    public AppointmentService(AppointmentRepository appointmentRepository,DoctorService doctorService) {
+    public AppointmentService(AppointmentRepository appointmentRepository, DoctorService doctorService) {
         this.appointmentRepository = appointmentRepository;
         this.doctorService = doctorService;
     }
 
-    public Appointment createAppointment(Appointment appointment, Client client){
+    public Appointment createAppointment(Appointment appointment, Client client) {
 
         Appointment newAppointment = new Appointment();
 
@@ -40,7 +37,23 @@ public class AppointmentService {
         return newAppointment;
     }
 
-    public Set<Appointment> getAppointmentsByClientUsername(String username){
+    public List<Appointment> getAllAppointments() { return appointmentRepository.findAll(); }
+
+    public Appointment getAppointmentById(Long id) {
+        return appointmentRepository.findById(id)
+                .orElseThrow(() -> new AppointmentNotFoundException(id));
+    }
+
+    public List<Appointment> getAppointmentsByClientUsername(String username) {
         return appointmentRepository.findAppointmentsByClientUsernameEquals(username);
     }
+
+//    public List<Appointment> getAppointmentsByDoctorAmka(Long docAmka) {
+//        return appointmentRepository.findAppointmentsByDoctor_Amka(docAmka);
+//    }
+//
+//    public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(Date startDate, Date endDate, Long specId) {
+//        return appointmentRepository.findAppointmentsByDateTimeBetweenAndDoctorSpecialty(startDate, endDate, specId);
+//    }
+
 }

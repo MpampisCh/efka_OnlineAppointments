@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import org.team1.exceptions.SpecialtyNotFoundException;
 import org.team1.models.Specialty;
 import org.team1.repositories.SpecialtyRepository;
+import org.team1.services.SpecialtyService;
 
 import java.util.List;
 
@@ -13,27 +14,28 @@ import java.util.List;
 public class SpecialtyController {
 
     private final SpecialtyRepository specialtyRepository;
+    private final SpecialtyService specialtyService;
 
     @Autowired
-    public SpecialtyController(SpecialtyRepository specialtyRepository) {
+    public SpecialtyController(SpecialtyRepository specialtyRepository, SpecialtyService specialtyService) {
         this.specialtyRepository = specialtyRepository;
+        this.specialtyService = specialtyService;
     }
 
     @GetMapping("/specialties")
     public List<Specialty> getSpecialty() {
-        return specialtyRepository.findAll();
+        return specialtyService.findAllSpecialties();
     }
 
 
     @GetMapping("/specialties/{name}")
-    public Specialty getSpecialty(@PathVariable String name) {
-        return specialtyRepository.findByName(name);
-//                .orElseThrow(() -> new SpecialtyNotFoundException(name));
+    public Specialty getSpecialty(@PathVariable String specName) {
+        return specialtyService.findSpecBySpecName(specName);
     }
 
     @PostMapping("/specialty")
     public Specialty newSpecialty(@RequestBody Specialty specialty) {
-        return specialtyRepository.save(specialty);
+        return specialtyService.saveSpec(specialty);
     }
 
     @PutMapping("/specialties/{id}")
