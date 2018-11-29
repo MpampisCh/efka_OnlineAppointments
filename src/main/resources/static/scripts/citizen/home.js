@@ -55,8 +55,8 @@ function findRow(){
 }
 
 function populateSpecialtyDropdownA(specialties) {
-    let dropdown = $('#specialtyA');
-    dropdown.prop('selectedIndex', 0);
+    let dropdownsa = $('#specialtyA');
+    dropdownsa.prop('selectedIndex', 0);
     jQuery.each(specialties, function(i,specialty) {
      $("#specialtyA").append("<option value="+specialty.name+">"+specialty.name+"</option>");
      });
@@ -64,8 +64,8 @@ function populateSpecialtyDropdownA(specialties) {
 }
 
 function populateSpecialtyDropdownS(specialties) {
-    let dropdown = $('#specialtyS');
-    dropdown.prop('selectedIndex', 0);
+    let dropdownss = $('#specialtyS');
+    dropdownss.prop('selectedIndex', 0);
     jQuery.each(specialties, function(i,specialty) {
      $("#specialtyS").append("<option value="+specialty.name+">"+specialty.name+"</option>");
      });
@@ -73,12 +73,11 @@ function populateSpecialtyDropdownS(specialties) {
 }
 
 function populateDoctorsDropdown(doctors) {
-    let dropdown = $('#doctorA');
-    if (doctors.length!=0){
-        dropdown.empty();
-        dropdown.prop('selectedIndex', 0);
-    }
-    jQuery.each(doctors, function(i,doctor) {
+    let dropdownd = $('#doctorA');
+     dropdownd.prop('selectedIndex', 0);
+     dropdownd.empty();
+     $("#doctorA").append("<option value='' selected disabled>Choose Doctor</option>");
+     jQuery.each(doctors, function(i,doctor) {
      $("#doctorA").append("<option value="+doctor.amka+">"+doctor.lastName+"</option>");
      });
 }
@@ -116,16 +115,16 @@ $(document).ready(function() {
                populateSpecialtyDropdownS(specialties);
        });
 
-    $("#doctorA").on('click', function(event){
-     let specialtyName=$("#specialtyA").val();
-     $.ajax({
-            url:ROOT_PATH + '/specialty/'+ specialtyName+'/doctors',
-            dataType : 'json',
-            contentType: 'application/json',
-           }).then(function(doctors) {
-               populateDoctorsDropdown(doctors);
-       });
-     });
+    $('#specialtyA').change(function(){
+          let specialtyName=$("#specialtyA").val();
+          $.ajax({
+                 url:ROOT_PATH + '/specialty/'+ specialtyName+'/doctors',
+                 dataType : 'json',
+                 contentType: 'application/json',
+                }).then(function(doctors) {
+                    populateDoctorsDropdown(doctors);
+            });
+    });
 
     $("#saveButton").on('click', function(event){
         event.preventDefault();
@@ -172,7 +171,7 @@ $(document).ready(function() {
           let startds = datesToSearch[0];
           let endds = datesToSearch[2];
            $.ajax({
-               url:  ROOT_PATH + '/appointments/?specialty='+specialtyToSearch+'&startdate='+startds+'&enddate='+endds,
+               url:  ROOT_PATH + '/appointments/date-specialty?specialty='+specialtyToSearch+'&startdate='+startds+'&enddate='+endds,
                success: function(data){
                  $('#SearchModal').modal('hide');
                  populateDataTableAndUpdate([data[1]]);
