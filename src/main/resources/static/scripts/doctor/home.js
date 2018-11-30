@@ -33,26 +33,18 @@ function findRow(){
 
 function loadAppointment(id) {
        let appointment=$.grep(appointmentsTable, function(e){ return e.id == id; });
-       $("input[name=specialty]").val(appointment[0].doctor.specialty.name);
-       $("input[name=doctor]").val(appointment[0].doctor.lastName);
        let appointmentDay=appointment[0].dateTime.split(" ");
        $("input[name=date]").val(appointmentDay[0]);
        $("input[name=time]").val(appointmentDay[1]);
        $(":input[name=briefdescription]").val(appointment[0].description);
        $(":input[name=notes]").val(appointment[0].notes);
+       $("input[name=fname]").val(appointment[0].client.firstName);
+       $("input[name=lname]").val(appointment[0].client.lastName);
+       $("input[name=amka]").val(appointment[0].client.amka);
+       $("input[name=phone]").val(appointment[0].client.phone);
+       $("input[name=email]").val(appointment[0].client.email);
 }
 
-function userdetails(){
-   $('#viewAppointmentModal').modal('hide');
-   $('#patientModal').modal('show');
-   let appointment=$.grep(appointmentsTable, function(e){ return e.id == tableRow; });
-   $("input[name=fname]").val(appointment[0].client.firstName);
-   $("input[name=lname]").val(appointment[0].client.lastName);
-   $("input[name=amka]").val(appointment[0].client.amka);
-   $("input[name=phone]").val(appointment[0].client.phone);
-   $("input[name=email]").val(appointment[0].client.email);
-
-}
 var appointmentsTable;
 $(document).ready(function() {
    let json = JSON.parse(sessionStorage.getItem(SESSION_STORAGE_LOGIN_TOKEN_NAME));

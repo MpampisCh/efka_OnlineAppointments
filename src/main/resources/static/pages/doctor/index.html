@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html>
 
 <head>
     <title>Doctor Page</title>
@@ -93,32 +93,21 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <i class="fa fa-user" id="ClickableImage" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Patient details" onclick="userdetails()"></i>
-                            <br>
                             <form name="appointment">
                                 <div class="form-group">
-                                    <div class="validate-input">
-                                        <label class=for="specialty">Specialty</label>
-                                        <input id="specialty" class="form-control" type="text" name="specialty"
-                                               readonly>
-                                    </div>
-                                    <div class="validate-input">
-                                        <label for="doctor">Doctor</label>
-                                        <input id="doctor" class="form-control" type="text" name="doctor" readonly>
-                                    </div>
                                     <div class="validate-input">
                                         <label for="date">Date</label>
                                         <input id="date" class="form-control" type="text" name="date" readonly>
                                         <span class="symbol">
-                                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                                    </span>
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                        </span>
                                     </div>
                                     <div class="validate-input">
                                         <label for="time">Time</label>
                                         <input id="time" class="form-control" type="text" name="time" readonly>
                                         <span class="symbol">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                                    </span>
+                                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                        </span>
                                     </div>
                                     <div class="validate-input">
                                         <label class="control-label" for="briefdescription">Brief Description</label>
@@ -130,18 +119,40 @@
                                         <textarea id="notes" name="notes" class="form-control" rows="3" readonly></textarea>
                                     </div>
                                     <br>
+                                <i class="fa fa-user" id="ClickableImage" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Patient details" onclick="showDiv()"></i>
+                                <br>
+                                <div id=fNameDiv class="validate-input" style="display:none;">
+                                    <label class=for="fname">First Name</label>
+                                    <input id="fname" class="form-control" type="text" name="fname"
+                                           readonly>
+                                </div>
+                                <div id=lNameDiv class="validate-input" style="display:none;">
+                                    <label for="lname">Last Name</label>
+                                    <input id="lname" class="form-control" type="text" name="lname" readonly>
+                                </div>
+                                <div id=amkaDiv class="validate-input" style="display:none;">
+                                    <label for="amka">AMKA</label>
+                                    <input id="amka" class="form-control" type="text" name="amka" readonly>
+                                </div>
+                                <div id=phoneDiv class="validate-input" style="display:none;">
+                                    <label class=for="phone">Phone</label>
+                                    <input id="phone" class="form-control" type="text" name="phone" readonly>
+                                </div>
+                                <div id=emailDiv class="validate-input" style="display:none;">
+                                    <label for="email">E-mail</label>
+                                    <input id="email" class="form-control" type="text" name="email" readonly>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"
                                             aria-hidden="true">Close
                                     </button>
                                 </div>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <!-- Search an appointment Modal-->
             <div class="modal fade" id="SearchModal" data-backdrop="static" data-keyboard="false">
@@ -185,53 +196,6 @@
                 </div>
             </div>
 
-
-            <!-- View patient details Modal -->
-            <div class="modal fade" id="patientModal" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <h4 class="modal-title">Patient Details</h4>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <!-- Modal body for pop-up form -->
-                        <div class="modal-body">
-                            <form name="viewpatient" class="validate-form">
-                                <div class="form-group">
-                                    <div class="validate-input">
-                                        <label class=for="fname">First Name</label>
-                                        <input id="fname" class="form-control" type="text" name="fname"
-                                               readonly>
-                                    </div>
-                                    <div class="validate-input">
-                                        <label for="lname">Last Name</label>
-                                        <input id="lname" class="form-control" type="text" name="lname" readonly>
-                                    </div>
-                                    <div class="validate-input">
-                                        <label for="amka">AMKA</label>
-                                        <input id="amka" class="form-control" type="text" name="amka" readonly>
-                                    </div>
-                                    <div class="validate-input">
-                                        <label class=for="phone">Phone</label>
-                                        <input id="phone" class="form-control" type="text" name="phone" readonly>
-                                    </div>
-                                    <div class="validate-input">
-                                        <label for="email">E-mail</label>
-                                        <input id="email" class="form-control" type="text" name="email" readonly>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                                aria-hidden="true">Close
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
@@ -247,23 +211,37 @@ $(function() {
   });
          document.appointment.reset();
          document.searchappointment.reset();
-         document.viewpatient.reset();
          $('[data-toggle="tooltip"]').tooltip()
 });
 
 
- $('#makeAppointmentModal').on('hidden.bs.modal', function(e){
+ $('#viewAppointmentModal').on('hidden.bs.modal', function(e){
         document.appointment.reset();
+        hideDiv();
 
  });
 
 $('#SearchModal').on('hidden.bs.modal', function(e){
          document.searchappointment.reset();
-    });
-
-$('#patientModal').on('hidden.bs.modal', function(e){
-         document.viewpatient.reset();
-    });
+ });
+</script>
+<script>
+    function showDiv() {
+     document.getElementById('fNameDiv').style.display = "block";
+     document.getElementById('lNameDiv').style.display = "block";
+     document.getElementById('amkaDiv').style.display = "block";
+     document.getElementById('phoneDiv').style.display = "block";
+     document.getElementById('emailDiv').style.display = "block";
+ }
+</script>
+<script>
+    function hideDiv() {
+     document.getElementById('fNameDiv').style.display = "none";
+     document.getElementById('lNameDiv').style.display = "none";
+     document.getElementById('amkaDiv').style.display = "none";
+     document.getElementById('phoneDiv').style.display = "none";
+     document.getElementById('emailDiv').style.display = "none";
+ }
 </script>
 
 <script src="../../validations/validations.js"></script>
