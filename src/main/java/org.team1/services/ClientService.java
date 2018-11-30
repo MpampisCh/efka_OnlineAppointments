@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.team1.exceptions.ClientAmkaExistsException;
-import org.team1.exceptions.ClientEmailExistsAdvise;
 import org.team1.exceptions.ClientEmailExistsException;
 import org.team1.exceptions.ClientParamsException;
 import org.team1.models.Client;
@@ -48,7 +47,7 @@ public class ClientService {
         return clientRepository.findClientByAmkaEquals(client.getAmka()) == null;
     }
 
-    public Client checkIfUserCanMakeRegistration(Client client) throws ClientEmailExistsException, ClientAmkaExistsException, ClientParamsException {
+    public Client registerUserIfIsValid(Client client) throws ClientEmailExistsException, ClientAmkaExistsException, ClientParamsException {
 
         if (validUserAmka(client) && validUserEmail(client)) {
             registerClient(client);

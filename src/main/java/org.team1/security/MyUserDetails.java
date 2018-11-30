@@ -3,6 +3,7 @@ package org.team1.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.team1.exceptions.UserNotFoundException;
 import org.team1.models.Client;
 import org.team1.models.Doctor;
 
@@ -30,10 +31,12 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-       if (doctor == null){
+       if (doctor == null && client != null){
            return client.getPassword();
-       }else {
+       }else if (client == null && doctor != null){
            return doctor.getPassword();
+       }else {
+           throw new UserNotFoundException();
        }
     }
 

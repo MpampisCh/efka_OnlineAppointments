@@ -31,8 +31,7 @@ public class ClientController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public Client registerAccount(@Valid @RequestBody Client client) throws ClientEmailExistsException, ClientAmkaExistsException, ClientParamsException {
-//        return clientService.registerClient(client);
-        return clientService.checkIfUserCanMakeRegistration(client);
+        return clientService.registerUserIfIsValid(client);
     }
 
     @GetMapping("/clients") //done
