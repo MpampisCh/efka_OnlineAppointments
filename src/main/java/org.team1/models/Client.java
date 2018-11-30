@@ -13,9 +13,9 @@ import java.util.Set;
 @Table(name = "client")
 public class Client implements Serializable {
 
+    //    @Pattern(regexp = "[0-9]")
     @NotNull
-//    @Pattern(regexp = "[0-9]")
-    private long amka;
+    private  String amka;
 
     @NotNull
     @Pattern(regexp = "[a-zA-Z]{3,30}")
@@ -44,7 +44,7 @@ public class Client implements Serializable {
 
     public Client(){}
 
-    public Client(long amka,String firstName, String lastName, String username, String password, long phone, String email){
+    public Client(String amka, String firstName, String lastName, String username, String password, long phone, String email){
 
         this.amka = amka;
         this.firstName = firstName;
@@ -57,8 +57,8 @@ public class Client implements Serializable {
 
     @Id
     @Column(unique = true, nullable = false)
-    public long getAmka() { return amka; }
-    public void setAmka(long amka) { this.amka = amka; }
+    public  String getAmka() { return amka; }
+    public void setAmka(@NotNull String amka) { this.amka = amka; }
 
     @Column(name = "first_name", nullable = false)
     public String getFirstName() { return firstName; }
