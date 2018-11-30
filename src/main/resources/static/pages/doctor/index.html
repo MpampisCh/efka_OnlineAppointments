@@ -116,38 +116,40 @@
                                     </div>
                                     <div class="validate-input">
                                         <label for="notes">Notes</label>
-                                        <textarea id="notes" name="notes" class="form-control" rows="3" readonly></textarea>
+                                        <textarea id="notes" name="notes" class="form-control" rows="3"
+                                                  readonly></textarea>
                                     </div>
                                     <br>
-                                <i class="fa fa-user" id="ClickableImage" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="Patient details" onclick="showDiv()"></i>
-                                <br>
-                                <div id=fNameDiv class="validate-input" style="display:none;">
-                                    <label class=for="fname">First Name</label>
-                                    <input id="fname" class="form-control" type="text" name="fname"
-                                           readonly>
-                                </div>
-                                <div id=lNameDiv class="validate-input" style="display:none;">
-                                    <label for="lname">Last Name</label>
-                                    <input id="lname" class="form-control" type="text" name="lname" readonly>
-                                </div>
-                                <div id=amkaDiv class="validate-input" style="display:none;">
-                                    <label for="amka">AMKA</label>
-                                    <input id="amka" class="form-control" type="text" name="amka" readonly>
-                                </div>
-                                <div id=phoneDiv class="validate-input" style="display:none;">
-                                    <label class=for="phone">Phone</label>
-                                    <input id="phone" class="form-control" type="text" name="phone" readonly>
-                                </div>
-                                <div id=emailDiv class="validate-input" style="display:none;">
-                                    <label for="email">E-mail</label>
-                                    <input id="email" class="form-control" type="text" name="email" readonly>
-                                </div>
+                                    <i class="fa fa-user" id="ClickableImage" aria-hidden="true" data-toggle="tooltip"
+                                       data-placement="right" title="Patient details" onclick="showDiv()"></i>
                                     <br>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"
-                                            aria-hidden="true">Close
-                                    </button>
-                                </div>
+                                    <div id=fNameDiv class="validate-input" style="display:none;">
+                                        <label class=for="fname">First Name</label>
+                                        <input id="fname" class="form-control" type="text" name="fname"
+                                               readonly>
+                                    </div>
+                                    <div id=lNameDiv class="validate-input" style="display:none;">
+                                        <label for="lname">Last Name</label>
+                                        <input id="lname" class="form-control" type="text" name="lname" readonly>
+                                    </div>
+                                    <div id=amkaDiv class="validate-input" style="display:none;">
+                                        <label for="amka">AMKA</label>
+                                        <input id="amka" class="form-control" type="text" name="amka" readonly>
+                                    </div>
+                                    <div id=phoneDiv class="validate-input" style="display:none;">
+                                        <label class=for="phone">Phone</label>
+                                        <input id="phone" class="form-control" type="text" name="phone" readonly>
+                                    </div>
+                                    <div id=emailDiv class="validate-input" style="display:none;">
+                                        <label for="email">E-mail</label>
+                                        <input id="email" class="form-control" type="text" name="email" readonly>
+                                    </div>
+                                    <br>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal"
+                                                aria-hidden="true">Close
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
@@ -187,7 +189,8 @@
                                         <button type="button" class="btn btn-danger" data-dismiss="modal"
                                                 aria-hidden="true">Close
                                         </button>
-                                        <button type="button" id="searchAppointmentButton" class="btn btn-success" disabled>
+                                        <button type="button" id="searchAppointmentButton" class="btn btn-success"
+                                                disabled>
                                             Submit
                                         </button>
                                     </div>
@@ -202,7 +205,6 @@
     </div>
 </div>
 <script>
-
 $(function() {
   $('input[name="dates"]').daterangepicker({
     showDropdowns: false,
@@ -215,17 +217,14 @@ $(function() {
          document.searchappointment.reset();
          $('[data-toggle="tooltip"]').tooltip();
 });
-
-
  $('#viewAppointmentModal').on('hidden.bs.modal', function(e){
         document.appointment.reset();
         hideDiv();
-
  });
-
 $('#SearchModal').on('hidden.bs.modal', function(e){
          document.searchappointment.reset();
  });
+
 </script>
 <script>
     function showDiv() {
@@ -235,6 +234,7 @@ $('#SearchModal').on('hidden.bs.modal', function(e){
      document.getElementById('phoneDiv').style.display = "block";
      document.getElementById('emailDiv').style.display = "block";
  }
+
 </script>
 <script>
     function hideDiv() {
@@ -244,6 +244,7 @@ $('#SearchModal').on('hidden.bs.modal', function(e){
      document.getElementById('phoneDiv').style.display = "none";
      document.getElementById('emailDiv').style.display = "none";
  }
+
 </script>
 <script src="../../validations/validations.js"></script>
 </body>

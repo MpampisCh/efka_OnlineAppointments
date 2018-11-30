@@ -68,7 +68,7 @@ $(document).ready(function() {
                success: function(data){
                 appointmentsTable=data;
                  $('#SearchModal').modal('hide');
-                 populateDataTableAndUpdate(data);
+                 populateDataTable(data);
                   },
                    statusCode: {
                        401 : function() {
