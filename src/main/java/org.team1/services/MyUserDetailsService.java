@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
-import org.team1.exceptions.UserNotFoundAdvise;
 import org.team1.exceptions.UserNotFoundException;
 import org.team1.models.Client;
 import org.team1.models.Doctor;
@@ -36,13 +35,21 @@ public class MyUserDetailsService implements UserDetailsService {
         if (username.startsWith(DOCTORACRONYM.toString())){
             String name = username.replaceFirst("D\t", "");
             Doctor doctor = doctorRepository.findByUsername(name);
-            Client client = null;
-            return new MyUserDetails(doctor, client);
+            if (doctor != null) {
+                Client client = null;
+                return new MyUserDetails(doctor, client);
+            }else {
+                throw new UserNotFoundException();
+            }
         }else if (username.startsWith(CLIENTACRONYM.toString())){
             String name = username.replaceFirst("C\t", "");
             Client client = clientRepository.findByUsername(name);
-            Doctor doctor = null;
-            return new MyUserDetails(doctor, client);
+            if (client != null){
+                Doctor doctor = null;
+                return new MyUserDetails(doctor, client);
+            }else {
+                throw new UserNotFoundException();
+            }
         }else {
             throw new UserNotFoundException();
         }
