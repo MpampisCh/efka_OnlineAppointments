@@ -36,22 +36,22 @@
                                 <span class="login-form-title">
                                     Member Login
                                 </span>
-                <div class="wrap-input100 validate-input" data-validate="Username is required">
-                    <input id="userName" class="input100" type="text" name="username" placeholder="Username" required>
+                <div class="wrap-input100 validate-input" data-validate="required">
+                    <input id="userName" class="input100" type="text" name="username" placeholder="Username" minlength="6" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                     </span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Valid password is required">
-                    <input id="password" class="input100" type="password" name="pswd" placeholder="Password" minlength="4" required>
+                <div class="wrap-input100 validate-input" data-validate="required">
+                    <input id="password" class="input100" type="password" name="pswd" placeholder="Password" minlength="8" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                                         <i class="fa fa-lock" aria-hidden="true"></i>
                                     </span>
                 </div>
-                <div class="wrap-input100 validate-input" data-validate="The role is required">
+                <div class="wrap-input100 validate-input" data-validate="required">
                     <select id="roleselection" class="input100" name="roleSelection" required>
                         <option value="" selected disabled >Select Role</option>
                         <option value="ADMIN">Administrator</option>
