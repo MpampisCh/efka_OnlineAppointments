@@ -3,7 +3,6 @@ package org.team1;
 import org.team1.security.CustomAccessDeniedHandler;
 import org.team1.security.MySavedRequestAwareAuthenticationSuccessHandler;
 import org.team1.security.RestAuthenticationEntryPoint;
-import org.team1.services.ClientService;
 import org.team1.services.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -63,6 +62,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/doctor/**").hasRole("Doctor")
                 .antMatchers("/client/**").hasRole("Client")
                 .antMatchers("/appointment/**").authenticated()
+                .antMatchers("/doc//**").authenticated()
                 .and()
                 .formLogin()
                 .successHandler(mySuccessHandler)
