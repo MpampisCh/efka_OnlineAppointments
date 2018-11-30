@@ -118,7 +118,7 @@ $(document).ready(function() {
     $("#doctorA").on('click', function(event){
      let specialtyName=$("#specialtyA").val();
      $.ajax({
-            url:ROOT_PATH + 'doctor/all/specialty/'+ specialtyName,
+            url:ROOT_PATH + '/doc/all/spec/'+ specialtyName,
             dataType : 'json',
             contentType: 'application/json',
            }).then(function(doctors) {

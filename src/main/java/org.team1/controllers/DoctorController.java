@@ -38,7 +38,7 @@ public class DoctorController {
     }
 
 
-    @GetMapping("/doctor/all/specialty/{specName}")
+    @GetMapping("/doc/all/spec/{specName}")
     public List<Doctor> getDoctorsBySpecialty(@PathVariable String specName){
         return doctorService.getDoctorsWithSpecialty(specName);
     }
