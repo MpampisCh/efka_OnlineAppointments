@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+import org.team1.exceptions.UserNotFoundAdvise;
 import org.team1.exceptions.UserNotFoundException;
 import org.team1.models.Client;
 import org.team1.models.Doctor;
 import org.team1.repositories.ClientRepository;
 import org.team1.repositories.DoctorRepository;
 import org.team1.security.MyUserDetails;
+
 
 import static org.team1.services.Acronyms.CLIENTACRONYM;
 import static org.team1.services.Acronyms.DOCTORACRONYM;

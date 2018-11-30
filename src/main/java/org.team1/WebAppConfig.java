@@ -60,7 +60,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-//                .antMatchers("/appointment/**").authenticated()
+                .antMatchers("/appointment/**").authenticated()
                 .antMatchers("/doctor/**").hasRole("Doctor")
                 .antMatchers("/client/**").hasRole("Client")
                 .and()
