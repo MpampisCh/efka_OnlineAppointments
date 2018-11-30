@@ -70,6 +70,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/index.html");
+
     }
 
     @Bean

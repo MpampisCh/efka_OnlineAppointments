@@ -21,7 +21,7 @@ public class DoctorController {
         this.doctorService = doctorService;
     }
 
-    @GetMapping("/doctors")
+    @GetMapping("/doctor/all")
     public List<Doctor> getDoctor() {
         return doctorRepository.findAll();
     }
@@ -38,7 +38,7 @@ public class DoctorController {
     }
 
 
-    @GetMapping("/specialty/{specName}/doctors")
+    @GetMapping("/doctor/all/specialty/{specName}")
     public List<Doctor> getDoctorsBySpecialty(@PathVariable String specName){
         return doctorService.getDoctorsWithSpecialty(specName);
     }
