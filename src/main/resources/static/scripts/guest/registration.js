@@ -30,8 +30,8 @@ function register(firstnameElement,lastnameElement,amkaElement,phoneElement,emai
            window.location.replace(ROOT_PATH + "/index.html");
        },
         statusCode: {
-            409 : function() {
-                alert("Invalid information!");
+            409 : function(response) {
+                alert(response.responseText);
             }
         }
     });
