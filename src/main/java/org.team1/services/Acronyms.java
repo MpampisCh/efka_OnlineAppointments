@@ -2,7 +2,7 @@ package org.team1.services;
 
 public enum Acronyms {
 
-    DOCTORACRONYM ("D"),
+    DOCTORACRONYM ("D\t"),
     CLIENTACRONYM ("C\t");
 
     private final String text;

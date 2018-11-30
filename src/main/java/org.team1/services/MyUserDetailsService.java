@@ -32,7 +32,7 @@ public class MyUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UserNotFoundException {
 
         if (username.startsWith(DOCTORACRONYM.toString())){
-            String name = username.replaceFirst("D", "");
+            String name = username.replaceFirst("D\t", "");
             Doctor doctor = doctorRepository.findByUsername(name);
             Client client = null;
             return new MyUserDetails(doctor, client);
