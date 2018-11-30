@@ -179,7 +179,7 @@
             </div>
 
 
-            <!-- Make a Search an appointment Modal -->
+            <!--Search an appointment Modal -->
             <div class="modal fade" id="SearchModal" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -195,7 +195,7 @@
                                     <div class="validate-input" data-validate="You must select a specialty.">
                                         <label class="control-label" for="specialtyS">Specialty</label>
                                         <select id="specialtyS" name="specialtyS" class="form-control" required>
-                                            <option selected="true" disabled>Choose Specialty</option>
+                                            <option value="" selected disabled>Choose Specialty</option>
                                         </select>
                                     </div>
 
@@ -211,7 +211,7 @@
                                         <button type="button" class="btn btn-danger" data-dismiss="modal"
                                                 aria-hidden="true">Close
                                         </button>
-                                        <button type="button" id="searchAppointmentButton" class="btn btn-success">
+                                        <button type="button" id="searchAppointmentButton" class="btn btn-success" disabled>
                                             Submit
                                         </button>
                                     </div>

@@ -143,7 +143,7 @@
             </div>
 
 
-            <!-- Make a Search Modal-->
+            <!-- Search an appointment Modal-->
             <div class="modal fade" id="SearchModal" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -164,8 +164,8 @@
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                     </span>
                                     </div>
-                                    <div class="validate-input">
-                                        <label for="briefdescriptionS">Description</label>
+                                    <div class="validate-input" data-validate="Write a description.">
+                                        <label class="control-label" for="briefdescriptionS">Description</label>
                                         <textarea maxlength="200" minlength="5" id="briefdescriptionS"
                                                   class="form-control" name="briefdescriptionS" required></textarea>
 
@@ -174,7 +174,7 @@
                                         <button type="button" class="btn btn-danger" data-dismiss="modal"
                                                 aria-hidden="true">Close
                                         </button>
-                                        <button type="button" id="searchAppointmentButton" class="btn btn-success">
+                                        <button type="button" id="searchAppointmentButton" class="btn btn-success" disabled>
                                             Submit
                                         </button>
                                     </div>

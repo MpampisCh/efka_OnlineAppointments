@@ -74,10 +74,9 @@ function populateSpecialtyDropdownS(specialties) {
 
 function populateDoctorsDropdown(doctors) {
     let dropdown = $('#doctorA');
-    if (doctors.length!=0){
-        dropdown.empty();
-        dropdown.prop('selectedIndex', 0);
-    }
+    dropdown.prop('selectedIndex', 0);
+    dropdown.empty();
+    $("#doctorA").append("<option value='' selected disabled>Choose Doctor</option>");
     jQuery.each(doctors, function(i,doctor) {
      $("#doctorA").append("<option value="+doctor.amka+">"+doctor.lastName+"</option>");
      });

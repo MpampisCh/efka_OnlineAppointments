@@ -1,4 +1,4 @@
-$(document).on('shown.bs.modal','#makeAppointmentModal', function () {
+$(document).on('shown.bs.modal', function () {
 
     /**
      * Native form validations
