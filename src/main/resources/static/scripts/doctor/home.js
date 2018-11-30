@@ -2,14 +2,14 @@ function logout() {
     sessionStorage.removeItem(SESSION_STORAGE_LOGIN_TOKEN_NAME);
     window.location.replace(ROOT_PATH + "/logout")
 }
-function populateDataTableAndUpdate(appointments) {
+function populateDataTable(appointments) {
              if ( $.fn.DataTable.isDataTable('#appointments') ) {
                    $('#appointments').DataTable().destroy();
               }
             $('#appointments tbody').empty();
             $("#appointments").append("<tbody>");
             jQuery.each(appointments, function(i,appointment) {
-                $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" +appointment.dateTime + "</td><td>" + appointment.description + "</td><td><i id='ClickableImage' class='fa fa-search' aria-hidden='true' data-toggle='modal' data-target='#viewAppointmentModal' onclick='findRow()'></i></td></tr>");
+                $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" +appointment.dateTime + "</td><td>" + appointment.description + "</td><td><i id='ClickableImage' class='fa fa-info-circle' aria-hidden='true' data-toggle='modal' data-target='#viewAppointmentModal' onclick='findRow()'></i></td></tr>");
 
              });
            $("#appointments").append("</tbody>");
@@ -54,7 +54,7 @@ $(document).ready(function() {
         url: ROOT_PATH + "/appointments/doctor"
     }).then(function(appointments) {
         appointmentsTable=appointments;
-        populateDataTableAndUpdate(appointments);
+        populateDataTable(appointments);
     });
 
   $("#searchAppointmentButton").on('click', function(event){

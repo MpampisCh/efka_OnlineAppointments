@@ -142,6 +142,7 @@
                                     <label for="email">E-mail</label>
                                     <input id="email" class="form-control" type="text" name="email" readonly>
                                 </div>
+                                    <br>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"
                                             aria-hidden="true">Close
@@ -181,6 +182,7 @@
                                                   class="form-control" name="briefdescriptionS" required></textarea>
 
                                     </div>
+                                    <br>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-dismiss="modal"
                                                 aria-hidden="true">Close
@@ -211,7 +213,7 @@ $(function() {
   });
          document.appointment.reset();
          document.searchappointment.reset();
-         $('[data-toggle="tooltip"]').tooltip()
+         $('[data-toggle="tooltip"]').tooltip();
 });
 
 
@@ -243,7 +245,6 @@ $('#SearchModal').on('hidden.bs.modal', function(e){
      document.getElementById('emailDiv').style.display = "none";
  }
 </script>
-
 <script src="../../validations/validations.js"></script>
 </body>
 </html>
