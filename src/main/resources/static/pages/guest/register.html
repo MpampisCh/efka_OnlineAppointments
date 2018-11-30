@@ -17,7 +17,8 @@
  <script src="../../vendor/jquery/jquery-3.2.1.min.js"></script>
  <script src="../../scripts/config/main.js"></script>
 <script src="../../scripts/security/guest-auth.js"></script>
-<script src="../../scripts/guest/registration.js"></script>
+ <script src="../../scripts/guest/registration.js"></script>
+<script src="../../validations/validations.js"></script>
     </head>
     <body>
             <div class="modifier">
@@ -28,55 +29,55 @@
                                     Sign-up Form
                                 </span>
                                 <div class="wrap-input50 validate-input form-group" data-validate = "First Name is required">
-                                    <label for="firstname">First Name</label>
-                                    <input class="input100" type="text" name="firstname" placeholder="Type your First Name">
+                                    <label class="control-label" for="firstname">First Name</label>
+                                    <input id="firstname" class="input100" type="text" name="firstname" placeholder="Type your First Name" minlength="3" maxlength="20" pattern="[A-Za-z]{3,20}" required>
                                     <span class="focus-input100"></span>
                                 </div>
-                                <div class="wrap-input50 validate-input form-group" data-validate = "Last Name is required">
-                                    <label for="lastname">Last Name</label>
-                                    <input class="input100" type="text" name="lastname" value="" placeholder="Type your Last Name">
+                                <div class="wrap-input50 validate-input form-group" data-validate = "Last Name is required" >
+                                    <label class="control-label" for="lastname">Last Name</label>
+                                    <input id="lastname" class="input100" type="text" name="lastname" value="" placeholder="Type your Last Name" minlength="3" maxlength="20" pattern="[A-Za-z]{3,20}" required>
                                     <span class="focus-input100"></span>
                                 </div>
                                 
                                 <div class="wrap-input50 validate-input form-group" data-validate = "AMKA is required">
-                                    <label for="amka">AMKA</label>
-                                    <input class="input100" type="text" name="amka" value="" placeholder="Type your AMKA">
+                                    <label class="control-label" for="amka">AMKA</label>
+                                    <input id="amka" class="input100" type="text" name="amka" value="" placeholder="Type your AMKA" minlength="9" maxlength="9" pattern="[0-9]{9}" required>
                                     <span class="focus-input100"></span>
-                                    <small class="form-text text-muted">If you don't know your AMKA <a href="https://www.amka.gr/AMKAGR/" alt="Find your AMKA page">click here</a></small>
+                                    <small class="form-text text-muted">If you don't know your AMKA <a href="https://www.amka.gr/AMKAGR/" target="_blank">click here</a></small>
                                 </div>
-				   
+
                                 <div class="wrap-input50 form-group">
 				                </div>
 				   
                                 <div class="wrap-input50 validate-input form-group" data-validate = "Phone is required">
-                                        <label for="phone">Phone</label>
-                                        <input class="input100 form-group" type="tel" name="phone" value="" placeholder="Type your Phone">
+                                        <label class="control-label" for="phone">Phone</label>
+                                        <input id="phone" class="input100 form-group" type="tel" name="phone" value="" placeholder="Type your Phone" minlength="10" maxlength="10" pattern="[0-9]{10}" required>
                                         <span class="focus-input100"></span>
                                 </div>
                             
                                 <div class="wrap-input50 validate-input form-group" data-validate = "E-mail is required">
-                                        <label for="email">E-mail</label>
-                                        <input class="input100" type="email" name="email" value="" placeholder="Type your E-mail">
+                                        <label class="control-label" for="email">E-mail</label>
+                                        <input id="email" class="input100" type="email" name="email" value="" placeholder="Type your E-mail" pattern="(?!test@test\.com$)[a-z0-9._%+-]{3,}@[a-z]{3,}\.[a-z]{2,}(?:\.[a-z]{2,})?" required>
                                         <span class="focus-input100"></span>
                                 </div>
                                 
                                 <div class="wrap-input50 validate-input form-group" data-validate = "Username is required">
-                                    <label for="username">Username</label>
-                                    <input class="input100" type="text" name="username" value="" placeholder="Type your Username">
+                                    <label class="control-label" for="username">Username</label>
+                                    <input id="username" class="input100" type="text" name="username" value="" placeholder="Type your Username" minlength="7" maxlength="20" pattern="[a-zA-Z][a-zA-Z0-9-_.]{7,20}" required>
                                     <span class="focus-input100"></span>
                                 </div>
 				   
                                 <div class="wrap-input50 form-group"></div>
 				   
                                 <div class="wrap-input50 validate-input form-group" data-validate = "Password is required">
-                                    <label for="pswd">Password</label>
-                                    <input class="input100" type="password" name="pswd" value="" placeholder="Type your Password">
+                                    <label class="control-label" for="pswd">Password</label>
+                                    <input id="pswd" class="input100" type="password" name="pswd" value="" placeholder="Type your Password" minlength="8" maxlength="20" pattern="^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,20}$" required>
                                     <span class="focus-input100"></span>
                                 </div>
 				   
-                                <div class="wrap-input50 validate-input form-group" data-validate = "Password is required">
-                                        <label for="rpwd">Retype your Password</label>
-                                        <input class="input100" type="password" name="rpwd" value="" placeholder="Retype your Password">
+                                <div class="wrap-input50 validate-input form-group" data-validate = "The passwords don't match">
+                                        <label class="control-label" for="rpwd">Retype your Password</label>
+                                        <input id="rpwd" class="input100" type="password" name="rpwd" value="" placeholder="Retype your Password" required>
                                         <span class="focus-input100"></span>
                                 </div>
 				   
@@ -85,7 +86,7 @@
                                    Register
                                     </button>
                                 </div>
-				   
+
                                 </form>
                         
                         </div> 

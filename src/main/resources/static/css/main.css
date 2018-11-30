@@ -606,7 +606,14 @@ content-align: right;
   content:"*";
   color: #c80000;
 
-}label{
+}
+
+.control-label:after {
+  content:"*";
+  color: #c80000;
+
+}
+label{
      display: block;
      padding-top: 5px;
  }
