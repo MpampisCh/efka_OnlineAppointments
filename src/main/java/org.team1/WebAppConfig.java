@@ -60,9 +60,9 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(restAuthenticationEntryPoint)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/appointment/**").authenticated()
                 .antMatchers("/doctor/**").hasRole("Doctor")
                 .antMatchers("/client/**").hasRole("Client")
+                .antMatchers("/appointment/**").authenticated()
                 .and()
                 .formLogin()
                 .successHandler(mySuccessHandler)
@@ -70,6 +70,7 @@ public class WebAppConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/index.html");
+
     }
 
     @Bean

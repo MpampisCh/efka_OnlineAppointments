@@ -22,13 +22,13 @@ public class SpecialtyController {
         this.specialtyService = specialtyService;
     }
 
-    @GetMapping("/specialties")
+    @GetMapping("/specialty/all")
     public List<Specialty> getSpecialty() {
         return specialtyService.findAllSpecialties();
     }
 
 
-    @GetMapping("/specialties/{name}")
+    @GetMapping("/specialty/{name}")
     public Specialty getSpecialty(@PathVariable String specName) {
         return specialtyService.findSpecBySpecName(specName);
     }
@@ -38,7 +38,7 @@ public class SpecialtyController {
         return specialtyService.saveSpec(specialty);
     }
 
-    @PutMapping("/specialties/{id}")
+    @PutMapping("/specialty/{id}")
     public Specialty updateSpecialty(@PathVariable Long id, @RequestBody Specialty updateSpecialty) {
         return specialtyRepository.findById(id)
                 .map(specialty -> {

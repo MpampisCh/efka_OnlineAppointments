@@ -33,7 +33,7 @@ public class AppointmentController {
         this.clientService =clientService;
     }
 
-    @GetMapping("/appointments")
+    @GetMapping("/appointment/all")
     public List<Appointment> getAppointments() {
         return appointmentService.getAllAppointments();
     }
@@ -42,24 +42,24 @@ public class AppointmentController {
     public Appointment getAppointment(@PathVariable Long id) {
         return appointmentService.getAppointmentById(id); }
 
-    @PostMapping("/newAppointment")
+    @PostMapping("/appointment/new")
     @ResponseStatus(HttpStatus.CREATED)
     public Appointment createAppointment(@Valid @RequestBody Appointment appointment, Principal principal) {
         Client client = clientService.findByUserName(principal.getName());
         return appointmentService.createAppointment(appointment,client);
     }
 
-    @GetMapping("/appointments/client")
+    @GetMapping("/appointment/all/client")
     public List<Appointment> getAppointmentsByClient(Principal principal) {
         return appointmentService.getAppointmentsByClientUsername(principal.getName());
     }
 
-    @GetMapping("/appointments/doctor")
+    @GetMapping("/appointment/all/doctor")
     public List<Appointment> getAppointmentsByDoctorUsername(Principal principal) {
         return appointmentService.getAppointmentsByDoctorUsername(principal.getName());
     }
 
-    @GetMapping("/appointments/date-specialty")
+    @GetMapping("/appointment/all/date-specialty")
     public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(
             @RequestParam(name = "startdate") String startDate,
             @RequestParam(name = "enddate") String endDate,
@@ -72,7 +72,7 @@ public class AppointmentController {
         return appointmentService.getAppointmentsBetweenDatesAndBySpecialty(startingDate, endingDate, specName);
     }
 
-    @GetMapping("/appointments/date-desc")
+    @GetMapping("/appointment/all/date-desc")
     public List<Appointment> getAppointmentsBetweenDatesOrBySpecialty(
             Principal principal,
             @RequestParam(name = "startdate") String startDate,
