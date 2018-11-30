@@ -9,17 +9,18 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
     <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
     <script src="vendor/bootstrap/js/popper.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
     <!--===============================================================================================-->
 
     <!--===============================================================================================-->
     <script src="scripts/config/main.js"></script>
     <script src="scripts/security/guest-auth.js"></script>
+    <script src="validations/validations.js"></script>
     <script src="scripts/guest/authentication.js"></script>
 </head>
 
@@ -36,23 +37,23 @@
                                     Member Login
                                 </span>
                 <div class="wrap-input100 validate-input" data-validate="Username is required">
-                    <input id="userName" class="input100" type="text" name="username" placeholder="Username">
+                    <input id="userName" class="input100" type="text" name="username" placeholder="Username" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                                         <i class="fa fa-user" aria-hidden="true"></i>
                                     </span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate="Valid password is required: at least 4 characters">
-                    <input id="password" class="input100" type="password" name="pswd" placeholder="Password">
+                <div class="wrap-input100 validate-input" data-validate="Valid password is required">
+                    <input id="password" class="input100" type="password" name="pswd" placeholder="Password" minlength="4" required>
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                                         <i class="fa fa-lock" aria-hidden="true"></i>
                                     </span>
                 </div>
                 <div class="wrap-input100 validate-input" data-validate="The role is required">
-                    <select id="roleselection" class="input100" name="roleSelection" >
-                        <option value="Select Role">Select Role</option>
+                    <select id="roleselection" class="input100" name="roleSelection" required>
+                        <option value="" selected disabled >Select Role</option>
                         <option value="ADMIN">Administrator</option>
                         <option value="CITIZEN">Citizen</option>
                         <option value="DOCTOR">Doctor</option>
@@ -63,9 +64,8 @@
                 <div id="errorAnswer" style="display:none;" class="answer_list">
                     <span style="color:#c80000;font-family:Poppins-Medium;"> Invalid username or password!</span>
                 </div>
-
-                <div class="login-form-btn">
-                    <button id="loginButton" class="login-form-btn">
+                <div>
+                    <button id="loginButton" class="custom-btn" disabled>
                         Log in
                     </button>
                 </div>

@@ -1,4 +1,5 @@
 function register(firstnameElement,lastnameElement,amkaElement,phoneElement,emailElement,usernameElement,passwordElement) {
+    event.preventDefault();
     let firstname = firstnameElement && firstnameElement.value ? firstnameElement.value : "";
     let lastname = lastnameElement && lastnameElement.value ? lastnameElement.value : "";
     let amka = amkaElement && amkaElement.value ? amkaElement.value : "";
