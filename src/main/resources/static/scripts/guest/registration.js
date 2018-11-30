@@ -29,7 +29,7 @@ function register(firstnameElement,lastnameElement,amkaElement,phoneElement,emai
            window.location.replace(ROOT_PATH + "/index.html");
        },
         statusCode: {
-            401 : function() {
+            409 : function() {
                 alert("Invalid information!");
             }
         }

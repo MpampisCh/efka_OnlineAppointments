@@ -4,16 +4,16 @@ package org.team1.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.team1.exceptions.ClientAmkaExistsException;
+import org.team1.exceptions.ClientEmailExistsException;
 import org.team1.exceptions.ClientNotFoundException;
-import org.team1.models.Appointment;
+import org.team1.exceptions.ClientParamsException;
 import org.team1.models.Client;
 
 import org.team1.repositories.ClientRepository;
-import org.team1.services.AppointmentService;
 import org.team1.services.ClientService;
 
 import javax.validation.Valid;
-import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -30,8 +30,9 @@ public class ClientController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public Client registerAccount(@Valid @RequestBody Client client) {
-        return clientService.registerClient(client);
+    public Client registerAccount(@Valid @RequestBody Client client) throws ClientEmailExistsException, ClientAmkaExistsException, ClientParamsException {
+//        return clientService.registerClient(client);
+        return clientService.checkIfUserCanMakeRegistration(client);
     }
 
     @GetMapping("/clients") //done
