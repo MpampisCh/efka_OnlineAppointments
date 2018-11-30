@@ -51,7 +51,7 @@ $(document).ready(function() {
    let userw=json.userName;
    document.getElementById("welcome").innerHTML = "You are connected as " + userw;
    $.ajax({
-        url: ROOT_PATH + "/appointments/doctor"
+        url: ROOT_PATH + "/appointment/all/doctor"
     }).then(function(appointments) {
         appointmentsTable=appointments;
         populateDataTable(appointments);
@@ -64,7 +64,7 @@ $(document).ready(function() {
           let startds = datesToSearch[0];
           let endds = datesToSearch[2];
            $.ajax({
-               url:  ROOT_PATH + '/appointments/date-desc?description='+descriptionToSearch+'&startdate='+startds+" 00:00"+'&enddate='+endds+" 24:00",
+               url:  ROOT_PATH + '/appointment/all/date-desc?description='+descriptionToSearch+'&startdate='+startds+" 00:00"+'&enddate='+endds+" 24:00",
                success: function(data){
                 appointmentsTable=data;
                  $('#SearchModal').modal('hide');
