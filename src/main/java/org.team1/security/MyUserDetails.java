@@ -42,10 +42,12 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        if (doctor == null){
+        if (doctor == null && client != null){
             return client.getUsername();
-        }else {
+        }else if (doctor != null && client == null){
             return doctor.getUsername();
+        }else {
+            throw new UserNotFoundException();
         }
     }
 

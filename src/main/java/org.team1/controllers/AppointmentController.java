@@ -49,7 +49,7 @@ public class AppointmentController {
         return appointmentService.createAppointment(appointment,client);
     }
 
-    @GetMapping("/appointments/{client_id}")
+    @GetMapping("/appointments/client")
     public List<Appointment> getAppointmentsByClient(Principal principal) {
         return appointmentService.getAppointmentsByClientUsername(principal.getName());
     }
