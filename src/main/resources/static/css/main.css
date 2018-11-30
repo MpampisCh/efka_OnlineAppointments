@@ -557,7 +557,14 @@ font-family: Poppins-Regular;
 
 #ClickableImage{
 cursor:pointer;
+}
 
+#ClickableImageEdit{
+cursor:pointer;
+}
+
+#ClickableImageCancel{
+cursor:pointer;
 }
 
 #NoClickableImage{
@@ -566,8 +573,15 @@ color:#e6e6e6;
 
 #ClickableImage:hover{
 color: #57b846;
-
 }
+#ClickableImageEdit:hover{
+color: #0067B3;
+}
+#ClickableImageCancel:hover{
+ color: #c80000;
+}
+
+
 .navbar-nav {
   margin-left: 8.5em;
 }

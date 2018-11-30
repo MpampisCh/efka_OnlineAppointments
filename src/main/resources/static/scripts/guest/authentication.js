@@ -7,19 +7,16 @@
          let role = e.options[e.selectedIndex].value;
 
           let user = { userName: username ,role: role};
+          let prefix;
 
-            if (role == "ADMIN") {
-                 let prefix="A\t";
+            if (role == "CITIZEN") {
+                 prefix="C\t";
                 var usernameappended=prefix.concat(username);
-                }
-             else if (role == "CITIZEN") {
-              let prefix = "C\t";
-               var usernameappended = prefix.concat(username);
-               }
+              }
                  else if (role == "DOCTOR") {
-                   let prefix = "D\t";
+                   prefix = "D\t";
                     var usernameappended = prefix.concat(username);
-                  }
+               }
 
                 var fd = new FormData();
                  fd.append( 'username', usernameappended);
@@ -53,6 +50,16 @@
                        });
 
                   });
+                   $("#userName").on('keyup change focus', function (e) {
+                      document.getElementById('errorAnswer').style.display = "none";
+                    });
+                 $("#password").on('keyup change focus', function (e) {
+                          document.getElementById('errorAnswer').style.display = "none";
+                  });
+                   $("#roleselection").on('focus', function (e) {
+                          document.getElementById('errorAnswer').style.display = "none";
+                    });
+
 
 
 });

@@ -19,11 +19,11 @@ function populateDataTableAndUpdate(appointments) {
              let dtoday = Date.parse(today);
 
             if (dappointment<=dtoday){
-               $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" + appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='NoClickableImage' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
+               $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" + appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='NoClickableImage' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='NoClickableImage' class='fa fa-ban' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
 
             }
             else{
-                $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" +appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='ClickableImage' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i></td><td><i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
+                $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" +appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='ClickableImageEdit' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i></td><td><i id='ClickableImageCancel' class='fa fa-ban' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
 
             }
 
@@ -101,13 +101,13 @@ $(document).ready(function() {
    let userw=json.userName;
    document.getElementById("welcome").innerHTML = "You are connected as " + userw;
    $.ajax({
-        url: ROOT_PATH + "/appointments"
+        url: ROOT_PATH + "/appointment/all/client"
     }).then(function(appointments) {
         populateDataTableAndUpdate(appointments);
     });
 
     $.ajax({
-               url:ROOT_PATH + '/specialties',
+               url:ROOT_PATH + '/specialty/all',
                dataType : 'json',
                contentType: 'application/json',
            }).then(function(specialties) {
@@ -118,7 +118,7 @@ $(document).ready(function() {
     $("#doctorA").on('click', function(event){
      let specialtyName=$("#specialtyA").val();
      $.ajax({
-            url:ROOT_PATH + '/specialty/'+ specialtyName+'/doctors',
+            url:ROOT_PATH + 'doctor/all/specialty/'+ specialtyName,
             dataType : 'json',
             contentType: 'application/json',
            }).then(function(doctors) {
@@ -171,7 +171,7 @@ $(document).ready(function() {
           let startds = datesToSearch[0];
           let endds = datesToSearch[2];
            $.ajax({
-               url:  ROOT_PATH + '/appointments/date-specialty?specialty='+specialtyToSearch+'&startdate='+startds+" 00:00"+'&enddate='+endds+" 24:00",
+               url:  ROOT_PATH + '/appointment/all/date-specialty?specialty='+specialtyToSearch+'&startdate='+startds+" 00:00"+'&enddate='+endds+" 24:00",
                success: function(data){
                  $('#SearchModal').modal('hide');
                  populateDataTableAndUpdate(data);
@@ -201,7 +201,7 @@ $(document).ready(function() {
               "notes": notes
             };
          $.ajax({
-             url:  ROOT_PATH + '/newAppointment',
+             url:  ROOT_PATH + '/appointment/new',
              type : 'POST',
              data: JSON.stringify(dataAppointment),
              dataType : 'json',
@@ -210,7 +210,7 @@ $(document).ready(function() {
                alert("Ok");
                $('#makeAppointmentModal').modal('hide');
                let t=$("#appointments").DataTable();
-              t.row.add( [data.id,data.doctor.specialty.name, data.dateTime,"<i id='ClickableImage' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i>","<i id='ClickableImage' class='fa fa-trash' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i>"] ).node().id="appointmentRow"+data.id;
+              t.row.add( [data.id,data.doctor.specialty.name, data.dateTime,"<i id='ClickableImageEdit' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i>","<i id='ClickableImageCancel' class='fa fa-ban' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i>"] ).node().id="appointmentRow"+data.id;
               t.draw();
                 },
                  statusCode: {
