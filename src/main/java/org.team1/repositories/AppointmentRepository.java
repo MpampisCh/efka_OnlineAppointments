@@ -16,6 +16,10 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Long> 
 
     List<Appointment> findAppointmentsByDateTimeBetweenAndDoctor_Specialty_Name(Date startDate, Date endDate, String specName);
 
+    List<Appointment> findAppointmentsByDateTimeBetweenAndDescriptionContaining(Date startDate, Date endDate, String description);
+
+
+
 
 
 }

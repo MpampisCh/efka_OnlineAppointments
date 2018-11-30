@@ -56,6 +56,10 @@ public class AppointmentService {
         return appointmentRepository.findAppointmentsByDateTimeBetweenAndDoctor_Specialty_Name(startDate, endDate, specName);
     }
 
+    public List<Appointment> getAppointmentsBetweenOrByDescription(Date startDate, Date endDate, String desc) {
+        return appointmentRepository.findAppointmentsByDateTimeBetweenAndDescriptionContaining(startDate,endDate,desc);
+    }
+
 
 
 }

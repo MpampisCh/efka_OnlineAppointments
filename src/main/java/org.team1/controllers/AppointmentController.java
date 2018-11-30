@@ -72,6 +72,25 @@ public class AppointmentController {
         return appointmentService.getAppointmentsBetweenDatesAndBySpecialty(startingDate, endingDate, specName);
     }
 
+    @GetMapping("/appointments/date-desc")
+    public List<Appointment> getAppointmentsBetweenDatesOrBySpecialty(
+            Principal principal,
+            @RequestParam(name = "startdate") String startDate,
+            @RequestParam(name = "enddate") String endDate,
+            @RequestParam(name = "description")String desc) throws ParseException {
+
+        DateFormat format = new SimpleDateFormat("MM-dd-yyyy HH:mm");
+        Date startingDate = format.parse(startDate);
+        Date endingDate = format.parse(endDate);
+
+        List<Appointment> listA = appointmentService.getAppointmentsByDoctorUsername(principal.getName());
+        List<Appointment> listB = appointmentService.getAppointmentsBetweenOrByDescription(startingDate, endingDate, desc);
+
+        listA.retainAll(listB);
+
+        return listA;
+    }
+
     @PutMapping("/appointment/{id}")
     public Appointment updateAppointment(@PathVariable Long id, @RequestBody Appointment updateAppointment) {
         return appointmentRepository.findById(id)
