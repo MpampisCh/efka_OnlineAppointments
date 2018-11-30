@@ -31,7 +31,7 @@ function populateDataTableAndUpdate(appointments) {
            $("#appointments").append("</tbody>");
 
             $('#appointments').DataTable({
-                        //"bFilter": false,
+                   "bFilter": false,
                    "columnDefs": [
                      { "orderable": false, "targets": 3 },
                      { "orderable": false, "targets": 4 }
@@ -175,7 +175,7 @@ $(document).ready(function() {
                url:  ROOT_PATH + '/appointments/date-specialty?specialty='+specialtyToSearch+'&startdate='+startds+" 00:00"+'&enddate='+endds+" 24:00",
                success: function(data){
                  $('#SearchModal').modal('hide');
-                 populateDataTableAndUpdate([data[1]]);
+                 populateDataTableAndUpdate(data);
                   },
                    statusCode: {
                        401 : function() {

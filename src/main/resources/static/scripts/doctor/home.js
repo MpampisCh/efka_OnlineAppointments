@@ -15,7 +15,7 @@ function populateDataTableAndUpdate(appointments) {
            $("#appointments").append("</tbody>");
 
             $('#appointments').DataTable({
-                        //"bFilter": false,
+                   "bFilter": false,
                    "columnDefs": [
                      { "orderable": false, "targets": 3 },
                            ]
@@ -76,7 +76,7 @@ $(document).ready(function() {
                success: function(data){
                 appointmentsTable=data;
                  $('#SearchModal').modal('hide');
-                 populateDataTableAndUpdate([data[1]]);
+                 populateDataTableAndUpdate(data);
                   },
                    statusCode: {
                        401 : function() {
