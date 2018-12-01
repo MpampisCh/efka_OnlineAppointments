@@ -9,7 +9,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findByUsername(String username);
 
-    Client findClientByAmkaEquals(long amka);
+    Client findClientByAmkaEquals(@javax.validation.constraints.NotNull String amka);
 
     Client findClientByEmailEquals(String email);
 
