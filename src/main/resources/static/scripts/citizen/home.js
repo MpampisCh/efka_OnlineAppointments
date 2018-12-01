@@ -115,16 +115,16 @@ $(document).ready(function() {
                populateSpecialtyDropdownS(specialties);
        });
 
-    $("#doctorA").on('click', function(event){
-     let specialtyName=$("#specialtyA").val();
-     $.ajax({
-            url:ROOT_PATH + '/doc/all/spec/'+ specialtyName,
-            dataType : 'json',
-            contentType: 'application/json',
-           }).then(function(doctors) {
-               populateDoctorsDropdown(doctors);
-       });
-     });
+     $('#specialtyA').change(function(){
+                let specialtyName=$("#specialtyA").val();
+                $.ajax({
+                       url:ROOT_PATH + '/doc/all/spec/'+ specialtyName,
+                       dataType : 'json',
+                       contentType: 'application/json',
+                      }).then(function(doctors) {
+                          populateDoctorsDropdown(doctors);
+                  });
+          });
 
     $("#saveButton").on('click', function(event){
         event.preventDefault();
