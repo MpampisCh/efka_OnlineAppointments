@@ -27,7 +27,6 @@ public class SpecialtyController {
         return specialtyService.findAllSpecialties();
     }
 
-
     @GetMapping("/specialty/{name}")
     public Specialty getSpecialty(@PathVariable String specName) {
         return specialtyService.findSpecBySpecName(specName);
