@@ -44,7 +44,7 @@ public class ClientControllerIT {
 
         String expected = " [\n" +
                             "    {\n" +
-                            "        \"amka\": \"1123456780\",\n" +
+                            "        \"amka\": 123456780,\n" +
                             "        \"firstName\": \"clientFirst\",\n" +
                             "        \"lastName\": \"ClientLast\",\n" +
                             "        \"username\": \"client\",\n" +
@@ -58,7 +58,7 @@ public class ClientControllerIT {
 
     @Test
     public void testGetClientById() {
-        String clientId = "123456780l";
+        long clientId = 123456780l;
         ResponseEntity<Client> response = restTemplate.getForEntity(createURLWithPort("/clients/{id}"), Client.class, clientId);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -69,7 +69,7 @@ public class ClientControllerIT {
     public void testRegister() {
         Client newClient = new Client();
 
-        newClient.setAmka("4123456782");
+        newClient.setAmka(123456782);
         newClient.setFirstName("MpampisFirst");
         newClient.setLastName("MpampisLast");
         newClient.setUsername("Mpampis");
@@ -83,14 +83,14 @@ public class ClientControllerIT {
 
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().getAmka()).isEqualTo("1123456782");
+        assertThat(response.getBody().getAmka()).isEqualTo(123456782);
         assertThat(response.getBody().getFirstName()).isEqualTo("MpampisFirst");
         assertThat(response.getBody().getLastName()).isEqualTo("MpampisLast");
     }
 
     @Test
     public void deleteClient() {
-        String clientId = "1123456782l";
+        Long clientId = 123456782l;
         restTemplate.delete(createURLWithPort("/clients/{id}"), clientId, Void.class);
     }
 
