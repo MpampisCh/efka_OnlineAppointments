@@ -10,7 +10,7 @@ public interface DoctorRepository extends JpaRepository<Doctor, Long> {
 
     Doctor findByUsername(String username);
 
-    Doctor findByAmka(String amka);
+    Doctor findByAmka(long amka);
 
     List<Doctor> findDoctorsBySpecialtyNameEquals(String specName);
 

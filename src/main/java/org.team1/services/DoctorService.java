@@ -21,7 +21,7 @@ public class DoctorService {
         this.doctorRepository = doctorRepository;
     }
 
-    public Doctor findDoctorByAmka(String amka){
+    public Doctor findDoctorByAmka(long amka){
         return doctorRepository.findByAmka(amka);
     }
 
