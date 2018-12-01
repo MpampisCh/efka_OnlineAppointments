@@ -13,8 +13,8 @@ import java.util.Set;
 @Table(name = "client")
 public class Client implements Serializable {
 
-    //    @Pattern(regexp = "[0-9]")
     @NotNull
+    @Pattern(regexp = "[0-9]")
     private  String amka;
 
     @NotNull

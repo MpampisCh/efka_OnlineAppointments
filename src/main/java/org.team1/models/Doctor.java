@@ -11,8 +11,9 @@ import java.io.Serializable;
 @Table(name = "doctor")
 public class Doctor implements Serializable {
 
-    //    @Pattern(regexp = "[0-9]")
+    
     @NotNull
+    @Pattern(regexp = "[0-9]")
     private String amka;
 
     @NotNull
