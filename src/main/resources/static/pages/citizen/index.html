@@ -123,19 +123,19 @@
                         <div class="modal-body">
                             <form name="appointment" class="validate-form" id="makeAppointmentForm">
                                 <div class="form-group required">
-                                    <div class="validate-input" data-validate="You must select a specialty.">
+                                    <div class="validate-input" data-validate="required">
                                         <label class="control-label" for="specialtyA">Specialty</label>
                                         <select id="specialtyA" name="specialtyA" class="form-control" required>
                                             <option value="" selected disabled>Choose Specialty</option>
                                         </select>
                                     </div>
-                                    <div class="validate-input" data-validate="You must select a doctor after select specialty.">
+                                    <div class="validate-input" data-validate="required">
                                         <label class="control-label" for="doctorA">Doctor</label>
                                         <select id="doctorA" name="doctorA" class="form-control" required>
                                             <option value="" selected disabled>Choose Doctor</option>
                                         </select>
                                     </div>
-                                    <div class="validate-input" data-validate="You must select a date.">
+                                    <div class="validate-input" data-validate="required">
                                         <label class="control-label" for="date">Date</label>
                                         <input class="form-control" type="text" name="date" id="date"
                                                placeholder="mm-dd-yyyy" value="" required>
@@ -143,7 +143,7 @@
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                     </span>
                                     </div>
-                                    <div class="validate-input" data-validate="The time must be between 09:00-18:00.">
+                                    <div class="validate-input" data-validate="appointments are allowed only between 09:00-18:00">
                                         <label class="control-label" for="time">Time</label>
                                         <input class="form-control" type="time" name="time" id="time"
                                                value="" min="09:00" max="18:00" required>
@@ -151,13 +151,13 @@
                                         <i class="fa fa-clock-o" aria-hidden="true"></i>
                                     </span>
                                     </div>
-                                    <div class="validate-input" data-validate="You must write a decription.">
+                                    <div class="validate-input" data-validate="at least 2 characters">
                                         <label class="control-label" for="briefdescription">Brief Description</label>
                                         <textarea maxlength="200" minlength="2" id="briefdescription"
                                                   class="form-control" name="briefdescription" required></textarea>
 
                                     </div>
-                                    <div class="validate-input" data-validate="Max length 2000 characters.">
+                                    <div class="validate-input" data-validate="at least 2 characters">
                                         <label for="notes">Notes</label>
                                         <textarea maxlength="2000" minlength="2" id="notes" name="notes"
                                                   class="form-control" rows="3"></textarea>
@@ -192,13 +192,13 @@
                         <div class="modal-body">
                             <form name="searchappointment" class="validate-form" id="searchform">
                                 <div class="form-group required">
-                                    <div class="validate-input" data-validate="You must select a specialty.">
+                                    <div class="validate-input" data-validate="required">
                                         <label class="control-label" for="specialtyS">Specialty</label>
                                         <select id="specialtyS" name="specialtyS" class="form-control" required>
                                             <option value="" selected disabled>Choose Specialty</option>
                                         </select>
                                     </div>
-                                    <div class="validate-input" data-validate="You must select dates.">
+                                    <div class="validate-input" data-validate="required">
                                         <label class="control-label" for="dates">Dates</label>
                                         <input class="form-control" type="text" name="dates" id="dates"
                                                placeholder="mm-dd-yyyy - mm-dd-yyyy" required>

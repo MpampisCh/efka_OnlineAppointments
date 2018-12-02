@@ -78,7 +78,7 @@
                         <label for="doctorU">Doctor</label>
                         <input id="doctorU" class="input-size form-control" type="text" name="doctorU" style="width:100%" readonly disabled>
                     </div>
-                    <div class="wrap-input50 validate-input" data-validate="You must select a date.">
+                    <div class="wrap-input50 validate-input" data-validate="required">
                         <label class="control-label" for="dateU">Date</label>
                         <input class="input-size form-control" type="text" name="dateU" id="dateU"
                                placeholder="mm-dd-yyyy" value="" style="width:100%" required>
@@ -87,7 +87,7 @@
                         </span>
                     </div>
                     <div class="wrap-input50 validate-input"
-                         data-validate="The time must be between 09:00-18:00.">
+                         data-validate="appointments are allowed only between 09:00-18:00">
                         <label class="control-label" for="timeU" style="align:left">Time</label>
                         <input class="input-size form-control" type="time" name="timeU" id="timeU"
                                value="" min="09:00" max="18:00" style="width:100%" required>
@@ -95,7 +95,7 @@
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                         </span>
                     </div>
-                    <div class="wrap-input50 validate-input" data-validate="You must write a decription.">
+                    <div class="wrap-input50 validate-input" data-validate="at least 2 characters">
                         <label class="control-label" for="briefdescriptionU">Brief
                             Description</label>
                         <textarea maxlength="200" minlength="2" id="briefdescriptionU"

@@ -18,7 +18,6 @@
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
-    <script src="../../vendor/bootstrap/js/popper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
@@ -116,8 +115,7 @@
                                         <textarea id="notes" name="notes" class="form-control" rows="3" readonly disabled></textarea>
                                     </div>
                                     <br>
-                                    <i class="fa fa-user" id="ClickableImage" aria-hidden="true" data-toggle="tooltip"
-                                       data-placement="right" title="Patient details" onclick="showorHideDiv()"></i>
+                                    <i class="fa fa-user" id="ClickableImage" aria-hidden="true" onclick="showorHideDiv()"></i>
                                     <span lass="fa fa-user" id="ClickableImage" aria-hidden="true" onclick="showorHideDiv()">View patient details</span>
                                     <br>
                                     <div id=fNameDiv class="validate-input" style="display:none;">
@@ -167,7 +165,7 @@
                         <div class="modal-body">
                             <form name="searchappointment" class="validate-form" id="searchform">
                                 <div class="form-group required">
-                                    <div class="validate-input" data-validate="You must select dates.">
+                                    <div class="validate-input" data-validate="required">
                                         <label class="control-label" for="dates">Dates</label>
                                         <input class="form-control" type="text" name="dates" id="dates"
                                                placeholder="mm-dd-yyyy - mm-dd-yyyy" required>
@@ -175,7 +173,7 @@
                                         <i class="fa fa-calendar" aria-hidden="true"></i>
                                     </span>
                                     </div>
-                                    <div class="validate-input" data-validate="Write a description.">
+                                    <div class="validate-input" data-validate="at least 2 characters">
                                         <label class="control-label" for="briefdescriptionS">Description</label>
                                         <textarea maxlength="200" minlength="2" id="briefdescriptionS"
                                                   class="form-control" name="briefdescriptionS" required></textarea>
@@ -212,7 +210,7 @@ $(function() {
   });
          document.appointment.reset();
          document.searchappointment.reset();
-         $('[data-toggle="tooltip"]').tooltip();
+
 });
  $('#viewAppointmentModal').on('hidden.bs.modal', function(e){
         document.appointment.reset();
