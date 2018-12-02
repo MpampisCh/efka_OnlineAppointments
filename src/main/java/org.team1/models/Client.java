@@ -2,7 +2,6 @@ package org.team1.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -14,7 +13,6 @@ import java.util.Set;
 public class Client implements Serializable {
 
     @NotNull
-//    @Pattern(regexp = "[0-9]")
     private long amka;
 
     @NotNull
@@ -105,17 +103,6 @@ public class Client implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-//    public Set<Appointment> getAppointments(){ return appointments; }
-//    public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments;  }
-
-//    @Override
-//    public String toString(){
-//        return "Client{" + "amka=" + amka + ",First Name=" + firstName +
-//                ",Last Name=" + lastName + ",username=" + username +
-//                ",phone=" + phone + ",email=" + email + '\'' + '}';
-//    }
 
     @Override
     public String toString(){

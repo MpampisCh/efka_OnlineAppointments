@@ -12,7 +12,6 @@ import java.io.Serializable;
 public class Doctor implements Serializable {
 
     @NotNull
-//    @Pattern(regexp = "[0-9]")
     private long amka;
 
     @NotNull
