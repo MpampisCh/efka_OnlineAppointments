@@ -9,7 +9,7 @@ function populateDataTable(appointments) {
             $('#appointments tbody').empty();
             $("#appointments").append("<tbody>");
             jQuery.each(appointments, function(i,appointment) {
-                $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" +appointment.dateTime + "</td><td>" + appointment.description + "</td><td><i id='ClickableImage' class='fa fa-info-circle' aria-hidden='true' data-toggle='modal' data-target='#viewAppointmentModal' onclick='findRow()'></i></td></tr>");
+                $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" +appointment.dateTime + "</td><td>" + appointment.description + "</td><td><span id='ClickableImageEdit' data-toggle='modal' data-target='#viewAppointmentModal' onclick='findRow()' style='color: #0067B3'>View details</span></td></tr>");
 
              });
            $("#appointments").append("</tbody>");

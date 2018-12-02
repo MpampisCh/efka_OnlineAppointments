@@ -26,7 +26,6 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-
     <script src="../../scripts/config/main.js"></script>
     <script src="../../scripts/security/home-auth.js"></script>
     <script src="../../scripts/security/doctor-auth.js"></script>
@@ -37,9 +36,6 @@
 <div class="modifier">
     <div class="login">
         <div class="wrap-login">
-            <div class="welcome-user">
-                <span id="welcome" style="float:right"></span>
-            </div>
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light text-align:right">
                     <!--  <a class="navbar-brand" href="index.html">Home</a> -->
@@ -67,7 +63,9 @@
                     </div>
                 </nav>
             </div>
-
+            <div class="welcome-user">
+                <span id="welcome" style="float:right"></span>
+            </div>
             <div class="container">
                 <br>
                 <br>
@@ -93,56 +91,55 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">
-                            <form name="appointment">
-                                <div class="form-group">
+                            <form name="appointment" data-custom-validation="true">
+                                <div>
                                     <div class="validate-input">
                                         <label for="date">Date</label>
-                                        <input id="date" class="form-control" type="text" name="date" readonly>
+                                        <input id="date" class="form-control" type="text" name="date" readonly disabled>
                                         <span class="symbol">
                                             <i class="fa fa-calendar" aria-hidden="true"></i>
                                         </span>
                                     </div>
                                     <div class="validate-input">
                                         <label for="time">Time</label>
-                                        <input id="time" class="form-control" type="text" name="time" readonly>
+                                        <input id="time" class="form-control" type="text" name="time" readonly disabled>
                                         <span class="symbol">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i>
                                         </span>
                                     </div>
                                     <div class="validate-input">
-                                        <label class="control-label" for="briefdescription">Brief Description</label>
-                                        <textarea id="briefdescription"
-                                                  class="form-control" name="briefdescription" readonly></textarea>
+                                        <label for="briefdescription">Brief Description</label>
+                                        <textarea id="briefdescription" class="form-control" name="briefdescription" readonly disabled></textarea>
                                     </div>
                                     <div class="validate-input">
                                         <label for="notes">Notes</label>
-                                        <textarea id="notes" name="notes" class="form-control" rows="3"
-                                                  readonly></textarea>
+                                        <textarea id="notes" name="notes" class="form-control" rows="3" readonly disabled></textarea>
                                     </div>
                                     <br>
                                     <i class="fa fa-user" id="ClickableImage" aria-hidden="true" data-toggle="tooltip"
-                                       data-placement="right" title="Patient details" onclick="showDiv()"></i>
+                                       data-placement="right" title="Patient details" onclick="showorHideDiv()"></i>
+                                    <span lass="fa fa-user" id="ClickableImage" aria-hidden="true" onclick="showorHideDiv()">View patient details</span>
                                     <br>
                                     <div id=fNameDiv class="validate-input" style="display:none;">
                                         <label class=for="fname">First Name</label>
                                         <input id="fname" class="form-control" type="text" name="fname"
-                                               readonly>
+                                               readonly disabled>
                                     </div>
                                     <div id=lNameDiv class="validate-input" style="display:none;">
                                         <label for="lname">Last Name</label>
-                                        <input id="lname" class="form-control" type="text" name="lname" readonly>
+                                        <input id="lname" class="form-control" type="text" name="lname" readonly disabled>
                                     </div>
                                     <div id=amkaDiv class="validate-input" style="display:none;">
                                         <label for="amka">AMKA</label>
-                                        <input id="amka" class="form-control" type="text" name="amka" readonly>
+                                        <input id="amka" class="form-control" type="text" name="amka" readonly disabled>
                                     </div>
                                     <div id=phoneDiv class="validate-input" style="display:none;">
                                         <label class=for="phone">Phone</label>
-                                        <input id="phone" class="form-control" type="text" name="phone" readonly>
+                                        <input id="phone" class="form-control" type="text" name="phone" readonly disabled>
                                     </div>
                                     <div id=emailDiv class="validate-input" style="display:none;">
                                         <label for="email">E-mail</label>
-                                        <input id="email" class="form-control" type="text" name="email" readonly>
+                                        <input id="email" class="form-control" type="text" name="email" readonly disabled>
                                     </div>
                                     <br>
                                     <div class="modal-footer">
@@ -168,7 +165,7 @@
                         </div>
                         <!-- Modal body for pop-up form -->
                         <div class="modal-body">
-                            <form name="searchappointment" class="validate-form">
+                            <form name="searchappointment" class="validate-form" id="searchform">
                                 <div class="form-group required">
                                     <div class="validate-input" data-validate="You must select dates.">
                                         <label class="control-label" for="dates">Dates</label>
@@ -180,7 +177,7 @@
                                     </div>
                                     <div class="validate-input" data-validate="Write a description.">
                                         <label class="control-label" for="briefdescriptionS">Description</label>
-                                        <textarea maxlength="200" minlength="5" id="briefdescriptionS"
+                                        <textarea maxlength="200" minlength="2" id="briefdescriptionS"
                                                   class="form-control" name="briefdescriptionS" required></textarea>
 
                                     </div>
@@ -222,21 +219,33 @@ $(function() {
         hideDiv();
  });
 $('#SearchModal').on('hidden.bs.modal', function(e){
-         document.searchappointment.reset();
+       document.searchappointment.reset();
+       document.getElementById("searchAppointmentButton").disabled = true;
+       $('#searchform').find(':input').each(function(){
+           $(this).parent().removeClass('alert-validate');
+        });
+
  });
 
 </script>
 <script>
-    function showDiv() {
-     document.getElementById('fNameDiv').style.display = "block";
-     document.getElementById('lNameDiv').style.display = "block";
-     document.getElementById('amkaDiv').style.display = "block";
-     document.getElementById('phoneDiv').style.display = "block";
-     document.getElementById('emailDiv').style.display = "block";
- }
+    function showorHideDiv() {
+       let x = document.getElementById("fNameDiv");
+       if (x.style.display === "none") {
+        document.getElementById('fNameDiv').style.display = "block";
+        document.getElementById('lNameDiv').style.display = "block";
+        document.getElementById('amkaDiv').style.display = "block";
+        document.getElementById('phoneDiv').style.display = "block";
+        document.getElementById('emailDiv').style.display = "block";
+       }else{
+        document.getElementById('fNameDiv').style.display = "none";
+        document.getElementById('lNameDiv').style.display = "none";
+        document.getElementById('amkaDiv').style.display = "none";
+        document.getElementById('phoneDiv').style.display = "none";
+        document.getElementById('emailDiv').style.display = "none";
+       }
 
-</script>
-<script>
+ }
     function hideDiv() {
      document.getElementById('fNameDiv').style.display = "none";
      document.getElementById('lNameDiv').style.display = "none";
@@ -244,8 +253,7 @@ $('#SearchModal').on('hidden.bs.modal', function(e){
      document.getElementById('phoneDiv').style.display = "none";
      document.getElementById('emailDiv').style.display = "none";
  }
-
 </script>
-<script src="../../validations/validations.js"></script>
+<script src="../../scripts/validations/validations.js"></script>
 </body>
 </html>

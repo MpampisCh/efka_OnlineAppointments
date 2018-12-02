@@ -26,6 +26,7 @@ function inputValidation() {
                 return;
             }
 
+
             const isFormValid = $(closestForm)[0].checkValidity();
 
             if ($('#rpwd').length) {

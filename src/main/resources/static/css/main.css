@@ -427,8 +427,8 @@ button:hover {
 /*[ Alert validate ]*/
 
 .validate-input {
-  position: relative;
-}
+   position: relative;
+ }
 
 .alert-validate::before {
   content: attr(data-validate);

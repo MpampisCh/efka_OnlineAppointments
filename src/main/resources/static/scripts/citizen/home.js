@@ -19,7 +19,7 @@ function populateDataTableAndUpdate(appointments) {
              let dtoday = Date.parse(today);
 
             if (dappointment<=dtoday){
-               $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" + appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='NoClickableImage' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='NoClickableImage' class='fa fa-ban' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i></td></tr>");
+               $("#appointments").append("<tr id='appointmentRow" + appointment.id + "'><td>" + appointment.id + "</td><td>" + appointment.doctor.specialty.name + "</td><td>" + appointment.dateTime + "</td><td><i id='NoClickableImage' class='fa fa-pencil-square-o' aria-hidden='true'></i></td><td><i id='NoClickableImage' class='fa fa-ban' aria-hidden='true'></i></td></tr>");
 
             }
             else{
@@ -73,13 +73,13 @@ function populateSpecialtyDropdownS(specialties) {
 }
 
 function populateDoctorsDropdown(doctors) {
-    let dropdown = $('#doctorA');
-    dropdown.prop('selectedIndex', 0);
-    dropdown.empty();
-    $("#doctorA").append("<option value='' selected disabled>Choose Doctor</option>");
-    jQuery.each(doctors, function(i,doctor) {
-     $("#doctorA").append("<option value="+doctor.amka+">"+doctor.lastName+"</option>");
-     });
+         let dropdown= $('#doctorA');
+         dropdown.prop('selectedIndex', 0);
+         dropdown.empty();
+         $("#doctorA").append("<option value='' selected disabled>Choose Doctor</option>");
+         jQuery.each(doctors, function(i,doctor) {
+           $("#doctorA").append("<option value="+doctor.amka+">"+doctor.lastName+"</option>");
+           });
 }
 
 function loadAppointment(id) {
@@ -113,6 +113,7 @@ $(document).ready(function() {
            }).then(function(specialties) {
                populateSpecialtyDropdownA(specialties);
                populateSpecialtyDropdownS(specialties);
+
        });
 
      $('#specialtyA').change(function(){
