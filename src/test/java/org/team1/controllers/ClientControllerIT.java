@@ -58,18 +58,18 @@ public class ClientControllerIT {
 
     @Test
     public void testGetClientById() {
-        long clientId = 123456780l;
+        String clientId = "123456789l";
         ResponseEntity<Client> response = restTemplate.getForEntity(createURLWithPort("/clients/{id}"), Client.class, clientId);
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().getAmka()).isEqualTo(123456780);
+        assertThat(response.getBody().getAmka()).isEqualTo("1234567891");
     }
 
     @Test
     public void testRegister() {
         Client newClient = new Client();
 
-        newClient.setAmka(123456782);
+        newClient.setAmka("1234567892");
         newClient.setFirstName("MpampisFirst");
         newClient.setLastName("MpampisLast");
         newClient.setUsername("Mpampis");
@@ -83,14 +83,14 @@ public class ClientControllerIT {
 
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(response.getBody().getAmka()).isEqualTo(123456782);
+        assertThat(response.getBody().getAmka()).isEqualTo("1234567892");
         assertThat(response.getBody().getFirstName()).isEqualTo("MpampisFirst");
         assertThat(response.getBody().getLastName()).isEqualTo("MpampisLast");
     }
 
     @Test
     public void deleteClient() {
-        Long clientId = 123456782l;
+        String clientId = "1234567892";
         restTemplate.delete(createURLWithPort("/clients/{id}"), clientId, Void.class);
     }
 

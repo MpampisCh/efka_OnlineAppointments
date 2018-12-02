@@ -6,11 +6,11 @@ import org.team1.models.Doctor;
 import javax.print.Doc;
 import java.util.List;
 
-public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+public interface DoctorRepository extends JpaRepository<Doctor, String> {
 
     Doctor findByUsername(String username);
 
-    Doctor findByAmka(long amka);
+    Doctor findByAmka(String amka);
 
     List<Doctor> findDoctorsBySpecialtyNameEquals(String specName);
 

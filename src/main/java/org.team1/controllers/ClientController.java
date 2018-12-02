@@ -38,13 +38,13 @@ public class ClientController {
     public List<Client> getClients() { return clientRepository.findAll(); }
 
     @GetMapping("/clients/{amka}") //done
-    public Client getClient(@PathVariable Long amka) {
+    public Client getClient(@PathVariable String amka) {
         return clientRepository.findById(amka)
                 .orElseThrow(() -> new ClientNotFoundException(amka));
     }
 
     @PutMapping("/clients/{amka}")
-    public Client updateClient(@PathVariable Long amka, @PathVariable Client updateClient) {
+    public Client updateClient(@PathVariable String amka, @PathVariable Client updateClient) {
         return clientRepository.findById(amka)
                 .map(client -> {
                     client.setUsername(updateClient.getUsername());
@@ -55,7 +55,7 @@ public class ClientController {
 
     @DeleteMapping("clients/{amka}")
     @ResponseStatus(value = HttpStatus.NO_CONTENT)
-    public void deleteClient(@PathVariable Long amka) {
+    public void deleteClient(@PathVariable String amka) {
         getClient(amka);
         clientRepository.deleteById(amka);
     }

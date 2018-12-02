@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import org.team1.models.Client;
+import org.team1.models.Doctor;
+import org.team1.models.Specialty;
 import org.team1.repositories.ClientRepository;
 import org.team1.repositories.DoctorRepository;
 import org.team1.repositories.SpecialtyRepository;
@@ -22,7 +25,7 @@ public class LoadDatabase {
                                    SpecialtyRepository specialtyRepository, PasswordEncoder passwordEncoder) {
         return args -> {
 //
-//            Client client = new Client(123456780,"clientFirst","ClientLast",
+//            Client client = new Client("1234567890","clientFirst","ClientLast",
 //                    "client", passwordEncoder.encode("client"),
 //                    1234567890, "client@gmail.com");
 //
@@ -40,28 +43,28 @@ public class LoadDatabase {
 //            logger.info("Preloading" + specialtyRepository.save(specialty4));
 //            logger.info("Preloading" + specialtyRepository.save(specialty5));
 //
-//            Doctor doctor1 = new Doctor(123456781,"DoctorAF","DoctorAL",
+//            Doctor doctor1 = new Doctor("1234567891","DoctorAF","DoctorAL",
 //                    "doctorA", passwordEncoder.encode("doctorA"),
 //                    1234567880, "doctor1@gmail.com", specialty1);
-//            Doctor doctor2 = new Doctor(123456782,"DoctorBF","DoctorBL",
+//            Doctor doctor2 = new Doctor("1234567892","DoctorBF","DoctorBL",
 //                    "doctorB", passwordEncoder.encode("doctorB"),
 //                    1234567881, "doctor2@gmail.com", specialty1);
-//            Doctor doctor3 = new Doctor(123456783,"DoctorCF","DoctorCL",
+//            Doctor doctor3 = new Doctor("1234567893","DoctorCF","DoctorCL",
 //                    "doctorC", passwordEncoder.encode("doctorC"),
 //                    1234567882, "doctor3@gmail.com", specialty1);
-//            Doctor doctor4 = new Doctor(123456784,"DoctorDF","DoctorDL",
+//            Doctor doctor4 = new Doctor("1234567894","DoctorDF","DoctorDL",
 //                    "doctorD", passwordEncoder.encode("doctorD"),
 //                    1234567883, "doctor4@gmail.com", specialty2);
-//            Doctor doctor5 = new Doctor(123456785,"DoctorEF","DoctorEL",
+//            Doctor doctor5 = new Doctor("1234567895","DoctorEF","DoctorEL",
 //                    "doctorE", passwordEncoder.encode("doctorE"),
 //                    1234567880, "doctor5@gmail.com", specialty2);
-//            Doctor doctor6 = new Doctor(123456786,"DoctorFF","DoctorFL",
+//            Doctor doctor6 = new Doctor("1234567896","DoctorFF","DoctorFL",
 //                    "doctorF", passwordEncoder.encode("doctorF"),
 //                    1234567884, "doctor6@gmail.com", specialty3);
-//            Doctor doctor7 = new Doctor(123456787,"DoctorGF","DoctorGL",
+//            Doctor doctor7 = new Doctor("1234567897","DoctorGF","DoctorGL",
 //                    "doctorG", passwordEncoder.encode("doctorG"),
 //                    1234567885, "doctor7@gmail.com", specialty4);
-//            Doctor doctor8 = new Doctor(123456788,"DoctorHF","DoctorHL",
+//            Doctor doctor8 = new Doctor("1234567898","DoctorHF","DoctorHL",
 //                    "doctorH", passwordEncoder.encode("doctorH"),
 //                    1234567886, "doctor8@gmail.com", specialty5);
 //
@@ -74,7 +77,7 @@ public class LoadDatabase {
 //            logger.info("Preloading " + doctorRepository.save(doctor7));
 //            logger.info("Preloading " + doctorRepository.save(doctor8));
 //
-      };
+        };
     }
 
 }
