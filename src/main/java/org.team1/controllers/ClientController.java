@@ -34,7 +34,7 @@ public class ClientController {
         return clientService.registerUserIfIsValid(client);
     }
 
-    @GetMapping("/clients") //done
+    @GetMapping("/clients")
     public List<Client> getClients() { return clientRepository.findAll(); }
 
     @GetMapping("/clients/{amka}") //done

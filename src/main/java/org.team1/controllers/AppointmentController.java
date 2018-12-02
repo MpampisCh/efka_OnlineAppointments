@@ -61,6 +61,7 @@ public class AppointmentController {
 
     @GetMapping("/appointment/all/date-specialty")
     public List<Appointment> getAppointmentsBetweenDatesAndBySpecialty(
+            Principal principal,
             @RequestParam(name = "startdate") String startDate,
             @RequestParam(name = "enddate") String endDate,
             @RequestParam(name = "specialty")String specName) throws ParseException {
@@ -69,7 +70,13 @@ public class AppointmentController {
         Date startingDate = format.parse(startDate);
         Date endingDate = format.parse(endDate);
 
-        return appointmentService.getAppointmentsBetweenDatesAndBySpecialty(startingDate, endingDate, specName);
+        List<Appointment> listA = appointmentService.getAppointmentsByClientUsername(principal.getName());
+        List<Appointment> listB = appointmentService.getAppointmentsBetweenDatesAndBySpecialty(startingDate, endingDate, specName);
+
+        listA.retainAll(listB);
+
+
+        return listA;
     }
 
     @GetMapping("/appointment/all/date-desc")

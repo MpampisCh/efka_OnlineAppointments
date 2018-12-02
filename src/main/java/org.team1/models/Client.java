@@ -13,7 +13,6 @@ import java.util.Set;
 @Table(name = "client")
 public class Client implements Serializable {
 
-    //    @Pattern(regexp = "[0-9]")
     private String amka;
 
     @NotNull
@@ -104,17 +103,6 @@ public class Client implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-
-//    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-//    public Set<Appointment> getAppointments(){ return appointments; }
-//    public void setAppointments(Set<Appointment> appointments){ this.appointments = appointments;  }
-
-//    @Override
-//    public String toString(){
-//        return "Client{" + "amka=" + amka + ",First Name=" + firstName +
-//                ",Last Name=" + lastName + ",username=" + username +
-//                ",phone=" + phone + ",email=" + email + '\'' + '}';
-//    }
 
     @Override
     public String toString(){

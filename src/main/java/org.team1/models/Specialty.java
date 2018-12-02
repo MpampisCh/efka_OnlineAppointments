@@ -1,13 +1,9 @@
 package org.team1.models;
 
-import org.springframework.context.annotation.Lazy;
-
 import javax.persistence.*;
-import javax.print.Doc;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
-import java.util.Set;
 
 @Entity(name = "specialtyEntity")
 @Table(name = "specialty")

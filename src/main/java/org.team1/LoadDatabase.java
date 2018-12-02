@@ -7,9 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import org.team1.models.Client;
-import org.team1.models.Doctor;
-import org.team1.models.Specialty;
 import org.team1.repositories.ClientRepository;
 import org.team1.repositories.DoctorRepository;
 import org.team1.repositories.SpecialtyRepository;
