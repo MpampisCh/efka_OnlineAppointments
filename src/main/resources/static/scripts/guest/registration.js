@@ -26,12 +26,15 @@ function register(firstnameElement,lastnameElement,amkaElement,phoneElement,emai
     dataType : 'json',
     contentType: 'application/json',
     success: function(data){
-           alert("The registration completed successfully!");
-           window.location.replace(ROOT_PATH + "/index.html");
+           //alert("The registration completed successfully!");
+           $.notify("The registration completed successfully!", "success");
+          // window.location.replace(ROOT_PATH + "/index.html");
        },
         statusCode: {
             409 : function(response) {
-                alert(response.responseText);
+            $.notify(response.responseText, "error");
+            //alert(response.responseText);
+
             }
         }
     });

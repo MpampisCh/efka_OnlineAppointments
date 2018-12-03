@@ -208,7 +208,7 @@ $(document).ready(function() {
              dataType : 'json',
              contentType: 'application/json',
              success: function(data){
-               alert("Ok");
+               $.notify("The appointment has been created!", "success");
                $('#makeAppointmentModal').modal('hide');
                let t=$("#appointments").DataTable();
               t.row.add( [data.id,data.doctor.specialty.name, data.dateTime,"<i id='ClickableImageEdit' class='fa fa-pencil-square-o' aria-hidden='true' onclick='print()'></i>","<i id='ClickableImageCancel' class='fa fa-ban' aria-hidden='true' data-toggle='modal' data-target='#deleteModal' onclick='findRow()'></i>"] ).node().id="appointmentRow"+data.id;
